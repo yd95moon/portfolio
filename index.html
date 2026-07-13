@@ -865,7 +865,7 @@ function openLB(id, title, list, vert){
   lbInner.classList.toggle('vert', vert);
   const l = list ? `&list=${list}` : '';
   const origin = `&origin=${encodeURIComponent(location.origin)}`;
-  lbFrame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0${l}${origin}" title="${esc(title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  lbFrame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=0&rel=0${l}${origin}" title="${esc(title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
   lbTitle.textContent = title;
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
