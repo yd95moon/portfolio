@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#070708; --panel:#0E0E10; --panel2:#141416; --raise:#1A160E;
@@ -19,7 +19,7 @@
   --amber:#C4A36A; --amber2:#DFC489; --amber-dim:rgba(196,163,106,.10);
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   --sans:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
-  --serif:'Noto Serif KR',serif;
+  --serif:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
   --rad:14px; --rad-s:10px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -80,7 +80,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .stat{background:var(--panel);padding:18px 20px}
 .stat b{display:block;font-family:var(--mono);font-size:clamp(21px,3.4vw,27px);color:var(--amber);letter-spacing:.02em}
 .stat span{font-size:12.5px;color:var(--mut)}
-@media(max-width:660px){.hero-grid{grid-template-columns:1fr}.hero-photo{order:-1;margin:0}}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-photo{order:-1;margin:0 auto;width:min(200px,55vw)}}
 
 /* ───────── sections ───────── */
 section{padding:clamp(48px,8vw,84px) 0}
@@ -187,7 +187,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .vcard:hover{transform:translateY(-3px);border-color:rgba(196,163,106,.5)}
 .vcard img{width:100%;height:100%;object-fit:cover;transition:transform .3s,filter .25s;filter:grayscale(1) contrast(1.05) brightness(.9)}
 .vcard::after{content:'';position:absolute;inset:0;background:rgba(196,163,106,.18);mix-blend-mode:color;pointer-events:none;transition:opacity .25s}
-.vcard:hover img,.vcard:focus-visible img{transform:scale(1.05);filter:none}
+.vcard:not(.noplay):hover img,.vcard:not(.noplay):focus-visible img{transform:scale(1.05);filter:none}
+.vcard.noplay{cursor:default}
 .vcard:hover::after,.vcard:focus-visible::after{opacity:0}
 .vcard .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(to top,rgba(6,6,7,.65),rgba(6,6,7,0) 55%);opacity:.95;transition:opacity .2s}
 .vcard .play i{width:46px;height:46px;border-radius:50%;background:rgba(196,163,106,.95);display:flex;align-items:center;justify-content:center;color:#070708;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .18s}
@@ -276,7 +277,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
     <nav class="navlinks" id="navlinks" aria-label="주 메뉴">
       <a href="#/" data-anchor="career">커리어</a>
       <a href="#/" data-anchor="skills">스킬</a>
-      <a href="#/" data-anchor="awards">수상</a>
       <a href="#/" data-anchor="contact">연락</a>
     </nav>
   </div>
@@ -324,8 +324,93 @@ const DATA = {
     {
       id: 'hmsec', ch: '01', period: '2025.09 — 현재', badge: 'NOW',
       company: '현대차증권', role: '마케팅팀 매니저',
-      desc: '새로운 채널에서 콘텐츠를 준비하고 있습니다. 대표 콘텐츠 정리 후 곧 공개됩니다.',
-      soon: true,
+      desc: 'AI 자동화 파이프라인을 직접 설계해 외주비를 전액 제거하고, 콘텐츠 생산성을 약 415% 끌어올렸습니다.',
+      thumbs: ['tprDJB4Tkuw', 'JCp3Bj5BniI', 'R_nKhkjibzE'],
+      programs: [
+        {
+          t: '주요 성과',
+          highlights: [
+            'AI 아나운서 내재화로 외주비(건당 최대 7,000만 원) 전액 제거 · 월 고정비 65% 절감(173만 원 → 60만 원)',
+            'AI 자동화 제작 파이프라인 구축으로 콘텐츠 생산성 약 415% 증대, 숏폼 발행량 4배 이상 확대(45건 → 187건, 분기 기준)',
+            '채널 총 조회수 106% 상향(31만 회 → 64만 회, 전년 2분기 대비)',
+            '사내 교육 콘텐츠 AI 전환으로 누적 수천만 원 절감, 전사 업무 영상 지원 실적 KPI 대비 4배 달성',
+          ],
+        },
+        {
+          t: 'AI 자동화 파이프라인',
+          d: '콘텐츠 기획부터 제작 · 발행까지의 공정을 AI 기반으로 자동화하는 제작 파이프라인을 직접 설계 · 구축했습니다. 토픽 리서치 → 스크립트 → AI 음성 · 영상 생성 → 편집 → 발행으로 이어지는 제작 단계를 표준화해 인력 추가 투입 없이 처리 물량을 대폭 확대했습니다.',
+          cards: [
+            { h: '외주 의존도 제거', p: 'AI 아나운서 제작 시스템을 사내 기술 역량으로 내재화해 외주 없이 사내 영상 제작 자산의 자생력을 확보했습니다.' },
+            { h: '전사 단위 적용', p: '구축한 AI 인프라를 연금 콘텐츠 · 사내 의무교육 · 경영 브리핑 · 사내 소통 영상 등 전사 단위로 범용 적용했습니다.' },
+          ],
+        },
+        {
+          t: 'AI 아나운서', d: '아바타 · 의상 생성 외주 없이 사내에서 AI 아나운서 콘텐츠를 대량 생산했습니다.', shorts: true,
+          videos: [
+            { id: 'JCp3Bj5BniI', label: 'AI아나운서 · 남자', thumb: 'assets/thumbs/ai-announcer-m.jpg' },
+            { id: '8HThJ-FPwmw', label: 'AI아나운서 · 여자', thumb: 'assets/thumbs/ai-announcer-f.jpg' },
+          ],
+        },
+        {
+          t: 'AI 숏폼 자동화', d: 'AI로 대본과 음성을 자동화한 숏폼 파이프라인으로 콘텐츠를 대량 생산했습니다.', shorts: true,
+          videos: [
+            { id: 'svl0fb0m28U', label: 'AI숏폼 대량생산 1', thumb: 'assets/thumbs/ai-shorts-1.jpg' },
+            { id: 'uT3bUPffj3M', label: 'AI숏폼 대량생산 2', thumb: 'assets/thumbs/ai-shorts-2.jpg' },
+          ],
+        },
+        {
+          t: '매뉴얼 콘텐츠', d: '서비스 개편 · IRP 계좌개설 등 고객 대상 매뉴얼 영상을 제작했습니다.',
+          videos: [
+            { id: '0D09GoHA3dY', label: '서비스 개편 매뉴얼', thumb: 'assets/thumbs/manual-service.jpg' },
+            { thumb: 'assets/thumbs/manual-irp.jpg', label: '[확인중]' },
+          ],
+        },
+        {
+          t: '사내 콘텐츠', d: '시상 소식부터 웹드라마까지, 사내 커뮤니케이션 콘텐츠를 제작했습니다.',
+          videos: [
+            { id: 'tprDJB4Tkuw', label: '사내 시상 소식', thumb: 'assets/thumbs/inhouse-award-news.jpg' },
+            { id: '0zkMRQ5jhN0', label: '수상 인터뷰', thumb: 'assets/thumbs/inhouse-award-interview.jpg' },
+            { id: 'I02pX7t1Jvs', label: '사내 웹드라마', thumb: 'assets/thumbs/inhouse-webdrama.jpg' },
+          ],
+        },
+        {
+          t: '예능 콘텐츠', d: '레오 · 기아 타이거즈 윤석민 선수 편 등 예능형 콘텐츠를 기획 · 제작했습니다.',
+          videos: [
+            { id: 'JUReVSWu22s', label: '레오 1편', thumb: 'assets/thumbs/variety-leo-1.jpg' },
+            { id: 'pWw9QNiUKGY', label: '레오 2편', thumb: 'assets/thumbs/variety-leo-2.jpg' },
+            { id: '8255dFDarC8', label: '기아 타이거즈 · 윤석민 1편', thumb: 'assets/thumbs/variety-tigers-1.jpg' },
+            { id: '2YzkkWD2tx0', label: '기아 타이거즈 · 윤석민 2편', thumb: 'assets/thumbs/variety-tigers-2.jpg' },
+          ],
+        },
+        {
+          t: '스포츠 마케팅', d: '기아 타이거즈 제휴 콘텐츠로 릴스 도달 33만+ 를 기록했습니다.',
+          videos: [
+            { id: 'RdvwIZ1W8_c', label: '기아 타이거즈 홍보', thumb: 'assets/thumbs/sports-tigers-promo.jpg' },
+            { id: 'dvkxFDiH2wI', label: '기아 타이거즈 홍보 2', thumb: 'assets/thumbs/sports-tigers-promo-2.jpg' },
+          ],
+        },
+        {
+          t: '주식 콘텐츠', d: '원픽 리포트 등 투자 정보 콘텐츠를 제작했습니다.',
+          videos: [
+            { id: 'R_nKhkjibzE', label: '원픽 리포트 1', thumb: 'assets/thumbs/stock-onepick-1.jpg' },
+            { id: 'jv1v8QUYe-8', label: '원픽 리포트 2', thumb: 'assets/thumbs/stock-onepick-2.jpg' },
+          ],
+        },
+        {
+          t: '강의 콘텐츠', d: '존리, 포메뽀꼬 등 초청 강의 콘텐츠를 제작했습니다.',
+          videos: [
+            { id: 'cLIJbDRpWv0', label: '존리 강의', thumb: 'assets/thumbs/lecture-johnlee.jpg' },
+            { id: 'bx-ZEvK_m9I', label: '포메뽀꼬 강의', thumb: 'assets/thumbs/lecture-pomeppoko.jpg' },
+          ],
+        },
+        {
+          t: '라이브 콘텐츠', d: '차트 시그널 등 실시간 라이브 방송을 진행했습니다.',
+          videos: [
+            { id: 'fRx1HoSTDmE', label: '차트 시그널 1', thumb: 'assets/thumbs/live-chart-signal-1.jpg' },
+            { id: 'J3Euu32Lh14', label: '차트 시그널 2', thumb: 'assets/thumbs/live-chart-signal-2.jpg' },
+          ],
+        },
+      ],
     },
     {
       id: 'newsystock', ch: '02', period: '— 2025.08',
@@ -563,14 +648,11 @@ const DATA = {
     },
   ],
   skills: {
-    tools: [
-      { n: 'Premiere Pro', lv: 5, k: '상' }, { n: 'Photoshop', lv: 5, k: '상' },
-      { n: 'OBS Studio', lv: 5, k: '상' }, { n: 'vMix', lv: 5, k: '상' },
-      { n: 'After Effects', lv: 3, k: '중' },
-    ],
-    shoot: '로닌 · 폴캠 · 드론 · 슬라이더 등의 촬영 장비와 ENG, 시네마 카메라 등 하이엔드급 카메라 운용이 가능합니다.',
-    live: '스위처를 활용한 라이브 방송 시스템을 처음부터 직접 구축하고 운영할 수 있습니다.',
-    gear: ['ENG 카메라', '시네마 카메라', 'Ronin', 'Polcam', '드론', '슬라이더', '스위처 · 라이브 시스템'],
+    toolsSummary: 'Premiere Pro · Photoshop · OBS Studio · vMix는 실무 수준으로, After Effects는 보조 툴로 다룹니다.',
+    toolsHl: ['Premiere Pro', 'Photoshop', 'OBS Studio', 'vMix'],
+    toolsChip: ['After Effects'],
+    shoot: '로닌 · 폴캠 · 드론 · 슬라이더 등 촬영 장비와 ENG · 시네마 카메라 등 하이엔드급 카메라, 스위처 기반 라이브 시스템까지 직접 구축하고 운용합니다.',
+    gear: ['ENG 카메라', '시네마 카메라', '드론 · 슬라이더', '라이브 스위칭'],
   },
   awards: [
     { y: '2019.06', n: '연세인 역량관리시스템 홍보 UCC 공모전', prize: '우수상', url: 'https://blog.naver.com/duden89/222596171331', lk: '증빙 보기 ↗' },
@@ -614,8 +696,8 @@ function renderHub(){
       <div class="hero-grid">
         <div>
           <div class="role-en">PRODUCER × BUILDER — MOON YOUNG DOO</div>
-          <h1>현장부터 코드까지,<br>전부 직접 만듭니다<span class="amber">.</span></h1>
-          <p class="lede">카메라가 필요한 현장, 기획과 디자인, 편집과 라이브 — 그리고 그것을 자동화하는 개발까지. 콘텐츠의 처음과 끝을 한 사람 안에서 완성하는 풀스택 PD, 문영두입니다.</p>
+          <h1>콘텐츠를 넘어 개발까지,<br>AI로 수억원을 아끼는 올라운드PD<span class="amber">.</span></h1>
+          <p class="lede">기획, 촬영, 편집, 디자인, 라이브, AI콘텐츠, 업무자동화, 웹개발까지. 이 모든 역량을 다 갖춘 유일무이한 경제전문 PD 문영두입니다.</p>
           <div class="chips" style="margin-top:16px">
             <span class="chip hl">올라운드 PD</span><span class="chip hl">풀스택</span>
             <span class="chip hl">숏폼 자동화 프로세스 개발</span><span class="chip hl">웹 · 앱 개발 확장</span>
@@ -663,45 +745,15 @@ function renderHub(){
     </div>
     <div class="skill-grid">
       <div class="skill-box reveal">
-        <h3><span class="ic">▮▮</span> 편집 · 그래픽 · 라이브 툴</h3>
-        ${DATA.skills.tools.map(t=>`
-        <div class="meter-row"><span class="name">${esc(t.n)}</span>
-          <span class="meter" aria-hidden="true">${[1,2,3,4,5].map(i=>`<i class="${i<=t.lv?'on':''}"></i>`).join('')}</span>
-          <span class="meter-lv">${t.k}</span></div>`).join('')}
+        <h3><span class="ic">▮▮</span> 제작 · 라이브 툴</h3>
+        <p class="skill-note">${esc(DATA.skills.toolsSummary)}</p>
+        <div class="chips" style="margin-top:16px">${DATA.skills.toolsHl.map(g=>`<span class="chip hl">${esc(g)}</span>`).join('')}${DATA.skills.toolsChip.map(g=>`<span class="chip">${esc(g)}</span>`).join('')}</div>
       </div>
       <div class="skill-box reveal">
         <h3><span class="ic">◉</span> 촬영 & 라이브 시스템</h3>
         <p class="skill-note">${esc(DATA.skills.shoot)}</p>
-        <p class="skill-note" style="margin-top:10px">${esc(DATA.skills.live)}</p>
         <div class="chips" style="margin-top:18px">${DATA.skills.gear.map(g=>`<span class="chip hl">${esc(g)}</span>`).join('')}</div>
       </div>
-    </div>
-  </section>
-
-  <section id="awards">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Awards</span>
-      <h2>수상 경력</h2>
-      <p>“학교, 군대 — 때와 장소를 가리지 않고 꾸준히 열정을 불태운 결과.”</p>
-    </div>
-    <div class="award-list reveal">
-      ${DATA.awards.map(a=>`
-      <div class="award">
-        <span class="yr">${a.y}</span>
-        <span><span class="nm">${esc(a.n)}</span><span class="prize">${a.prize}</span></span>
-        ${a.vid?`<button class="lk" data-play="${a.vid}" data-title="${esc(a.n)} 수상작">${a.lk}</button>`
-         : a.url?`<a class="lk" href="${a.url}" target="_blank" rel="noopener">${a.lk}</a>`:'<span></span>'}
-      </div>`).join('')}
-    </div>
-  </section>
-
-  <section id="activities">
-    <div class="sec-head reveal">
-      <span class="eyebrow">And More</span>
-      <h2>계속 카메라를 잡아온 시간들</h2>
-    </div>
-    <div class="act-grid">
-      ${DATA.activities.map(a=>`<div class="act reveal"><div class="t">${a.t}</div><div class="n">${esc(a.n)}</div><div class="d">${esc(a.d)}</div></div>`).join('')}
     </div>
   </section>
 
@@ -725,12 +777,14 @@ function flowHTML(steps){
     `<span class="step"><b>${String(i+1).padStart(2,'0')}</b>${esc(s)}</span>${i<steps.length-1?'<span class="arr">→</span>':''}`).join('')}</div>`;
 }
 function videosHTML(p){
-  return `<div class="vgrid ${p.shorts?'shorts':''}">${p.videos.map(v=>`
-    <button class="vcard" data-play="${v.id}" ${v.playlist?`data-list="${v.playlist}"`:''} ${p.shorts?'data-vert="1"':''} data-title="${esc(v.label||p.t)}" data-t="${esc(v.label||p.t)}">
-      <img src="${YT(v.id)}" alt="${esc(v.label||p.t)} 썸네일" loading="lazy" onerror="this.closest('.vcard').classList.add('noimg')">
-      <span class="play" aria-hidden="true"><i>▶</i></span>
+  return `<div class="vgrid ${p.shorts?'shorts':''}">${p.videos.map(v=>{
+    const playable = !!v.id;
+    return `<button class="vcard ${playable?'':'noplay'}" ${playable?`data-play="${v.id}"`:''} ${v.playlist?`data-list="${v.playlist}"`:''} ${p.shorts?'data-vert="1"':''} data-title="${esc(v.label||p.t)}" data-t="${esc(v.label||p.t)}">
+      <img src="${v.thumb||YT(v.id)}" alt="${esc(v.label||p.t)} 썸네일" loading="lazy" onerror="this.closest('.vcard').classList.add('noimg')">
+      ${playable?`<span class="play" aria-hidden="true"><i>▶</i></span>`:''}
       ${v.label?`<span class="vlabel">${esc(v.label)}</span>`:''}
-    </button>`).join('')}</div>`;
+    </button>`;
+  }).join('')}</div>`;
 }
 function programHTML(p, idx){
   let h = `<div class="program reveal"><div class="program-head">
@@ -783,6 +837,25 @@ function renderDetail(id){
   } else {
     if (c.commonFlow) body += `<div class="program reveal" style="padding-top:30px;border-top:none">${flowHTML(c.commonFlow)}</div>`;
     body += c.programs.map((p,i)=>programHTML(p,i)).join('');
+    if (c.id === 'works') {
+      body += `<div class="program reveal"><div class="program-head">
+        <span class="eyebrow">Program ${String(c.programs.length+1).padStart(2,'0')}</span>
+        <h2>수상 경력</h2>
+        <p class="pdesc">학교, 군대 — 때와 장소를 가리지 않고 꾸준히 열정을 불태운 결과.</p>
+      </div>
+      <div class="award-list">${DATA.awards.map(a=>`
+        <div class="award">
+          <span class="yr">${a.y}</span>
+          <span><span class="nm">${esc(a.n)}</span><span class="prize">${a.prize}</span></span>
+          ${a.vid?`<button class="lk" data-play="${a.vid}" data-title="${esc(a.n)} 수상작">${a.lk}</button>`
+           : a.url?`<a class="lk" href="${a.url}" target="_blank" rel="noopener">${a.lk}</a>`:'<span></span>'}
+        </div>`).join('')}</div></div>
+      <div class="program reveal"><div class="program-head">
+        <span class="eyebrow">Program ${String(c.programs.length+2).padStart(2,'0')}</span>
+        <h2>그 밖의 활동</h2>
+      </div>
+      <div class="act-grid">${DATA.activities.map(a=>`<div class="act"><div class="t">${a.t}</div><div class="n">${esc(a.n)}</div><div class="d">${esc(a.d)}</div></div>`).join('')}</div></div>`;
+    }
   }
   app.innerHTML = `
   <div class="detail-head">
