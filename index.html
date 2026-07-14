@@ -62,7 +62,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .finder-head{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--dim);margin-bottom:clamp(26px,4.5vw,46px)}
 .finder-head .rec{display:flex;align-items:center;gap:8px;color:var(--amber)}
 .hero-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,5vw,64px);align-items:center}
-.hero h1{font-family:var(--serif);font-size:clamp(28px,5.6vw,52px);font-weight:900;line-height:1.28;letter-spacing:-.01em}
+.hero h1{font-family:var(--serif);font-size:clamp(24px,4.4vw,42px);font-weight:900;line-height:1.3;letter-spacing:-.015em}
 .hero h1 .amber{color:var(--amber)}
 .hero .role-en{font-family:var(--mono);font-size:clamp(12px,2.4vw,15px);letter-spacing:.32em;color:var(--amber2);margin:18px 0 14px;text-transform:uppercase}
 .hero .lede{color:var(--mut);font-size:clamp(15px,2.6vw,17.5px);max-width:34em}
@@ -77,6 +77,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .hero-photo img{border-radius:10px;border:1px solid var(--line2);filter:saturate(.9) contrast(1.02);box-shadow:0 20px 50px rgba(0,0,0,.5)}
 .hero-photo .tag{position:absolute;left:-10px;bottom:14px;background:var(--gold);color:#070708;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;padding:5px 11px;border-radius:5px}
 @media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-photo{order:-1;margin:0 auto;width:min(200px,55vw)}.hero-cta{flex-direction:column;align-items:stretch}.hero-cta .btn{justify-content:center}}
+@media(max-width:480px){.hero h1{font-size:19px;letter-spacing:-.02em}}
 
 /* ───────── sections ───────── */
 section{padding:clamp(48px,8vw,84px) 0}
@@ -124,6 +125,12 @@ section{padding:clamp(48px,8vw,84px) 0}
 /* ───────── skills ───────── */
 .skill-one{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:clamp(30px,5vw,46px);text-align:center}
 .skill-one p{font-family:var(--serif);font-size:clamp(18px,2.6vw,23px);font-weight:700;color:var(--ink);max-width:32em;margin:0 auto;line-height:1.5}
+.tool-scroll{overflow:hidden;margin-top:16px;-webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent)}
+.tool-track{display:flex;gap:10px;width:max-content;animation:toolscroll 32s linear infinite}
+.tool-scroll:hover .tool-track{animation-play-state:paused}
+@keyframes toolscroll{to{transform:translateX(-50%)}}
+.tool-pill{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--mut);border:1px solid var(--line2);padding:9px 16px;border-radius:99px;background:rgba(196,163,106,.03);white-space:nowrap;flex:none}
+@media (prefers-reduced-motion:reduce){.tool-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{font-size:12px;color:var(--mut);border:1px solid var(--line2);padding:5px 11px;border-radius:99px;background:rgba(196,163,106,.03)}
 .chip.hl{color:var(--amber2);border-color:rgba(196,163,106,.35);background:var(--amber-dim)}
@@ -384,7 +391,7 @@ const DATA = {
     },
     {
       id: 'newsystock', ch: '02', period: '— 2025.08',
-      company: '뉴지스탁 NEWSYSTOCK', role: '콘텐츠마케팅 매니저 · 금융 콘텐츠 PD',
+      company: '뉴지스탁', role: '콘텐츠마케팅 매니저 · 금융 콘텐츠 PD',
       desc: '투자 전략 기획부터 촬영·편집·업로드, AI 숏폼 자동화와 유료 투자 강의 제작까지 — 금융 콘텐츠의 전 과정을 혼자 힘으로.',
       thumbs: ['KxhK3Vm-lW0', 'sCUBq_kvAn4', 'RYb_ZAgLF8A'],
       channel: { label: '뉴지스탁 유튜브 채널', url: 'https://www.youtube.com/@genport_newsystock' },
@@ -446,7 +453,7 @@ const DATA = {
     },
     {
       id: 'miracom', ch: '03', period: '2021 —',
-      company: '미라콤아이앤씨 MIRACOM I&C', role: '사내방송국 PD',
+      company: '미라콤아이앤씨', role: '사내방송국 PD',
       desc: '유튜브·행사·사내 드라마·경영매거진·라이브 방송·솔루션 영상까지, 2,000명 임직원을 위한 사내 방송국을 1인 체제로 운영.',
       thumbs: ['QItmO4AVjSc', 'LnGiVzoQ03A', '86GWtTWGBtI'],
       channel: { label: '미라콤아이앤씨 유튜브 채널', url: 'https://www.youtube.com/@miracominc' },
@@ -507,9 +514,9 @@ const DATA = {
     },
     {
       id: 'kbs', ch: '04', period: '2020 —',
-      company: 'KBS 영상제작2국', role: '촬영보조',
+      company: 'KBS', role: '촬영보조',
       desc: '다큐멘터리 2편과 뮤직뱅크 · 머니올라 등 다수의 프로그램에서 하이엔드 카메라와 특수 장비를 설치 · 운용.',
-      textThumbs: [{ b: 'DOCU', s: '다큐 2편' }, { b: '14+', s: '참여 프로그램' }, { b: '20+', s: '운용 장비' }],
+      imgThumbs: ['assets/thumbs/kbs-1.jpg', 'assets/thumbs/kbs-2.jpg', 'assets/thumbs/kbs-3.jpg', 'assets/thumbs/kbs-4.jpg', 'assets/thumbs/kbs-5.jpg'],
       commonFlow: ['업무 배정', '장비 대여 · 점검', '장비 설치 · 촬영', '장비 철수 · 점검', '장비 반납 · 백업'],
       programs: [
         {
@@ -558,7 +565,7 @@ const DATA = {
       id: 'freelance', ch: '05', period: '2019',
       company: '프리랜서', role: '촬영 · 편집 감독',
       desc: '하나투어 여행 광고 5편을 기획부터 납품까지 단독 제작. 허벌라이프 · BACON 등 브랜드 행사와 라이브 촬영감독.',
-      textThumbs: [{ b: '5편', s: '하나투어 광고' }, { b: '4+', s: '브랜드 클라이언트' }, { b: 'LIVE', s: '행사 · 라이브' }],
+      imgThumbs: ['assets/thumbs/freelance-1.jpg', 'assets/thumbs/freelance-2.jpg', 'assets/thumbs/freelance-3.jpg', 'assets/thumbs/freelance-4.jpg', 'assets/thumbs/freelance-5.jpg'],
       programs: [
         {
           t: '하나투어 — 여행 광고 영상 5편',
@@ -580,6 +587,7 @@ const DATA = {
       company: '작품 활동', role: '청춘공방 — 연출 · 촬영 · 편집',
       desc: '대학 영상동아리 청춘공방에서 웹드라마 2편을 제작하고, 후배들을 가르치는 편집 강사이자 제작부 총괄로 활동.',
       thumbs: ['QogM6HG31PY', '6OYh6BqMEdA'],
+      imgThumbs: ['assets/thumbs/award-yonsei-2014.jpg', 'assets/thumbs/award-flight-2017.jpg', 'assets/thumbs/award-yonsei-2019.jpg', 'assets/thumbs/award-99thinks-2015.jpg'],
       programs: [
         {
           t: '웹드라마 「오늘부터 그대를」',
@@ -621,8 +629,8 @@ const DATA = {
     ],
   },
   skills: {
-    oneLiner: '편집 · 촬영 · 디자인 · 라이브 툴은 기본값입니다. 도구가 아니라 결과로 증명합니다.',
-    keywords: ['Premiere Pro', 'Photoshop', 'OBS Studio · vMix', 'ENG · 시네마 카메라', '라이브 스위칭'],
+    oneLiner: '어떤 콘텐츠든 직접 만들어냅니다.',
+    tools: ['Premiere Pro', 'Photoshop', 'After Effects', 'Figma', 'OBS Studio', 'vMix', 'ENG · 시네마 카메라', '라이브 스위칭 시스템', '로닌 · 슬라이더 · 드론'],
   },
   awards: [
     { y: '2019.06', n: '연세인 역량관리시스템 홍보 UCC 공모전', prize: '우수상', url: 'https://blog.naver.com/duden89/222596171331', lk: '증빙 보기 ↗' },
@@ -649,17 +657,20 @@ function allVideoIds(c){
   (c.programs||[]).forEach(p=>(p.videos||[]).forEach(v=>{ if (v.id && !ids.includes(v.id)) ids.push(v.id); }));
   return ids.length ? ids : (c.thumbs||[]);
 }
+const THUMB_PX_PER_SEC = 34;
 function thumbHTML(c){
   if (c.soon) return `<div class="ch-thumbs" aria-hidden="true">
     <div class="th txt"><b>CH ${c.ch}</b><span>준비 중</span></div>
     <div class="th txt"><b>SOON</b><span>Coming</span></div>
     <div class="th txt"><b>2025</b><span>NEW</span></div></div>`;
-  if (c.textThumbs) return `<div class="ch-thumbs" aria-hidden="true">${c.textThumbs.map(t=>
-    `<div class="th txt"><b>${esc(t.b)}</b><span>${esc(t.s)}</span></div>`).join('')}</div>`;
-  const ids = allVideoIds(c);
-  if (ids.length){
-    const cells = ids.map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></div>`).join('');
-    return `<div class="ch-thumbs" aria-hidden="true"><div class="track">${cells}${cells}</div></div>`;
+  const cells = [
+    ...allVideoIds(c).map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></div>`),
+    ...(c.imgThumbs||[]).map(src=>`<div class="th"><img src="${esc(src)}" alt="" loading="lazy"></div>`),
+  ];
+  if (cells.length){
+    const track = cells.join('');
+    const dur = Math.max(8, (cells.length * 96 / THUMB_PX_PER_SEC)).toFixed(1);
+    return `<div class="ch-thumbs" aria-hidden="true"><div class="track" style="animation-duration:${dur}s">${track}${track}</div></div>`;
   }
   return '';
 }
@@ -674,11 +685,11 @@ function renderHub(){
       <div class="hero-grid">
         <div>
           <div class="role-en">PRODUCER × BUILDER — MOON YOUNG DOO</div>
-          <h1>콘텐츠를 넘어 개발까지,<br>AI로 수억원을 아끼는 올라운드PD<span class="amber">.</span></h1>
-          <p class="lede">기획, 촬영, 편집, 디자인, 라이브, AI콘텐츠, 업무자동화, 웹개발까지. 이 모든 역량을 다 갖춘 유일무이한 경제전문 PD 문영두입니다.</p>
-          <div class="chips" style="margin-top:16px">
-            <span class="chip hl">올라운드 PD</span><span class="chip hl">풀스택</span>
-            <span class="chip hl">숏폼 자동화 프로세스 개발</span><span class="chip hl">웹 · 앱 개발 확장</span>
+          <h1>콘텐츠를 넘어 개발까지,<br>AI로 수억원을 아끼는 풀스택 PD<span class="amber">.</span></h1>
+          <div class="chips" style="margin-top:18px">
+            <span class="chip hl">#풀스택PD</span><span class="chip hl">#숏폼자동화</span><span class="chip hl">#유튜브</span>
+            <span class="chip hl">#AI아나운서</span><span class="chip hl">#콘텐츠마케팅</span><span class="chip hl">#촬영설계</span>
+            <span class="chip hl">#웹개발</span><span class="chip hl">#라이브방송</span>
           </div>
           <div class="hero-cta">
             <a class="btn btn-amber" href="#/" data-anchor="career">경력 바로가기 <span aria-hidden="true">↓</span></a>
@@ -723,8 +734,10 @@ function renderHub(){
     </div>
     <div class="skill-one reveal">
       <p>${esc(DATA.skills.oneLiner)}</p>
-      <div class="chips" style="margin-top:18px;justify-content:center">${DATA.skills.keywords.map(g=>`<span class="chip hl">${esc(g)}</span>`).join('')}</div>
     </div>
+    <div class="tool-scroll reveal" aria-hidden="true"><div class="tool-track">${
+      [...DATA.skills.tools, ...DATA.skills.tools].map(t=>`<span class="tool-pill">${esc(t)}</span>`).join('')
+    }</div></div>
   </section>
 
   <section id="contact">
