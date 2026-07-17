@@ -164,17 +164,19 @@ section{padding:clamp(48px,8vw,84px) 0}
 .act .d{font-size:13px;color:var(--mut);margin-top:4px}
 
 /* ───────── contact / footer ───────── */
-.biz-card{display:flex;justify-content:space-between;align-items:center;gap:28px;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;padding:clamp(28px,5vw,46px) clamp(26px,5vw,50px);margin-top:16px}
+.biz-card{display:flex;align-items:stretch;gap:0;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;padding:clamp(28px,5vw,46px) clamp(26px,5vw,50px);margin:16px auto 0;max-width:880px}
+.biz-left{flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;padding-right:clamp(24px,4vw,40px)}
+.biz-div{width:1px;background:var(--line2);align-self:stretch;flex:none}
 .biz-name{font-family:var(--serif);font-size:clamp(22px,4vw,28px);font-weight:800;letter-spacing:-.01em}
 .biz-name-en{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--dim);margin-top:4px}
 .biz-role{font-size:14.5px;color:var(--amber2);font-weight:700;margin-top:10px}
 .biz-role-en{font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:2px}
-.biz-right{display:flex;flex-direction:column;gap:10px}
-.biz-item{display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;font-family:var(--mono);font-size:13px;color:var(--mut);transition:color .2s}
+.biz-right{flex:1;display:flex;flex-direction:column;gap:10px;justify-content:center;align-items:flex-start;padding-left:clamp(24px,4vw,40px)}
+.biz-item{display:inline-flex;align-items:center;gap:8px;justify-content:flex-start;font-family:var(--mono);font-size:13px;color:var(--mut);transition:color .2s}
 .biz-item i{font-style:normal;font-size:13px;color:var(--amber)}
 .biz-item:hover{color:var(--ink)}
 .biz-note{text-align:center;color:var(--mut);font-size:13.5px;margin-top:20px}
-@media(max-width:640px){.biz-card{flex-direction:column;text-align:center;gap:20px}.biz-right{align-items:center}.biz-item{justify-content:center}}
+@media(max-width:640px){.biz-card{flex-direction:column;text-align:center;gap:20px;max-width:none}.biz-left{padding-right:0}.biz-div{display:none}.biz-right{align-items:center;padding-left:0}.biz-item{justify-content:center}}
 footer{padding:34px 0 46px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);margin-top:60px}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);letter-spacing:.06em}
 
@@ -217,10 +219,51 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .vcard .play i{width:46px;height:46px;border-radius:50%;background:rgba(196,163,106,.95);display:flex;align-items:center;justify-content:center;color:#070708;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .18s}
 .vgrid.shorts .vcard .play i{width:36px;height:36px;font-size:12px}
 .vcard:hover .play i{transform:scale(1.1)}
-.vcard .vlabel{position:absolute;left:10px;bottom:9px;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.vcard .vlabel{position:absolute;left:10px;right:10px;bottom:9px;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vcard.vert{aspect-ratio:9/16}
+.vcard .cbadge{position:absolute;top:8px;left:8px;z-index:2}
 .vcard.noimg img{display:none}
 .vcard.noimg{background:linear-gradient(135deg,var(--panel2),var(--raise))}
 .vcard.noimg::before{content:attr(data-t);position:absolute;inset:14px;display:flex;align-items:flex-start;font-size:12px;color:var(--mut);line-height:1.5}
+
+/* ───────── CH01 program layouts ───────── */
+.ai-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,28px);margin-top:22px}
+@media(max-width:640px){.ai-cols{grid-template-columns:1fr}}
+.ai-col-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ai-col-head b{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--ink)}
+.ai-lore{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.ai-lore p{color:var(--mut);font-size:13.5px;line-height:1.7;max-width:56em}
+.ai-lore .ch-thumbs{max-width:none;margin-top:16px}
+
+.p2-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+.p2-marquee+.p2-marquee{margin-top:12px}
+.p2-track{display:flex;gap:10px;width:max-content;animation:p2scroll 30s linear infinite}
+.p2-track .vcard{width:108px;flex:none}
+.p2-track.rev{animation-direction:reverse}
+.p2-marquee:hover .p2-track{animation-play-state:paused}
+@keyframes p2scroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.p2-track{animation:none;flex-wrap:wrap;width:auto}}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+@media(max-width:820px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid-3{grid-template-columns:1fr}}
+@media(max-width:420px){.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:1fr}}
+
+.event-strip{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;justify-content:center;align-items:flex-start}
+.event-strip .vcard{flex:none;width:auto;height:clamp(130px,18vw,175px)}
+.event-strip .vcard.h169{aspect-ratio:16/9}
+.event-strip .vcard.v916{aspect-ratio:9/16}
+.ig-card{position:relative;height:clamp(130px,18vw,175px);aspect-ratio:1/1;border-radius:12px;overflow:hidden;border:1px solid rgba(196,163,106,.4);background:linear-gradient(135deg,var(--panel2),var(--raise));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--mut);cursor:pointer;transition:border-color .2s,transform .18s;flex:none}
+.ig-card:hover{border-color:rgba(196,163,106,.75);transform:translateY(-3px)}
+.ig-card b{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--amber2)}
+.ig-card span{font-size:10px;color:var(--dim);text-align:center;padding:0 10px}
+
+.live-strip{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;margin-top:22px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.live-strip .vcard{flex:none;width:min(76vw,240px);scroll-snap-align:start}
+.badge.onair{position:absolute;top:8px;left:8px;z-index:2;display:inline-flex;align-items:center;gap:6px;background:rgba(6,6,7,.72);backdrop-filter:blur(4px);color:var(--gold2)}
+.badge.onair .rec-dot{width:6px;height:6px}
 
 .ep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:22px}
 .ep{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:var(--rad-s);padding:20px 22px}
@@ -342,69 +385,10 @@ const DATA = {
       id: 'hmsec', ch: '01', period: '2025.09 — 현재', badge: 'NOW',
       company: '현대차증권', role: '마케팅팀 매니저',
       desc: 'AI로 외주에 의존하던 증권사 콘텐츠 제작 시스템을 근본부터 재설계.',
-      thumbs: ['tprDJB4Tkuw', 'JCp3Bj5BniI', 'R_nKhkjibzE'],
-      programs: [
-        {
-          t: 'AI 아나운서 · 매뉴얼 콘텐츠', d: '아바타 · 의상 생성 외주 없이 사내에서 AI 아나운서를 대량 생산하고, 같은 파이프라인으로 서비스 개편 · IRP 계좌개설 등 고객 대상 매뉴얼 영상까지 제작했습니다.',
-          videos: [
-            { id: 'JCp3Bj5BniI', label: 'AI아나운서 · 남자', thumb: 'assets/thumbs/ai-announcer-m.jpg' },
-            { id: '8HThJ-FPwmw', label: 'AI아나운서 · 여자', thumb: 'assets/thumbs/ai-announcer-f.jpg' },
-            { id: '0D09GoHA3dY', label: '서비스 개편 매뉴얼', thumb: 'assets/thumbs/manual-service.jpg' },
-            { thumb: 'assets/thumbs/manual-irp.jpg', label: '[확인중]' },
-          ],
-        },
-        {
-          t: 'AI 숏폼 자동화', d: 'AI로 대본과 음성을 자동화한 숏폼 파이프라인으로 콘텐츠를 대량 생산했습니다.', shorts: true,
-          videos: [
-            { id: 'svl0fb0m28U', label: 'AI숏폼 대량생산 1', thumb: 'assets/thumbs/ai-shorts-1.jpg' },
-            { id: 'uT3bUPffj3M', label: 'AI숏폼 대량생산 2', thumb: 'assets/thumbs/ai-shorts-2.jpg' },
-          ],
-        },
-        {
-          t: '사내 콘텐츠', d: '시상 소식부터 웹드라마까지, 사내 커뮤니케이션 콘텐츠를 제작했습니다.',
-          videos: [
-            { id: 'tprDJB4Tkuw', label: '사내 시상 소식', thumb: 'assets/thumbs/inhouse-award-news.jpg' },
-            { id: '0zkMRQ5jhN0', label: '수상 인터뷰', thumb: 'assets/thumbs/inhouse-award-interview.jpg' },
-            { id: 'I02pX7t1Jvs', label: '사내 웹드라마', thumb: 'assets/thumbs/inhouse-webdrama.jpg' },
-          ],
-        },
-        {
-          t: '예능 콘텐츠', d: '레오 · 기아 타이거즈 윤석민 선수 편 등 예능형 콘텐츠를 기획 · 제작했습니다.',
-          videos: [
-            { id: 'JUReVSWu22s', label: '레오 1편', thumb: 'assets/thumbs/variety-leo-1.jpg' },
-            { id: 'pWw9QNiUKGY', label: '레오 2편', thumb: 'assets/thumbs/variety-leo-2.jpg' },
-            { id: '8255dFDarC8', label: '기아 타이거즈 · 윤석민 1편', thumb: 'assets/thumbs/variety-tigers-1.jpg' },
-            { id: '2YzkkWD2tx0', label: '기아 타이거즈 · 윤석민 2편', thumb: 'assets/thumbs/variety-tigers-2.jpg' },
-          ],
-        },
-        {
-          t: '스포츠 마케팅', d: '기아 타이거즈 제휴 콘텐츠로 릴스 도달 33만+ 를 기록했습니다.',
-          videos: [
-            { id: 'RdvwIZ1W8_c', label: '기아 타이거즈 홍보', thumb: 'assets/thumbs/sports-tigers-promo.jpg' },
-            { id: 'dvkxFDiH2wI', label: '기아 타이거즈 홍보 2', thumb: 'assets/thumbs/sports-tigers-promo-2.jpg' },
-          ],
-        },
-        {
-          t: '주식 콘텐츠', d: '원픽 리포트 등 투자 정보 콘텐츠를 제작했습니다.',
-          videos: [
-            { id: 'R_nKhkjibzE', label: '원픽 리포트 1', thumb: 'assets/thumbs/stock-onepick-1.jpg' },
-            { id: 'jv1v8QUYe-8', label: '원픽 리포트 2', thumb: 'assets/thumbs/stock-onepick-2.jpg' },
-          ],
-        },
-        {
-          t: '강의 콘텐츠', d: '존리, 포메뽀꼬 등 초청 강의 콘텐츠를 제작했습니다.',
-          videos: [
-            { id: 'cLIJbDRpWv0', label: '존리 강의', thumb: 'assets/thumbs/lecture-johnlee.jpg' },
-            { id: 'bx-ZEvK_m9I', label: '포메뽀꼬 강의', thumb: 'assets/thumbs/lecture-pomeppoko.jpg' },
-          ],
-        },
-        {
-          t: '라이브 콘텐츠', d: '차트 시그널 등 실시간 라이브 방송을 진행했습니다.',
-          videos: [
-            { id: 'fRx1HoSTDmE', label: '차트 시그널 1', thumb: 'assets/thumbs/live-chart-signal-1.jpg' },
-            { id: 'J3Euu32Lh14', label: '차트 시그널 2', thumb: 'assets/thumbs/live-chart-signal-2.jpg' },
-          ],
-        },
+      thumbs: [
+        'G0wlWqTijA4','JCp3Bj5BniI','zfJzfvr6afU','uT3bUPffj3M','JUReVSWu22s','8255dFDarC8',
+        'RdvwIZ1W8_c','dvkxFDiH2wI','anG9SW5C2sw','ywg6yv33bzs','cLIJbDRpWv0','Q-k5inCr86o',
+        'fRx1HoSTDmE','S8EkHM6bTHk','tprDJB4Tkuw',
       ],
     },
     {
@@ -788,12 +772,13 @@ function renderHub(){
     <div class="reveal">
       <span class="eyebrow" style="justify-content:center">Contact</span>
       <div class="biz-card">
-        <div>
+        <div class="biz-left">
           <div class="biz-name">문영두</div>
           <div class="biz-name-en">MOON YOUNG DOO</div>
           <div class="biz-role">풀스택 PD</div>
           <div class="biz-role-en">Full-stack Producer</div>
         </div>
+        <div class="biz-div"></div>
         <div class="biz-right">
           <a class="biz-item" href="mailto:yd95moon@gmail.com"><i>✉</i>yd95moon@gmail.com</a>
           <a class="biz-item" href="tel:01074980182"><i>☎</i>010-7498-0182</a>
@@ -853,6 +838,191 @@ function programHTML(p, idx){
   return h + '</div>';
 }
 
+/* ═══════════ CH01 — 현대차증권 (P1~P8) ═══════════ */
+function cleanTitle(t){ return (t||'').replace(/\s*#\S+(\s+#\S+)*\s*$/,'').replace(/\s{2,}/g,' ').trim(); }
+function vcardHTML(id, title, opts={}){
+  const vert = !!opts.vert;
+  const label = cleanTitle(title);
+  const badge = opts.badgeHTML ? opts.badgeHTML : (opts.badge ? `<span class="badge cbadge">${esc(opts.badge)}</span>` : '');
+  return `<button class="vcard${vert?' vert':''}${opts.cls?(' '+opts.cls):''}" data-play="${id}" ${vert?'data-vert="1"':''} data-title="${esc(label)}" data-t="${esc(label)}">
+    <img src="${YT(id)}" alt="${esc(label)} 썸네일" loading="lazy" onerror="this.closest('.vcard').classList.add('noimg')">
+    <span class="play" aria-hidden="true"><i>▶</i></span>
+    ${badge}
+    <span class="vlabel">${esc(label)}</span>
+  </button>`;
+}
+function decoMarqueeHTML(ids){
+  const cells = ids.map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></div>`).join('');
+  const dur = Math.max(10, (ids.length * 96 / THUMB_PX_PER_SEC)).toFixed(1);
+  return `<div class="ch-thumbs" aria-hidden="true"><div class="track" style="animation-duration:${dur}s">${cells}${cells}</div></div>`;
+}
+function p2MarqueeHTML(items, reverse){
+  const cardW = 108, gap = 10;
+  const cardsHTML = items.map(v=>vcardHTML(v.id, v.t, {vert:true})).join('');
+  const dur = Math.max(12, (items.length*(cardW+gap)/THUMB_PX_PER_SEC)).toFixed(1);
+  return `<div class="p2-marquee"><div class="p2-track${reverse?' rev':''}" style="animation-duration:${dur}s">${cardsHTML}${cardsHTML}</div></div>`;
+}
+const CH01 = {
+  lead: `AI 아나운서는 서비스 매뉴얼과 고객 안내부터 소비자보호·자금세탁방지·컴플라이언스 등 사내 필수교육까지 폭넓게 활용되며, 사내 콘텐츠 제작 비용 절감의 핵심 동력이 되고 있습니다.`,
+  hyunsori: [
+    {id:'G0wlWqTijA4', t:`[1월 2일] 모닝 1분 브리핑 | 특별한 재료 부재한 가운데 위험 자산 선호 위축`},
+    {id:'8HThJ-FPwmw', t:`[1월 5일] 모닝 1분 브리핑 | 업종별 수익률 차별화, AI 관련주 강세`},
+    {id:'EnQnfpGOcu8', t:`[1월 6일] 모닝 1분 브리핑 | 베네수엘라 이슈에 에너지, 산업재 중심 강세`},
+  ],
+  hyunmyeonghan: [
+    {id:'JCp3Bj5BniI', t:`[1월 2일] 이브닝 1분 브리핑 | 양 지수 모두 큰 상승폭 보여준 새해 첫 거래일`},
+    {id:'ae4sZLpJBEA', t:`[1월 5일] 이브닝 1분 브리핑 | 미국-베네수엘라 유가 상승에는 제한적`},
+    {id:'aY2Ppwt8Uy8', t:`[1월 6일] 이브닝 1분 브리핑 | 외국인, 기관 순매도에도 불구하고 코스피 4,500 돌파`},
+  ],
+  usage: ['gDm-PeTfVAo','REhCHZlmYss','0D09GoHA3dY','fYuiN56Cs9A'],
+  shortsV1: [
+    {id:'zfJzfvr6afU', t:`SK하이닉스 종목리포트 | AI Infra 패권 경쟁의 수혜 지속될 전망`},
+    {id:'PIcdrYa5Ytc', t:`셀트리온 종목리포트 | 3Q25 Review: 리스크 해소, 신약 투자 확대`},
+    {id:'svl0fb0m28U', t:`LG화학 종목리포트 | '26년 양극재 턴어라운드 기대 높아질 것`},
+    {id:'_L_RfwKgfuM', t:`켐트로닉스 종목리포트 | 단기 변동성에 전혀 흔들릴 필요는 없다`},
+    {id:'dbDxIIFbqyY', t:`사피엔반도체 종목리포트 | NDR 후기: 느슨해진 섹터에 긴장감을 불어넣다`},
+    {id:'6kL0xi6cwJ4', t:`LX세미콘 종목리포트 | 보릿고개를 지나는 중`},
+    {id:'iT2yRpPCWD4', t:`롯데지주 종목리포트 | 향후 관전 포인트들`},
+    {id:'6K_W6_Srupk', t:`세아베스틸지주 종목리포트 | 미국 특수합금 공장 기대감이 주가 견인`},
+  ],
+  shortsV2: [
+    {id:'uT3bUPffj3M', t:`삼성물산 종목리포트 | 포트폴리오에 기반, 호조 시현 중`},
+    {id:'bbuy-fQQ1OU', t:`삼성전기 종목리포트 | Multiple 확장 국면 지속`},
+    {id:'E-SL6mq8t7c', t:`DL이앤씨 종목리포트 | 4Q25 Preview: 무난하게 가이던스 달성 전망`},
+    {id:'N38Wrb39QtA', t:`LG디스플레이 종목리포트 | 세트 우려가 과도한 구간`},
+    {id:'61V8iVDWn60', t:`LG생활건강 종목리포트 | 4Q25 Review: 어닝 쇼크`},
+    {id:'8UDeTU2k9NY', t:`호텔신라 종목리포트 | 보여줄게 완전히 달라진 수익성`},
+    {id:'zH5KuDoGrJs', t:`코리아써키트 종목리포트 | 4Q25 컨센서스 부합, 이제는 연간 실적과 중장기 모멘텀에 주목할 때`},
+    {id:'yMj4E9uqwFU', t:`OCI홀딩스 종목리포트 | 가치상승 모멘텀 풍부. 여전히 싸다.`},
+  ],
+  variety: [
+    {id:'JUReVSWu22s', t:`이 채널은 이제 제 겁니다`, badge:`불릴레오 오리지널`},
+    {id:'pWw9QNiUKGY', t:`AI가 시키는대로 투자해봄`, badge:`불릴레오 오리지널`},
+    {id:'8255dFDarC8', t:`윤석민의 퇴직금 행방을 묻다`, badge:`기아 타이거즈 콜라보`},
+    {id:'2YzkkWD2tx0', t:`노력은 재능을 이기지 못한다`, badge:`기아 타이거즈 콜라보`},
+  ],
+  eventYt: [
+    {id:'RdvwIZ1W8_c', t:`기아팬이라면 무조건 알아야 할 '이것'! [현대차증권 x 기아타이거즈]`, vert:false},
+    {id:'dvkxFDiH2wI', t:`호랭이들 3기 大모집! [현대차증권 x 기아타이거즈]`, vert:true},
+  ],
+  eventInsta: ['DVpzVP5k4aC','DZCUhbkJG30','DSRXKj0k1Uz','DRtcHcskx1x','DRJaYXqk703','DQ3WZXUE3aR'],
+  onepick: [
+    {id:'anG9SW5C2sw', t:`인건비 1.2억 vs 로봇 2억, 당신이 사장이라면 무엇을 선택하시겠습니까? | 원픽리포트`},
+    {id:'XBDQ2FFqKQM', t:`"전쟁 끝나도 유가는 안 떨어집니다." 지금 정유주 대신 '이 종목'을 담으세요! | 원픽리포트`},
+    {id:'u-5kl6f831s', t:`"경쟁사 시총은 60조, 우리는 6조?" 한올바이오파마가 10배 저평가된 결정적 이유 | 원픽리포트`},
+    {id:'ywg6yv33bzs', t:`삼성전기·LG이노텍 역대급 '풀가동' 예약! 주가 떨어질 때 무조건 주워 담아야 하는 이유 | 원픽리포트`},
+    {id:'Nk254nw2lVM', t:`AI 버블 우려 끝! 빅테크가 돈을 쏟아붓는 '이 부품'에 주목하세요 | 원픽리포트`},
+    {id:'itvtR37FZu4', t:`에이피알 오프라인 매출 1,000억 찍으면 주가는 어디까지? | 원픽리포트`},
+    {id:'ysoiePZcpZQ', t:`2차전지 끝났다고요? 전문가가 태양광과 ESS에 주목하는 진짜 이유 | 원픽리포트`},
+    {id:'EL-F_QBBSRA', t:`악성 미분양 역대급인데... 왜 건설주는 저평가 구간이라고 하는걸까? (현대건설, 대우건설 주가전망) | 원픽리포트`},
+    {id:'R_nKhkjibzE', t:`하이브 주가 전망 분석, 앞으로 올 호재는? (ft. 26년 BTS 컴백)`},
+  ],
+  moneyclass: [
+    {id:'cLIJbDRpWv0', t:`'온 가족 부자되자' 금융문맹 탈출 비법 - 존 리 l 현대차증권 x 머니투데이`},
+    {id:'ySQODiEM-SI', t:`생각보다 오래 산다, 뭘하고 살 것인가? - 강창희 l 현대차증권 x 머니투데이`},
+    {id:'XCtLqDDZ1ho', t:`달러 스테이블 코인과 토큰화 - 오태민 l 현대차증권 x 머니투데이`},
+    {id:'Q-k5inCr86o', t:`(자막O) 슈퍼리치들의 거대 자금이 몰리는 곳은? [머니클래스 - 이제충 상무]`},
+    {id:'GZwvBblsQRw', t:`(자막O) 상상 그 이상인 삼성전자와 SK하이닉스의 미래 [머니클래스 - 노근창 센터장]`},
+    {id:'Y44Shd9cWMo', t:`(자막O) 급변중인 에너지 패러다임, 결국 재생에너지가 승리하는 이유 [머니클래스 - 한병화 이사]`},
+    {id:'0bX2V86doZ8', t:`(자막O) 코스피 폭락에도 왜 한국 주식은 인기가 있을까? [머니클래스 - 염승환 이사]`},
+    {id:'bx-ZEvK_m9I', t:`매년 천만원만 10년 투자하면 20년 뒤 8억 됩니다 (김지훈 작가 - 포메뽀꼬) | 머니클래스`},
+  ],
+  chartsignal: [
+    {id:'fRx1HoSTDmE', t:`[차트시그널 LIVE] 국내주식, 지금 고점인가?`},
+    {id:'yQKpXgBp13c', t:`유가 상승으로 인한 금리 인상, 얼마나 가능성있을까?`},
+    {id:'gvks639MS1o', t:`코스피 고점 외치던 사람들은 어디로 갔을까?`},
+    {id:'5iTdYhnUoxE', t:`연일 고점 갱신하는 국내증시, 지금 투자하기 늦었을까?`},
+    {id:'R1FoAZIt6no', t:`매일 고점뚫는 삼전닉스... 지금은 어디에 투자해야할까?`},
+    {id:'S8EkHM6bTHk', t:`가는놈만 가는 시장 속에서 숨은 보물찾기`},
+    {id:'zXs5G7pklmU', t:`금리 인상, 외국인 대량 순매도... 국내증시 괜찮은걸까?`},
+    {id:'vwSZI6wzP_4', t:`국민성장펀드 완판, 코스닥도 가즈아!`},
+  ],
+  inhouse: [
+    {id:'tprDJB4Tkuw', t:`현대차증권, 한국경제 다산금융상 '증권부문 금상' 쾌거`},
+    {id:'0zkMRQ5jhN0', t:`미친 수익률의 비결은?｜한경 스타워즈 투자대회 압도적 1위팀 인터뷰`},
+    {id:'I02pX7t1Jvs', t:`내일은소보로 3-1화`},
+  ],
+};
+function ch01Body(){
+  const A = CH01;
+  const igCard = id => `<a class="ig-card" href="https://www.instagram.com/p/${id}/" target="_blank" rel="noopener"><b>INSTAGRAM</b><span>썸네일 준비중</span></a>`;
+  return `
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P1</span>
+    <h2>AI 아나운서</h2>
+    <p class="pdesc">외주 없이 만든, 두 명의 AI 아나운서</p>
+  </div>
+  <div class="ai-cols">
+    <div><div class="ai-col-head"><span class="badge">현소리</span></div><div class="vgrid shorts">${A.hyunsori.map(v=>vcardHTML(v.id, v.t, {vert:true})).join('')}</div></div>
+    <div><div class="ai-col-head"><span class="badge">현명한</span></div><div class="vgrid shorts">${A.hyunmyeonghan.map(v=>vcardHTML(v.id, v.t, {vert:true})).join('')}</div></div>
+  </div>
+  <div class="ai-lore">
+    <p>${esc(A.lead)}</p>
+    ${decoMarqueeHTML(A.usage)}
+  </div>
+  </div>
+
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P2</span>
+    <h2>AI 숏폼 대량생산</h2>
+    <p class="pdesc">파이프라인이 찍어낸 물량이 곧 증거입니다</p>
+  </div>
+  ${p2MarqueeHTML(A.shortsV1, false)}
+  ${p2MarqueeHTML(A.shortsV2, true)}
+  </div>
+
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P3</span>
+    <h2>예능 콘텐츠</h2>
+    <p class="pdesc">증권사 마스코트로 만든 오리지널 예능</p>
+  </div>
+  <div class="grid-2">${A.variety.map(v=>vcardHTML(v.id, v.t, {badge:v.badge})).join('')}</div>
+  </div>
+
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P4</span>
+    <h2>이벤트 콘텐츠</h2>
+    <p class="pdesc">야구장부터 SNS까지, 이벤트도 콘텐츠로</p>
+  </div>
+  <div class="event-strip">
+    ${A.eventYt.map(v=>vcardHTML(v.id, v.t, {vert:v.vert, cls:v.vert?'v916':'h169'})).join('')}
+    ${A.eventInsta.map(igCard).join('')}
+  </div>
+  </div>
+
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P5</span>
+    <h2>주식 콘텐츠 <span class="badge" style="margin-left:8px">원픽리포트</span></h2>
+    <p class="pdesc">애널리스트의 원픽을 콘텐츠로</p>
+  </div>
+  <div class="grid-3">${A.onepick.map(v=>vcardHTML(v.id, v.t)).join('')}</div>
+  </div>
+
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P6</span>
+    <h2>강의 콘텐츠 <span class="badge" style="margin-left:8px">머니클래스</span></h2>
+    <p class="pdesc">존리부터 베스트셀러 작가까지</p>
+  </div>
+  <div class="grid-4">${A.moneyclass.map(v=>vcardHTML(v.id, v.t)).join('')}</div>
+  </div>
+
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P7</span>
+    <h2>라이브 콘텐츠 · 차트시그널</h2>
+    <p class="pdesc">매주 생방송으로 시장을 읽었습니다</p>
+  </div>
+  <div class="live-strip">${A.chartsignal.map(v=>vcardHTML(v.id, v.t, {badgeHTML:'<span class="badge cbadge onair"><span class="rec-dot"></span>ON AIR</span>'})).join('')}</div>
+  </div>
+
+  <div class="program reveal"><div class="program-head">
+    <span class="eyebrow">Program P8</span>
+    <h2>사내 콘텐츠</h2>
+    <p class="pdesc">회사 안의 이야기도 콘텐츠가 됩니다</p>
+  </div>
+  <div class="grid-3">${A.inhouse.map(v=>vcardHTML(v.id, v.t)).join('')}</div>
+  </div>`;
+}
+
 function renderDetail(id){
   const c = DATA.careers.find(x=>x.id===id) || (id==='build' ? DATA.build : null);
   if(!c){ location.hash = '#/'; return; }
@@ -867,6 +1037,8 @@ function renderDetail(id){
         <p>${esc(c.company)} ${esc(c.role)}로서의 대표 콘텐츠를 정리하고 있습니다. 곧 이 채널에서 송출을 시작합니다.</p>
       </div>
     </div>`;
+  } else if (c.id === 'hmsec'){
+    body = ch01Body();
   } else if (c.buildProjects){
     body = `<div class="program reveal" style="padding-top:30px;border-top:none">
       <div class="proj-grid">${c.buildProjects.map(p=>`
