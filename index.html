@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>문영두 — All-Round Producer</title>
-<meta name="description" content="기획·촬영·편집·라이브까지, 올라운드 프로듀서 문영두의 포트폴리오">
+<title>문영두 — 풀스택 PD</title>
+<meta name="description" content="기획·촬영·편집·디자인·개발까지, 풀스택 PD 문영두의 포트폴리오">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -134,6 +134,8 @@ section{padding:clamp(48px,8vw,84px) 0}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{font-size:12px;color:var(--mut);border:1px solid var(--line2);padding:5px 11px;border-radius:99px;background:rgba(196,163,106,.03)}
 .chip.hl{color:var(--amber2);border-color:rgba(196,163,106,.35);background:var(--amber-dim)}
+.chip.tag-sm{font-size:10.5px;padding:3px 9px}
+.hero-sub{color:var(--mut);font-size:14.5px;line-height:1.65;max-width:42em;margin:14px 0 0}
 
 /* ───────── awards ───────── */
 .award-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden}
@@ -226,6 +228,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .proj-status{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 9px;border-radius:5px;background:rgba(196,163,106,.14);color:var(--mut);white-space:nowrap}
 .proj-status.live{background:var(--amber);color:#070708}
 .proj-card p{color:var(--mut);font-size:13.5px;flex:1}
+.proj-note{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.02em}
 
 .ext-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:22px}
 .ext{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:22px 24px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .18s}
@@ -323,7 +326,7 @@ const DATA = {
     {
       id: 'hmsec', ch: '01', period: '2025.09 — 현재', badge: 'NOW',
       company: '현대차증권', role: '마케팅팀 매니저',
-      desc: 'AI 자동화 파이프라인을 직접 설계해 외주비를 전액 제거하고, 콘텐츠 생산성을 약 415% 끌어올렸습니다.',
+      desc: 'AI로 외주에 의존하던 증권사 콘텐츠 제작 시스템을 근본부터 재설계했습니다.',
       thumbs: ['tprDJB4Tkuw', 'JCp3Bj5BniI', 'R_nKhkjibzE'],
       programs: [
         {
@@ -392,7 +395,7 @@ const DATA = {
     {
       id: 'newsystock', ch: '02', period: '— 2025.08',
       company: '뉴지스탁', role: '콘텐츠마케팅 매니저 · 금융 콘텐츠 PD',
-      desc: '투자 전략 기획부터 촬영·편집·업로드, AI 숏폼 자동화와 유료 투자 강의 제작까지 — 금융 콘텐츠의 전 과정을 혼자 힘으로.',
+      desc: 'AI 숏폼 자동화, 퀀트 투자 강의, 모션 그래픽까지. 금융 콘텐츠의 전 과정을 혼자 힘으로.',
       thumbs: ['KxhK3Vm-lW0', 'sCUBq_kvAn4', 'RYb_ZAgLF8A'],
       channel: { label: '뉴지스탁 유튜브 채널', url: 'https://www.youtube.com/@genport_newsystock' },
       programs: [
@@ -454,7 +457,7 @@ const DATA = {
     {
       id: 'miracom', ch: '03', period: '2021 —',
       company: '미라콤아이앤씨', role: '사내방송국 PD',
-      desc: '유튜브·행사·사내 드라마·경영매거진·라이브 방송·솔루션 영상까지, 2,000명 임직원을 위한 사내 방송국을 1인 체제로 운영.',
+      desc: '2,000명 임직원을 위한 사내 방송국 시스템을 구축했습니다.',
       thumbs: ['QItmO4AVjSc', 'LnGiVzoQ03A', '86GWtTWGBtI'],
       channel: { label: '미라콤아이앤씨 유튜브 채널', url: 'https://www.youtube.com/@miracominc' },
       programs: [
@@ -515,7 +518,7 @@ const DATA = {
     {
       id: 'kbs', ch: '04', period: '2020 —',
       company: 'KBS', role: '촬영보조',
-      desc: '다큐멘터리 2편과 뮤직뱅크 · 머니올라 등 다수의 프로그램에서 하이엔드 카메라와 특수 장비를 설치 · 운용.',
+      desc: '다큐멘터리, 예능, 시사, 유튜브 등 현장에서 갈고닦은 콘텐츠의 기준.',
       imgThumbs: ['assets/thumbs/kbs-1.jpg', 'assets/thumbs/kbs-2.jpg', 'assets/thumbs/kbs-3.jpg', 'assets/thumbs/kbs-4.jpg', 'assets/thumbs/kbs-5.jpg'],
       commonFlow: ['업무 배정', '장비 대여 · 점검', '장비 설치 · 촬영', '장비 철수 · 점검', '장비 반납 · 백업'],
       programs: [
@@ -564,7 +567,7 @@ const DATA = {
     {
       id: 'freelance', ch: '05', period: '2019',
       company: '프리랜서', role: '촬영 · 편집 감독',
-      desc: '하나투어 여행 광고 5편을 기획부터 납품까지 단독 제작. 허벌라이프 · BACON 등 브랜드 행사와 라이브 촬영감독.',
+      desc: '광고, 라이브, 브랜딩까지 — 클라이언트의 요구를 결과물로 증명한 시간.',
       imgThumbs: ['assets/thumbs/freelance-1.jpg', 'assets/thumbs/freelance-2.jpg', 'assets/thumbs/freelance-3.jpg', 'assets/thumbs/freelance-4.jpg', 'assets/thumbs/freelance-5.jpg'],
       programs: [
         {
@@ -585,7 +588,7 @@ const DATA = {
     {
       id: 'works', ch: '06', period: '2014 — 2019',
       company: '작품 활동', role: '청춘공방 — 연출 · 촬영 · 편집',
-      desc: '대학 영상동아리 청춘공방에서 웹드라마 2편을 제작하고, 후배들을 가르치는 편집 강사이자 제작부 총괄로 활동.',
+      desc: '웹 드라마, 공모전, 유튜브 채널 등 맨 땅에 헤딩하며 성장한 시간들.',
       thumbs: ['QogM6HG31PY', '6OYh6BqMEdA'],
       imgThumbs: ['assets/thumbs/award-yonsei-2014.jpg', 'assets/thumbs/award-flight-2017.jpg', 'assets/thumbs/award-yonsei-2019.jpg', 'assets/thumbs/award-99thinks-2015.jpg'],
       programs: [
@@ -608,23 +611,48 @@ const DATA = {
   ],
   build: {
     id: 'build', ch: 'BUILD', period: '2025 —',
-    company: 'BUILD', role: '직접 개발한 웹사이트',
+    company: 'BUILD', role: '개발 프로젝트',
     desc: '콘텐츠를 넘어, 콘텐츠를 만드는 시스템을 만듭니다.',
     buildProjects: [
       {
-        n: '텐베거 탐색기', d: '미국 주식 텐배거 후보를 발굴하는 스크리닝 대시보드. 7,338종 유니버스를 모델로 걸러 176종 후보 포트폴리오를 추적하고, SPY · QQQ · IWM 대비 성과를 검증합니다.',
+        n: '텐베거 탐색기', d: '재무 데이터 기반 종목 스크리닝·스코어링 시스템. 7,338종 유니버스를 모델로 걸러 후보 포트폴리오를 추적하고 주요 지수 대비 성과를 검증합니다.',
         stack: ['React', 'Vite', 'Recharts', 'GitHub Actions'],
         url: 'https://tenbagger-dashboard.pages.dev', status: 'LIVE',
       },
       {
-        n: '국내상장 ETF 정리 사이트 (ETF-KR)', d: '국내 상장 ETF 622종을 자산군별 품질 게이트 × 기술 신호로 점수화해 정리하는 사이트. 추천 · 순위 없이 forward-test로 신호를 검증하는 방식을 택했습니다.',
+        n: 'ETF 정리 사이트', d: '국내 상장 ETF 자동 스크리닝·정리 시스템. 자산군별 품질 게이트 × 기술 신호로 점수화하고, 추천·순위 없이 forward-test로 신호를 검증합니다.',
         stack: ['React', 'Vite', 'Recharts', 'HashRouter'],
         url: 'https://yd95moon.github.io/etf-kr-web/', status: 'LIVE',
       },
       {
-        n: '모의투자게임', d: '과거 실제 주가 데이터로 투자하는 시간여행 모의투자 게임. 현업 콘텐츠 연계용으로 개발 진행 중입니다.',
+        n: '모의투자 게임', d: '과거 시점으로 돌아가 매매하는 웹 게임. 실제 운영 중이나 어드민 승인 구조라 외부 접속은 불가합니다.',
         stack: ['React', 'Supabase', 'React Router'],
-        url: '', status: 'IN DEV',
+        url: '', status: '운영중(비공개)', note: '📸 스크린샷 준비중 — 소개 페이지 추후 공개',
+      },
+      {
+        n: '멀티 프로젝트 자동화 시스템', d: '텔레그램 → AI 코딩 에이전트 오케스트레이션. 상시 데몬으로 실행되며 작업 결과를 자동으로 기록·문서화합니다.',
+        stack: ['Python', 'Telegram Bot API', 'launchd', 'AI Agent SDK'],
+        url: '', status: '운영중',
+      },
+      {
+        n: 'SNS 자동 운영 시스템', d: '다채널 콘텐츠 자동 배포 파이프라인. 브라우저 자동화 기반으로 게시·스케줄링을 처리합니다.',
+        stack: ['Python', 'Playwright', 'launchd'],
+        url: '', status: '운영중',
+      },
+      {
+        n: '숏폼 자동화 시스템', d: '대본 → AI 음성 → 영상 생성 → 발행까지 이어지는 콘텐츠 제작 파이프라인 자동화.',
+        stack: ['Python', 'TTS API', 'FFmpeg', 'YouTube API'],
+        url: '', status: '운영중',
+      },
+      {
+        n: '자동매매 시스템', d: '직접 설계한 퀀트 투자 로직을 거래소 API와 연동한 자동매매 시스템.',
+        stack: ['Python', 'Exchange API', 'Backtesting'],
+        url: '', status: '운영 보류(시장 상황)',
+      },
+      {
+        n: '대화형 AI 챗봇', d: '페르소나 프롬프트 기반 대화형 AI 봇. 3단 기억 구조(단기 로그·중기 요약·장기 사실 추출), 능동 발화 스케줄러, 이미지 인식을 갖췄습니다.',
+        stack: ['Python', 'Discord API', 'Claude API', 'launchd', 'pytest'],
+        url: '', status: '운영중',
       },
     ],
   },
@@ -686,15 +714,17 @@ function renderHub(){
         <div>
           <div class="role-en">PRODUCER × BUILDER — MOON YOUNG DOO</div>
           <h1>콘텐츠를 넘어 개발까지,<br>AI로 수억원을 아끼는 풀스택 PD<span class="amber">.</span></h1>
-          <div class="chips" style="margin-top:18px">
-            <span class="chip hl">#풀스택PD</span><span class="chip hl">#숏폼자동화</span><span class="chip hl">#유튜브</span>
-            <span class="chip hl">#AI아나운서</span><span class="chip hl">#콘텐츠마케팅</span><span class="chip hl">#촬영설계</span>
-            <span class="chip hl">#웹개발</span><span class="chip hl">#라이브방송</span>
+          <p class="hero-sub">기획, 촬영, 편집, 디자인 그리고 개발까지. 콘텐츠에 필요한 모든 업무를 100% 수행하고, AI 자동화로 비용을 없애드립니다.</p>
+          <div class="chips" style="margin-top:14px">
+            <span class="chip hl tag-sm">#풀스택PD</span><span class="chip hl tag-sm">#유튜버</span><span class="chip hl tag-sm">#AI아나운서</span><span class="chip hl tag-sm">#AI콘텐츠</span>
+            <span class="chip hl tag-sm">#숏폼자동화</span><span class="chip hl tag-sm">#n8n</span><span class="chip hl tag-sm">#바이브코딩</span><span class="chip hl tag-sm">#경제콘텐츠</span>
+            <span class="chip hl tag-sm">#콘텐츠마케팅</span><span class="chip hl tag-sm">#촬영감독</span><span class="chip hl tag-sm">#드라마</span><span class="chip hl tag-sm">#라이브방송</span>
+            <span class="chip hl tag-sm">#디자인</span><span class="chip hl tag-sm">#웹개발</span>
           </div>
           <div class="hero-cta">
             <a class="btn btn-amber" href="#/" data-anchor="career">경력 바로가기 <span aria-hidden="true">↓</span></a>
             <a class="btn btn-ghost" href="https://www.youtube.com/@SFDuck1969" target="_blank" rel="noopener">개인 유튜브 채널 ↗</a>
-            <a class="btn btn-ghost" href="#/ch/build">직접 개발한 웹사이트 ↗</a>
+            <a class="btn btn-ghost" href="#/ch/build">개발 프로젝트 ↗</a>
           </div>
         </div>
         <div class="hero-photo">
@@ -813,10 +843,10 @@ function renderDetail(id){
     body = `<div class="program reveal" style="padding-top:30px;border-top:none">
       <div class="proj-grid">${c.buildProjects.map(p=>`
       <div class="proj-card">
-        <div class="proj-top"><h4>${esc(p.n)}</h4><span class="proj-status ${p.status==='LIVE'?'live':''}">${esc(p.status)}</span></div>
+        <div class="proj-top"><h4>${esc(p.n)}</h4><span class="proj-status ${p.url?'live':''}">${esc(p.status)}</span></div>
         <p>${esc(p.d)}</p>
         <div class="chips">${p.stack.map(s=>`<span class="chip">${esc(s)}</span>`).join('')}</div>
-        ${p.url?`<a class="btn btn-ghost" style="margin-top:6px" href="${p.url}" target="_blank" rel="noopener">사이트 보기 ↗</a>`:''}
+        ${p.url?`<a class="btn btn-ghost" style="margin-top:6px" href="${p.url}" target="_blank" rel="noopener">사이트 보기 ↗</a>`:(p.note?`<div class="proj-note" style="margin-top:6px">${esc(p.note)}</div>`:'')}
       </div>`).join('')}</div>
     </div>`;
   } else {
