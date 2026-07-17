@@ -52,14 +52,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .navlinks a:hover{color:var(--ink);background:rgba(196,163,106,.06)}
 
 /* ───────── hero (viewfinder) ───────── */
-.hero{padding:48px 0;min-height:calc(100vh - 58px);display:flex;flex-direction:column;justify-content:center}
-.finder{position:relative;padding:clamp(28px,5vw,56px) clamp(20px,4.5vw,52px)}
+.hero{padding:28px 0;min-height:calc(100vh - 58px);display:flex;flex-direction:column;justify-content:center}
+.finder{position:relative;padding:clamp(20px,3.5vw,36px) clamp(20px,4.5vw,52px)}
 .finder .corner{position:absolute;width:26px;height:26px;border:2px solid var(--amber);opacity:.85}
 .finder .c1{top:0;left:0;border-right:none;border-bottom:none}
 .finder .c2{top:0;right:0;border-left:none;border-bottom:none}
 .finder .c3{bottom:0;left:0;border-right:none;border-top:none}
 .finder .c4{bottom:0;right:0;border-left:none;border-top:none}
-.finder-head{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--dim);margin-bottom:clamp(26px,4.5vw,46px)}
+.finder-head{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--dim);margin-bottom:clamp(18px,3vw,26px)}
 .finder-head .rec{display:flex;align-items:center;gap:8px;color:var(--amber)}
 .hero-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,5vw,64px);align-items:center}
 .hero-grid>div:first-child{min-width:0}
@@ -82,11 +82,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 .env-line{margin-top:32px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mut)}
 @media(max-width:768px){.env-line{font-size:11px}}
-.hero-skills{margin-top:32px;padding-top:22px;border-top:1px solid var(--line);text-align:center}
-.hero-skills-head{font-family:var(--serif);font-weight:800;font-size:clamp(17px,2.6vw,21px);color:var(--ink);margin-bottom:16px}
+.hero-skills{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);text-align:center}
+.hero-skills-head{font-family:var(--serif);font-weight:800;font-size:clamp(17px,2.6vw,21px);color:var(--ink);margin-bottom:10px}
 .hero-skills .tool-scroll{margin-top:0}
-.hero-skills .env-line{margin:18px 0 0;padding-top:0;border-top:0}
-@media(max-width:768px){.hero-skills{margin-top:26px;padding-top:18px}}
+.hero-skills .env-line{margin:12px 0 0;padding-top:0;border-top:0}
+@media(max-width:768px){.hero-skills{margin-top:14px;padding-top:10px}}
 
 /* ───────── sections ───────── */
 section{padding:clamp(48px,8vw,84px) 0}
@@ -751,7 +751,7 @@ function renderHub(){
         <div class="tool-scroll" aria-hidden="true"><div class="tool-track" id="heroToolTrack">${
           [...DATA.skills.tools, ...DATA.skills.tools].map(t=>`<span class="tool-pill">${esc(t)}</span>`).join('')
         }</div></div>
-        <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서... 이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
+        <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서 ···<br>이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
       </div>
     </div>
   </div>
