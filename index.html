@@ -82,6 +82,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 .env-line{margin-top:32px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mut)}
 @media(max-width:768px){.env-line{font-size:11px}}
+.hero-skills{margin-top:32px;padding-top:22px;border-top:1px solid var(--line);text-align:center}
+.hero-skills-head{font-family:var(--serif);font-weight:800;font-size:clamp(17px,2.6vw,21px);color:var(--ink);margin-bottom:16px}
+.hero-skills .tool-scroll{margin-top:0}
+.hero-skills .env-line{margin:18px 0 0;padding-top:0;border-top:0}
+@media(max-width:768px){.hero-skills{margin-top:26px;padding-top:18px}}
 
 /* ───────── sections ───────── */
 section{padding:clamp(48px,8vw,84px) 0}
@@ -661,7 +666,7 @@ const DATA = {
     ],
   },
   skills: {
-    oneLiner: '못 만드는 콘텐츠는 없습니다.',
+    oneLiner: '제가 못 만드는 콘텐츠는 없습니다.',
     tools: [
       'Premiere Pro', 'Photoshop', 'After Effects', 'Figma', 'Illustrator',
       'ENG · 시네마 카메라', '드론', '짐벌 · 슬라이더', 'OBS Studio', 'vMix', '라이브 스위칭',
@@ -741,7 +746,13 @@ function renderHub(){
           <span class="tag">PD · 문영두</span>
         </div>
       </div>
-      <p class="env-line reveal">증권사, 핀테크, 대기업, 방송국, 프리랜서... 이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
+      <div class="hero-skills reveal" id="skills">
+        <p class="hero-skills-head">${esc(DATA.skills.oneLiner)}</p>
+        <div class="tool-scroll" aria-hidden="true"><div class="tool-track" id="heroToolTrack">${
+          [...DATA.skills.tools, ...DATA.skills.tools].map(t=>`<span class="tool-pill">${esc(t)}</span>`).join('')
+        }</div></div>
+        <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서... 이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
+      </div>
     </div>
   </div>
 
@@ -767,19 +778,6 @@ function renderHub(){
     </div>
   </section>
 
-  <section id="skills">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Skills & Gear</span>
-      <h2>다룰 수 있는 도구들</h2>
-    </div>
-    <div class="skill-one reveal">
-      <p>${esc(DATA.skills.oneLiner)}</p>
-    </div>
-    <div class="tool-scroll reveal" aria-hidden="true"><div class="tool-track">${
-      [...DATA.skills.tools, ...DATA.skills.tools].map(t=>`<span class="tool-pill">${esc(t)}</span>`).join('')
-    }</div></div>
-  </section>
-
   <section id="contact">
     <div class="contact-box reveal">
       <span class="eyebrow" style="justify-content:center">Contact</span>
@@ -791,10 +789,10 @@ function renderHub(){
       </div>
     </div>
   </section>`;
-  const envTrack = document.getElementById('envTrack');
-  if (envTrack){
-    const half = envTrack.scrollWidth / 2;
-    envTrack.style.animationDuration = Math.max(8, half / THUMB_PX_PER_SEC).toFixed(1) + 's';
+  const toolTrack = document.getElementById('heroToolTrack');
+  if (toolTrack){
+    const half = toolTrack.scrollWidth / 2;
+    toolTrack.style.animationDuration = Math.max(8, half / THUMB_PX_PER_SEC).toFixed(1) + 's';
   }
   bindHub(); observeReveals();
 }
