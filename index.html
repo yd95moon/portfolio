@@ -52,7 +52,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .navlinks a:hover{color:var(--ink);background:rgba(196,163,106,.06)}
 
 /* ───────── hero (viewfinder) ───────── */
-.hero{padding:64px 0 76px}
+.hero{padding:48px 0;min-height:calc(100vh - 58px);display:flex;flex-direction:column;justify-content:center}
 .finder{position:relative;padding:clamp(28px,5vw,56px) clamp(20px,4.5vw,52px)}
 .finder .corner{position:absolute;width:26px;height:26px;border:2px solid var(--amber);opacity:.85}
 .finder .c1{top:0;left:0;border-right:none;border-bottom:none}
@@ -78,6 +78,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .hero-photo .tag{position:absolute;left:-10px;bottom:14px;background:var(--gold);color:#070708;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;padding:5px 11px;border-radius:5px}
 @media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-photo{order:-1;margin:0 auto;width:min(200px,55vw)}.hero-cta{flex-direction:column;align-items:stretch}.hero-cta .btn{justify-content:center}}
 @media(max-width:480px){.hero h1{font-size:19px;letter-spacing:-.02em}}
+
+.env-marquee{margin-top:32px;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.env-lead{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim);white-space:nowrap}
+.env-scroll{flex:1;min-width:160px;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent)}
+.env-track{display:flex;align-items:center;gap:16px;width:max-content;animation:envmarquee 20s linear infinite}
+.env-scroll:hover .env-track{animation-play-state:paused}
+@keyframes envmarquee{to{transform:translateX(-50%)}}
+.env-item{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--mut);white-space:nowrap}
+.env-sep{color:var(--amber);opacity:.5;font-size:11px}
+@media (prefers-reduced-motion:reduce){.env-track{animation:none;flex-wrap:wrap;width:auto}}
+@media(max-width:768px){.env-marquee{flex-direction:column;align-items:flex-start;gap:10px}}
 
 /* ───────── sections ───────── */
 section{padding:clamp(48px,8vw,84px) 0}
@@ -132,9 +143,9 @@ section{padding:clamp(48px,8vw,84px) 0}
 .tool-pill{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--mut);border:1px solid var(--line2);padding:9px 16px;border-radius:99px;background:rgba(196,163,106,.03);white-space:nowrap;flex:none}
 @media (prefers-reduced-motion:reduce){.tool-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-size:12px;color:var(--mut);border:1px solid var(--line2);padding:5px 11px;border-radius:99px;background:rgba(196,163,106,.03)}
+.chip{display:inline-flex;align-items:center;line-height:1.3;font-size:12px;color:var(--mut);border:1px solid var(--line2);padding:5px 11px;border-radius:99px;background:rgba(196,163,106,.03)}
 .chip.hl{color:var(--amber2);border-color:rgba(196,163,106,.35);background:var(--amber-dim)}
-.chip.tag-sm{font-size:10.5px;padding:3px 9px}
+.chip.tag-sm{font-size:10.5px;padding:3px 9px;height:22px}
 .hero-sub{color:var(--mut);font-size:14.5px;line-height:1.65;max-width:42em;margin:14px 0 0}
 
 /* ───────── awards ───────── */
@@ -212,8 +223,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .ep p{font-size:13.5px;color:var(--mut);margin-top:9px}
 
 .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:22px}
-.hl{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;display:flex;gap:10px;align-items:flex-start}
-.hl::before{content:'●';color:var(--amber);font-size:9px;margin-top:7px}
+.hl-grid .hl{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;display:flex;gap:10px;align-items:flex-start}
+.hl-grid .hl::before{content:'●';color:var(--amber);font-size:9px;margin-top:7px}
 
 .info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
 .icard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:20px 22px}
@@ -316,7 +327,7 @@ const YT = id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 const DATA = {
   profile: {
     name: '문영두', en: 'MOON YOUNG DOO',
-    email: 'duden89@naver.com', phone: '010-7498-0182',
+    email: 'yd95moon@gmail.com', phone: '010-7498-0182',
     edu: [
       { y: '2021.8', t: '연세대학교 미래캠퍼스 경제학과 졸업' },
       { y: '2012.3', t: '분당중앙고등학교 졸업' },
@@ -326,7 +337,7 @@ const DATA = {
     {
       id: 'hmsec', ch: '01', period: '2025.09 — 현재', badge: 'NOW',
       company: '현대차증권', role: '마케팅팀 매니저',
-      desc: 'AI로 외주에 의존하던 증권사 콘텐츠 제작 시스템을 근본부터 재설계했습니다.',
+      desc: 'AI로 외주에 의존하던 증권사 콘텐츠 제작 시스템을 근본부터 재설계.',
       thumbs: ['tprDJB4Tkuw', 'JCp3Bj5BniI', 'R_nKhkjibzE'],
       programs: [
         {
@@ -395,7 +406,7 @@ const DATA = {
     {
       id: 'newsystock', ch: '02', period: '— 2025.08',
       company: '뉴지스탁', role: '콘텐츠마케팅 매니저 · 금융 콘텐츠 PD',
-      desc: 'AI 숏폼 자동화, 퀀트 투자 강의, 모션 그래픽까지. 금융 콘텐츠의 전 과정을 혼자 힘으로.',
+      desc: 'AI 숏폼 자동화, 퀀트 투자 강의, 모션 그래픽까지. 일당백 금융 콘텐츠 PD.',
       thumbs: ['KxhK3Vm-lW0', 'sCUBq_kvAn4', 'RYb_ZAgLF8A'],
       channel: { label: '뉴지스탁 유튜브 채널', url: 'https://www.youtube.com/@genport_newsystock' },
       programs: [
@@ -457,7 +468,7 @@ const DATA = {
     {
       id: 'miracom', ch: '03', period: '2021 —',
       company: '미라콤아이앤씨', role: '사내방송국 PD',
-      desc: '2,000명 임직원을 위한 사내 방송국 시스템을 구축했습니다.',
+      desc: '2,000명 임직원을 위한 사내 방송국 시스템 구축.',
       thumbs: ['QItmO4AVjSc', 'LnGiVzoQ03A', '86GWtTWGBtI'],
       channel: { label: '미라콤아이앤씨 유튜브 채널', url: 'https://www.youtube.com/@miracominc' },
       programs: [
@@ -657,8 +668,13 @@ const DATA = {
     ],
   },
   skills: {
-    oneLiner: '어떤 콘텐츠든 직접 만들어냅니다.',
-    tools: ['Premiere Pro', 'Photoshop', 'After Effects', 'Figma', 'OBS Studio', 'vMix', 'ENG · 시네마 카메라', '라이브 스위칭 시스템', '로닌 · 슬라이더 · 드론'],
+    oneLiner: '못 만드는 콘텐츠는 없습니다.',
+    tools: [
+      'Premiere Pro', 'Photoshop', 'After Effects', 'Figma', 'Illustrator',
+      'ENG · 시네마 카메라', '드론', '짐벌 · 슬라이더', 'OBS Studio', 'vMix', '라이브 스위칭',
+      'ComfyUI', 'Stable Diffusion', 'HeyGen', 'ElevenLabs', 'Higgsfield', 'Claude Code', 'n8n', 'Playwright', '바이브코딩',
+      'Python', 'HTML · CSS · JS', 'GitHub', 'Cloudflare', 'Supabase', 'SQLite',
+    ],
   },
   awards: [
     { y: '2019.06', n: '연세인 역량관리시스템 홍보 UCC 공모전', prize: '우수상', url: 'https://blog.naver.com/duden89/222596171331', lk: '증빙 보기 ↗' },
@@ -686,6 +702,11 @@ function allVideoIds(c){
   return ids.length ? ids : (c.thumbs||[]);
 }
 const THUMB_PX_PER_SEC = 34;
+const ENV_ITEMS = ['증권사','핀테크','대기업','방송국','프리랜서'];
+function envTrackHTML(){
+  const seq = ENV_ITEMS.map(e=>`<span class="env-item">${esc(e)}</span>`).join('<span class="env-sep">·</span>');
+  return `${seq}<span class="env-sep">·</span>${seq}<span class="env-sep">·</span>`;
+}
 function thumbHTML(c){
   if (c.soon) return `<div class="ch-thumbs" aria-hidden="true">
     <div class="th txt"><b>CH ${c.ch}</b><span>준비 중</span></div>
@@ -725,6 +746,10 @@ function renderHub(){
             <a class="btn btn-amber" href="#/" data-anchor="career">경력 바로가기 <span aria-hidden="true">↓</span></a>
             <a class="btn btn-ghost" href="https://www.youtube.com/@SFDuck1969" target="_blank" rel="noopener">개인 유튜브 채널 ↗</a>
             <a class="btn btn-ghost" href="#/ch/build">개발 프로젝트 ↗</a>
+          </div>
+          <div class="env-marquee reveal" aria-hidden="true">
+            <span class="env-lead">모든 현장이 저를 풀스택으로 만들었습니다</span>
+            <div class="env-scroll"><div class="env-track" id="envTrack">${envTrackHTML()}</div></div>
           </div>
         </div>
         <div class="hero-photo">
@@ -776,11 +801,16 @@ function renderHub(){
       <h2 style="margin-top:12px">다음 프로그램,<br>함께 만들어 볼까요?</h2>
       <p>기획서 한 장부터 라이브 송출까지 — 편하게 연락 주세요.</p>
       <div class="contact-row">
-        <a class="btn btn-amber" href="mailto:duden89@naver.com">duden89@naver.com</a>
+        <a class="btn btn-amber" href="mailto:yd95moon@gmail.com">yd95moon@gmail.com</a>
         <a class="btn btn-ghost" href="tel:01074980182">010-7498-0182</a>
       </div>
     </div>
   </section>`;
+  const envTrack = document.getElementById('envTrack');
+  if (envTrack){
+    const half = envTrack.scrollWidth / 2;
+    envTrack.style.animationDuration = Math.max(8, half / THUMB_PX_PER_SEC).toFixed(1) + 's';
+  }
   bindHub(); observeReveals();
 }
 
