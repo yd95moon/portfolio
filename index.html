@@ -87,7 +87,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @media(max-width:768px){.env-line{font-size:11px}}
 .hero-skills{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);text-align:center}
 .hero-skills-head{font-family:var(--serif);font-weight:800;font-size:clamp(17px,2.6vw,21px);color:var(--ink);margin-bottom:10px}
-.hero-skills .tool-scroll{margin-top:0}
+.hero-skills .tool-scroll{margin-top:16px}
 .hero-skills .env-line{margin:12px 0 0;padding-top:0;border-top:0}
 @media(max-width:768px){.hero-skills{margin-top:14px;padding-top:10px}}
 
@@ -171,14 +171,14 @@ section{padding:clamp(48px,8vw,84px) 0}
 /* ───────── activities ───────── */
 
 /* ───────── contact / footer ───────── */
-.biz-card{display:flex;align-items:stretch;gap:0;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;padding:clamp(28px,5vw,46px) clamp(26px,5vw,50px);margin:16px auto 0;max-width:880px}
+.biz-card{display:flex;align-items:stretch;justify-content:center;gap:0;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;padding:clamp(28px,5vw,46px) clamp(26px,5vw,50px);margin:16px auto 0;width:fit-content;max-width:880px}
 .biz-left{flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;padding-right:clamp(24px,4vw,40px)}
 .biz-div{width:1px;background:var(--line2);align-self:stretch;flex:none}
 .biz-name{font-family:var(--serif);font-size:clamp(22px,4vw,28px);font-weight:800;letter-spacing:-.01em}
 .biz-name-en{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--dim);margin-top:4px}
 .biz-role{font-size:14.5px;color:var(--amber2);font-weight:700;margin-top:10px}
 .biz-role-en{font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:2px}
-.biz-right{flex:1;display:flex;flex-direction:column;gap:10px;justify-content:center;align-items:flex-start;padding-left:clamp(24px,4vw,40px)}
+.biz-right{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;justify-content:center;align-items:flex-start;padding-left:clamp(24px,4vw,40px)}
 .biz-item{display:inline-flex;align-items:center;gap:8px;justify-content:flex-start;font-family:var(--mono);font-size:13px;color:var(--mut);transition:color .2s}
 .biz-item i{font-style:normal;font-size:13px;color:var(--amber)}
 .biz-item:hover{color:var(--ink)}
@@ -187,7 +187,7 @@ section{padding:clamp(48px,8vw,84px) 0}
 .biz-qr .qr-cap{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--dim);text-align:center}
 .biz-seal .seal-mark{font-family:var(--serif);font-size:26px;font-weight:800;letter-spacing:.06em;color:var(--gold);border:1px solid var(--line2);border-radius:12px;padding:14px 18px;line-height:1}
 .biz-note{text-align:center;color:var(--mut);font-size:13.5px;margin-top:20px}
-@media(max-width:640px){.biz-card{flex-direction:column;text-align:center;gap:20px;max-width:none}.biz-left{padding-right:0}.biz-div{display:none}.biz-right{align-items:center;padding-left:0}.biz-item{justify-content:center}.biz-qr{padding-left:0}}
+@media(max-width:640px){.biz-card{flex-direction:column;text-align:center;gap:20px;width:auto;max-width:none}.biz-left{padding-right:0}.biz-div{display:none}.biz-right{align-items:center;padding-left:0}.biz-item{justify-content:center}.biz-qr{padding-left:0}}
 footer{padding:34px 0 46px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);margin-top:60px}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);letter-spacing:.06em}
 
@@ -271,6 +271,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 @media(max-width:720px){.photo-grid.cols-4,.photo-grid.cols-3{grid-template-columns:repeat(2,1fr)}.works-lead{flex-direction:column}.works-lead .works-poster,.works-lead .works-video{flex:none;width:100%;max-width:320px;height:auto;margin:0 auto}.works-lead .works-poster img{height:auto;width:100%}.works-lead .works-video .vcard{height:auto;width:100%}.drama-lead{grid-template-columns:1fr}}
 .ext-unit{display:flex;flex-direction:column;gap:14px}
 .ext-unit .photo-grid{margin-top:0}
+.ext-unit .mag-marquee{margin-top:0}
 .ext-unit .unit-desc{color:var(--mut);font-size:13.5px;text-align:center;text-wrap:balance}
 .drama-lead{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
 .drama-card img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid rgba(196,163,106,.4)}
@@ -604,6 +605,17 @@ const DATA = {
       commonFlow: ['업무 배정', '장비 대여 · 점검', '장비 설치 · 촬영', '장비 철수 · 점검', '장비 반납 · 백업'],
       programs: [
         {
+          t: '주요 업무',
+          workUnits: [
+            { d: '다수의 방송 프로그램과 유튜브 콘텐츠 촬영에 참여했습니다.', marquee: ['assets/gallery/kbs-work-1.jpg', 'assets/gallery/kbs-work-2.jpg', 'assets/gallery/kbs-work-3.jpg', 'assets/gallery/kbs-work-4.jpg'] },
+            { d: '하이엔드 카메라와 각종 특수 장비를 설치 · 운용했습니다.', marquee: ['assets/gallery/kbs-gear-1.jpg', 'assets/gallery/kbs-gear-2.jpg', 'assets/gallery/kbs-gear-3.jpg', 'assets/gallery/kbs-gear-4.jpg'] },
+          ],
+          chips2: [
+            { label: 'PROGRAMS', items: ['역사저널 그날', '시사직격', '이슈픽 쌤과함께', '이웃집 찰스', '불후의 명곡', '저널리즘 토크쇼 J', 'TV유치원', '노래가 좋아', '온드림스쿨', '연중 라이브', '영지전능쇼', '정치합시다', '펫비타민', '동해의 제국 (경북항만 100년특집)'] },
+            { label: 'CAMERAS & GEAR', hl: true, items: ['F800', 'GEMINAI', 'RED RAVEN', 'RED EPIC', 'F55', 'C300', 'C300mk2', 'X70', 'Z90', 'XF405', 'PJ-760', 'Astro AB4815', 'Lumix DC-S1H', 'GoPro', 'Insta360', 'Mavic 2', 'Polcam', 'Ronin', 'Genie Slider', 'Shark Slider', 'Flexible Light'] },
+          ],
+        },
+        {
           t: '주요 참여 다큐멘터리',
           exts: [
             {
@@ -637,17 +649,6 @@ const DATA = {
               url: 'https://www.youtube.com/c/STUDIOK_KBS', go: '채널 바로가기 ↗',
               photos: ['assets/gallery/kbs-program-1.jpg', 'assets/gallery/kbs-program-2.jpg', 'assets/gallery/kbs-program-5.jpg', 'assets/gallery/kbs-program-6.jpg'],
             },
-          ],
-        },
-        {
-          t: '주요 업무',
-          workUnits: [
-            { d: '다수의 방송 프로그램과 유튜브 콘텐츠 촬영에 참여했습니다.', photos: ['assets/gallery/kbs-work-1.jpg', 'assets/gallery/kbs-work-2.jpg', 'assets/gallery/kbs-work-3.jpg', 'assets/gallery/kbs-work-4.jpg'] },
-            { d: '하이엔드 카메라와 각종 특수 장비를 설치 · 운용했습니다.', photos: ['assets/gallery/kbs-gear-1.jpg', 'assets/gallery/kbs-gear-2.jpg', 'assets/gallery/kbs-gear-3.jpg', 'assets/gallery/kbs-gear-4.jpg'] },
-          ],
-          chips2: [
-            { label: 'PROGRAMS', items: ['역사저널 그날', '시사직격', '이슈픽 쌤과함께', '이웃집 찰스', '불후의 명곡', '저널리즘 토크쇼 J', 'TV유치원', '노래가 좋아', '온드림스쿨', '연중 라이브', '영지전능쇼', '정치합시다', '펫비타민', '동해의 제국 (경북항만 100년특집)'] },
-            { label: 'CAMERAS & GEAR', hl: true, items: ['F800', 'GEMINAI', 'RED RAVEN', 'RED EPIC', 'F55', 'C300', 'C300mk2', 'X70', 'Z90', 'XF405', 'PJ-760', 'Astro AB4815', 'Lumix DC-S1H', 'GoPro', 'Insta360', 'Mavic 2', 'Polcam', 'Ronin', 'Genie Slider', 'Shark Slider', 'Flexible Light'] },
           ],
         },
       ],
@@ -691,7 +692,7 @@ const DATA = {
           flow: ['기획 · 시나리오 회의', '연출 · 촬영 회의', '촬영', '편집 · 피드백', '최종 렌더링 · 공개'],
           videos: [{ id: 'QogM6HG31PY', label: '1화부터 정주행 ▶', playlist: 'PLBG-Za43J0FOGobd_20gRR1Ugmzxg1YGt' }],
           poster: 'assets/gallery/works-otd-poster.jpg',
-          photos: ['assets/gallery/works-otd-1.jpg', 'assets/gallery/works-otd-2.jpg', 'assets/gallery/works-otd-3.jpg', 'assets/gallery/works-otd-4.jpg'],
+          marquee: ['assets/gallery/works-otd-1.jpg', 'assets/gallery/works-otd-2.jpg', 'assets/gallery/works-otd-3.jpg', 'assets/gallery/works-otd-4.jpg'],
         },
         {
           t: '웹드라마 「네모난 메뉴판」',
@@ -700,7 +701,7 @@ const DATA = {
           flow: ['기획 · 시나리오 회의', '연출 · 촬영 회의', '촬영', '편집 · 피드백', '최종 렌더링 · 공개'],
           videos: [{ id: '6OYh6BqMEdA', label: '1화부터 정주행 ▶', playlist: 'PLBG-Za43J0FNHYG0u41FrhRcdfSfkqgQa' }],
           poster: 'assets/gallery/works-nmn-poster.jpg',
-          photos: ['assets/gallery/works-nmn-1.jpg', 'assets/gallery/works-nmn-2.jpg', 'assets/gallery/works-nmn-3.jpg', 'assets/gallery/works-nmn-4.jpg'],
+          marquee: ['assets/gallery/works-nmn-1.jpg', 'assets/gallery/works-nmn-2.jpg', 'assets/gallery/works-nmn-3.jpg', 'assets/gallery/works-nmn-4.jpg'],
         },
       ],
     },
@@ -753,7 +754,7 @@ const DATA = {
     ],
   },
   skills: {
-    oneLiner: '제가 못 만드는 콘텐츠는 없습니다.',
+    oneLiner: '제가 만들지 못하는 콘텐츠는 없습니다.',
     tools: [
       'Premiere Pro', 'Photoshop', 'After Effects', 'Figma', 'Illustrator',
       'ENG · 시네마 카메라', '드론', '짐벌 · 슬라이더', 'OBS Studio', 'vMix', '라이브 스위칭',
@@ -878,10 +879,10 @@ function renderHub(){
       </div>
       <div class="hero-skills reveal" id="skills">
         <p class="hero-skills-head">${esc(DATA.skills.oneLiner)}</p>
+        <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서<br>이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
         <div class="tool-scroll" aria-hidden="true"><div class="tool-track" id="heroToolTrack">${
           [0,1].map(()=>`<div class="mgrp">${DATA.skills.tools.map(t=>`<span class="tool-pill">${esc(t)}</span>`).join('')}</div>`).join('')
         }</div></div>
-        <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서<br>이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
       </div>
     </div>
   </div>
@@ -988,7 +989,7 @@ function programHTML(p, idx){
     </div>`).join('')}</div>`;
   if (p.workUnits) h += `<div class="ext-grid">${p.workUnits.map(u=>`
     <div class="ext-unit">
-      <div class="photo-grid cols-2">${u.photos.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>
+      <div class="mag-marquee">${decoImgMarqueeHTML(u.marquee)}</div>
       <p class="unit-desc">${esc(u.d)}</p>
     </div>`).join('')}</div>`;
   if (p.highlights) h += `<div class="hl-grid">${p.highlights.map(x=>`<div class="hl">${esc(x)}</div>`).join('')}</div>`;
@@ -1131,7 +1132,8 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P1</span>
     <h2>AI 아나운서</h2>
-    <p class="pdesc">외주 없이 만든, 두 명의 AI 아나운서</p>
+    <div class="tagline">[AI로 수억원을 절약할 수 있던 이유]</div>
+    <p class="pdesc">기존 AI아나운서는 외주에 의존하며 매년 수천만원의 비용을 지불했지만, 이를 내재화하여 콘텐츠 제작 패러다임 자체를 변화시켰습니다.</p>
   </div>
   <div class="ai-cols">
     <div><div class="ai-col-head"><span class="badge">현소리</span></div><div class="vgrid shorts">${A.hyunsori.map(v=>vcardHTML(v.id, v.t, {vert:true})).join('')}</div></div>
@@ -1146,7 +1148,8 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P2</span>
     <h2>AI 숏폼 대량생산</h2>
-    <p class="pdesc">파이프라인이 찍어낸 물량이 곧 증거입니다</p>
+    <div class="tagline">[퀄리티와 양, 성과까지 다잡은 비결]</div>
+    <p class="pdesc">제작 전 공정을 AI 파이프라인으로 자동화해, 퀄리티는 지키면서 콘텐츠 발행량은 4배로 늘렸습니다. 추가 인력 없이 생산성과 조회 성과를 동시에 끌어올린 결과입니다.</p>
   </div>
   ${p2MarqueeHTML(A.shortsV1, false)}
   ${p2MarqueeHTML(A.shortsV2, true)}
@@ -1155,7 +1158,8 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P3</span>
     <h2>경제 콘텐츠</h2>
-    <p class="pdesc">주식부터 강의까지, 경제를 콘텐츠로</p>
+    <div class="tagline">[규제 속에서 지식을 전달하다]</div>
+    <p class="pdesc">금융투자 콘텐츠는 규제와 컴플라이언스의 벽이 높습니다. 그 안에서 시청자가 진짜 필요로 하는 주식·투자 지식을 콘텐츠로 풀어내며 지속 가능한 콘텐츠를 주기적으로 제작했습니다.</p>
   </div>
   ${p3MarqueeHTML(onepickB, false)}
   ${p3MarqueeHTML(moneyclassB, true)}
@@ -1164,7 +1168,8 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P4</span>
     <h2>예능 콘텐츠</h2>
-    <p class="pdesc">증권사 마스코트로 만든 오리지널 예능</p>
+    <div class="tagline">[증권사 콘텐츠 맞아?]</div>
+    <p class="pdesc">딱딱한 증권사 이미지를 깨고 마스코트를 앞세운 현대차증권만의 오리지널 예능 시리즈를 만들었습니다. 기획, 촬영, 편집 과정을 도맡으며 콘텐츠의 분위기를 더 시청자 친화적으로 바꾸었습니다.</p>
   </div>
   <div class="p4-grid">${A.variety.map(v=>vcardHTML(v.id, v.t)).join('')}</div>
   </div>
@@ -1172,7 +1177,8 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P5</span>
     <h2>이벤트 콘텐츠</h2>
-    <p class="pdesc">야구장부터 SNS까지, 이벤트도 콘텐츠로</p>
+    <div class="tagline">[데이터 분석 위에 감각을 더하다]</div>
+    <p class="pdesc">기존 고객 데이터로 시장에서 무엇이 통하는지 읽고, 그 위에 콘텐츠 감각을 얹었습니다. 기아타이거즈, 현대건설 배구단 등 스포츠마케팅 콘텐츠 제작에 기여하였습니다.</p>
   </div>
   <div class="ig-strip">${A.eventInsta.map(e=>igCardHTML(e.id,{type:e.type})).join('')}</div>
   </div>
@@ -1180,7 +1186,8 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P6</span>
     <h2>라이브 콘텐츠 · 차트시그널</h2>
-    <p class="pdesc">매주 생방송으로 시장을 읽었습니다</p>
+    <div class="tagline">[매주마다 성장한 라이브 방송]</div>
+    <p class="pdesc">차트시그널이라는 주간 라이브 방송을 기획·연출부터 실시간 송출까지 직접 운영했습니다. 매주 피드백을 반영해 방송 완성도와 시청자 유입을 매주마다 키웠습니다.</p>
   </div>
   <div class="live-panel">
     <div class="live-now">${vcardHTML(liveNow.id, liveNow.t, {cls:'fill-h', badgeHTML:'<span class="badge cbadge onair"><span class="rec-dot"></span>NOW PLAYING</span>'})}</div>
