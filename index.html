@@ -38,7 +38,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mgrp{display:flex;flex:none}
 @media (prefers-reduced-motion:reduce){.mgrp:nth-child(2){display:none}.mgrp{flex-wrap:wrap}}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:10px}
-.eyebrow::after{content:'';height:1px;width:30px;background:var(--gold);opacity:.4}
+.eyebrow::before{content:'';height:1px;width:18px;background:var(--gold);opacity:.4}
+.eyebrow::after{content:'';height:1px;width:18px;background:var(--gold);opacity:.4}
 
 /* ───────── top bar ───────── */
 .topbar{position:sticky;top:0;z-index:60;background:rgba(7,7,8,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -152,13 +153,19 @@ section{padding:clamp(48px,8vw,84px) 0}
 
 /* ───────── awards ───────── */
 .award-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden}
-.award{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:var(--panel);padding:18px 22px}
-.award .yr{font-family:var(--mono);font-size:12.5px;color:var(--dim);min-width:64px}
+.award{display:grid;grid-template-columns:76px 1fr 96px auto;gap:10px 18px;align-items:center;background:var(--panel);padding:18px 22px;text-align:left}
+.award .yr{font-family:var(--mono);font-size:12.5px;color:var(--dim)}
 .award .nm{font-size:15px;font-weight:600}
-.award .prize{display:inline-block;margin-left:10px;font-size:11.5px;font-weight:700;color:var(--amber);letter-spacing:.04em}
+.award .prize{font-size:11.5px;font-weight:700;color:var(--amber);letter-spacing:.04em}
 .award .lk{font-family:var(--mono);font-size:12px;color:var(--mut);white-space:nowrap;padding:7px 12px;border:1px solid var(--line2);border-radius:8px;transition:color .2s,border-color .2s}
 .award .lk:hover{color:var(--amber);border-color:rgba(196,163,106,.4)}
-@media(max-width:560px){.award{grid-template-columns:auto 1fr}.award .lk{grid-column:2}}
+@media(max-width:560px){
+  .award{grid-template-columns:1fr auto;row-gap:6px}
+  .award .yr{grid-column:1/-1}
+  .award .nm{grid-column:1/-1}
+  .award .prize{grid-column:1}
+  .award .lk{grid-column:2;justify-self:end}
+}
 
 /* ───────── activities ───────── */
 .act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
@@ -212,9 +219,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .ns-motion-cap .th{width:150px;aspect-ratio:16/9}
 .ns-motion-cap .th img{object-fit:contain;background:var(--panel2)}
 .sinquant-hero{display:flex;flex-direction:column;gap:28px;margin-top:22px}
-.sinquant-titlelockup{display:flex;justify-content:center;margin-top:2px}
-.sinquant-titlelockup + .pdesc{margin-top:2px}
-.sinquant-logo{width:auto;height:192px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(255,255,255,.85)) drop-shadow(0 0 2px #fff)}
+.sinquant-titlelockup{display:flex;justify-content:center;margin-top:14px;padding:10px 0}
+.sinquant-titlelockup + .pdesc{margin-top:10px}
+.sinquant-logo{width:auto;height:134px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(255,255,255,.85)) drop-shadow(0 0 2px #fff)}
+.ns-ytgrid{grid-template-columns:repeat(3,1fr)}
 .sinquant-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .sinquant-cap{display:inline-flex;align-items:center;line-height:1.3;font-size:11.5px;font-weight:700;color:var(--amber2);border:1px solid rgba(196,163,106,.4);background:var(--amber-dim);border-radius:99px;padding:8px 16px}
 .ns-course-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);overflow:hidden}
@@ -268,8 +276,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 /* ───────── CH01 program layouts ───────── */
 .ai-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,28px);margin-top:22px}
 @media(max-width:640px){.ai-cols{grid-template-columns:1fr}}
-.ai-col-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ai-col-head{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
 .ai-col-head b{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--ink)}
+.ai-col-head .badge{font-size:15px;padding:6px 16px}
 .ai-lore{position:relative;margin-top:28px;border-radius:var(--rad-s);overflow:hidden;min-height:190px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
 .ai-lore-bg{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);opacity:.48;filter:saturate(.4) brightness(.62)}
 .ai-lore-bg .th{overflow:hidden}
@@ -303,9 +312,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .mosaic .vcard.fill-h{width:100%;height:100%;aspect-ratio:auto}
 @media(max-width:720px){.mosaic{grid-template-columns:1fr;grid-template-rows:none;min-height:0}.mosaic .m-lead{grid-row:auto}.mosaic .vcard.fill-h{aspect-ratio:16/9;height:auto}}
 
+/* P4 예능 — smaller cards, dashed dividers, generous spacing */
+.p4-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:22px;max-width:600px;margin-left:auto;margin-right:auto}
+.p4-grid .vcard{border:1px dashed rgba(196,163,106,.5)}
+@media(max-width:560px){.p4-grid{grid-template-columns:1fr}}
+
+/* gold custom scrollbar (P5 event strip + P6 episode guide) */
+.ig-strip,.live-guide{scrollbar-width:thin;scrollbar-color:var(--amber) rgba(196,163,106,.1)}
+.ig-strip::-webkit-scrollbar,.live-guide::-webkit-scrollbar{width:8px;height:8px}
+.ig-strip::-webkit-scrollbar-track,.live-guide::-webkit-scrollbar-track{background:rgba(196,163,106,.1);border-radius:8px}
+.ig-strip::-webkit-scrollbar-thumb,.live-guide::-webkit-scrollbar-thumb{background:var(--amber);border-radius:8px}
+.ig-strip::-webkit-scrollbar-thumb:hover,.live-guide::-webkit-scrollbar-thumb:hover{background:var(--amber2)}
+
 /* P5 event strip — single row */
-.ig-strip{display:flex;gap:14px;margin-top:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:2px;padding-bottom:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.ig-strip::-webkit-scrollbar{display:none}
+.ig-strip{display:flex;gap:14px;margin-top:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:2px;padding-bottom:10px;-webkit-overflow-scrolling:touch;cursor:grab}
+.ig-strip.dragging{cursor:grabbing;scroll-snap-type:none}
 .ig-strip .ig-card{flex:none;width:min(230px,62vw);scroll-snap-align:start}
 @media(max-width:480px){.ig-strip{gap:10px}.ig-strip .ig-card{width:74vw}}
 
@@ -330,8 +351,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 @media(max-width:820px){.grid-4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.grid-3{grid-template-columns:1fr}}
 @media(max-width:420px){.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:1fr}}
-
-.ep-count{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);margin-left:8px;white-space:nowrap}
 
 .ig-card{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;border:1px solid rgba(196,163,106,.4);background:var(--panel2);cursor:pointer;transition:border-color .2s,transform .18s;display:block}
 .ig-card:hover{border-color:rgba(196,163,106,.75);transform:translateY(-3px)}
@@ -410,6 +429,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .lb-frame{position:relative;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;border:1px solid var(--line2);box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .lb-inner.vert .lb-frame{aspect-ratio:9/16;max-height:82vh;margin:0 auto}
 .lb-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.lb-inner.imgmode{width:min(480px,100%)}
+.lb-inner.imgmode .onair{display:none}
+.lb-inner.imgmode .lb-frame{position:static;aspect-ratio:auto;display:flex;align-items:center;justify-content:center;padding:10px}
+.lb-inner.imgmode .lb-frame img{max-width:100%;max-height:82vh;display:block;border-radius:6px}
 .lb-title{margin-top:12px;font-size:14px;color:var(--mut);text-align:center}
 
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -550,6 +573,7 @@ const DATA = {
       programs: [
         {
           t: '주요 참여 다큐멘터리',
+          photos: ['assets/gallery/kbs-doc-1.jpg', 'assets/gallery/kbs-doc-2.jpg', 'assets/gallery/kbs-doc-3.jpg'],
           exts: [
             {
               k: 'KBS 1TV · 2021 신년특별기획', h: '코로노믹스', q: '“대기업부터 극빈층까지”',
@@ -567,6 +591,7 @@ const DATA = {
         },
         {
           t: '주요 참여 프로그램',
+          photos: ['assets/gallery/kbs-program-1.jpg', 'assets/gallery/kbs-program-2.jpg', 'assets/gallery/kbs-program-3.jpg'],
           exts: [
             {
               k: 'KBS 경제 시사 유튜브', h: '사탐티비 머니올라', q: '“30만 구독자 채널의 초석을 다지다”',
@@ -583,6 +608,7 @@ const DATA = {
         {
           t: '주요 업무',
           d: '다수의 방송 프로그램과 유튜브 콘텐츠 촬영에 참여하며, 하이엔드 카메라와 각종 특수 장비를 설치 · 운용했습니다.',
+          photos: ['assets/gallery/kbs-gear-1.jpg', 'assets/gallery/kbs-gear-2.jpg', 'assets/gallery/kbs-gear-3.jpg'],
           chips2: [
             { label: 'PROGRAMS', items: ['역사저널 그날', '시사직격', '이슈픽 쌤과함께', '이웃집 찰스', '불후의 명곡', '저널리즘 토크쇼 J', 'TV유치원', '노래가 좋아', '온드림스쿨', '연중 라이브', '영지전능쇼', '정치합시다', '펫비타민', '동해의 제국 (경북항만 100년특집)'] },
             { label: 'CAMERAS & GEAR', hl: true, items: ['F800', 'GEMINAI', 'RED RAVEN', 'RED EPIC', 'F55', 'C300', 'C300mk2', 'X70', 'Z90', 'XF405', 'PJ-760', 'Astro AB4815', 'Lumix DC-S1H', 'GoPro', 'Insta360', 'Mavic 2', 'Polcam', 'Ronin', 'Genie Slider', 'Shark Slider', 'Flexible Light'] },
@@ -601,12 +627,14 @@ const DATA = {
           d: '클라이언트 미팅과 예산 편성부터 촬영, 편집, 최종 납품까지 광고 제작의 전 과정을 단독으로 책임졌습니다.',
           flow: ['클라이언트 미팅', '예산 편성 · 장비 대여', '촬영', '편집 · 피드백', '최종 영상 제출'],
           highlights: ['기획부터 최종 납품까지', '완벽한 맞춤 영상', '양질의 콘텐츠', '빠른 피드백 대응'],
+          photos: ['assets/gallery/freelance-hanatour-1.jpg', 'assets/gallery/freelance-hanatour-2.jpg', 'assets/gallery/freelance-hanatour-3.jpg'],
           links: [{ label: '작업 기록 보기 (블로그) ↗', url: 'https://blog.naver.com/duden89/222349540303' }],
         },
         {
           t: '브랜드 라이브 · 행사 촬영',
           d: '허벌라이프, BACON, 문예회관, 더마독 등 다양한 브랜드의 행사 · 라이브 현장에서 촬영감독으로 활동했습니다.',
           flow: ['장비 대여', '카메라 · 조명 세팅', '촬영', '인서트 컷 촬영', '정리'],
+          photos: ['assets/gallery/freelance-brand-1.jpg', 'assets/gallery/freelance-brand-2.jpg', 'assets/gallery/freelance-brand-3.jpg'],
           chips: { label: 'CLIENTS', items: ['허벌라이프', 'BACON', '문예회관', '더마독'] },
         },
       ],
@@ -692,10 +720,10 @@ const DATA = {
     ],
   },
   awards: [
-    { y: '2019.06', n: '연세인 역량관리시스템 홍보 UCC 공모전', prize: '우수상', url: 'https://blog.naver.com/duden89/222596171331', lk: '증빙 보기 ↗' },
-    { y: '2017.12', n: '비행단 사고예방 창작 공모전', prize: '최우수상', url: 'https://blog.naver.com/duden89/222596137618', lk: '증빙 보기 ↗' },
-    { y: '2015.08', n: '북팔 99thinks 프롤로그 영상 공모전', prize: '장려상' },
-    { y: '2014.11', n: '연세 홍보콘텐츠 공모전', prize: '최우수상', vid: 'M3SaiQMIOD0', lk: '수상작 재생 ▶' },
+    { y: '2019.06', n: '연세인 역량관리시스템 홍보 UCC 공모전', prize: '우수상', img: 'assets/gallery/award-yonsei-uc-2019.jpg' },
+    { y: '2017.12', n: '비행단 사고예방 창작 공모전', prize: '최우수상', img: 'assets/gallery/award-flight-2017.jpg' },
+    { y: '2015.08', n: '북팔 99thinks 프롤로그 영상 공모전', prize: '장려상', img: 'assets/gallery/award-99thinks-2015.jpg' },
+    { y: '2014.11', n: '연세 홍보콘텐츠 공모전', prize: '최우수상', img: 'assets/gallery/award-yonsei-promo-2014.jpg' },
   ],
   activities: [
     { t: 'YOUTUBE', n: '유튜브 채널 3개 운영', d: "24K(2020) → 전개미(2021) → 현재 '슾덕' 운영 중" },
@@ -764,6 +792,24 @@ function syncLiveHeights(){
   guide.style.height = now.getBoundingClientRect().height + 'px';
 }
 window.addEventListener('resize', ()=>{ if (document.querySelector('.live-panel')) syncLiveHeights(); });
+
+/* desktop mouse wheel + drag-to-scroll for horizontal strips (no touchpad needed) */
+function enableHScroll(el){
+  if (!el || el.dataset.hbound) return;
+  el.dataset.hbound = '1';
+  el.addEventListener('wheel', e=>{
+    if (el.scrollWidth <= el.clientWidth) return;
+    el.scrollLeft += e.deltaY;
+    e.preventDefault();
+  }, {passive:false});
+  let down=false, startX=0, startScroll=0;
+  el.addEventListener('mousedown', e=>{ down=true; el.classList.add('dragging'); startX=e.pageX; startScroll=el.scrollLeft; });
+  window.addEventListener('mouseup', ()=>{ down=false; el.classList.remove('dragging'); });
+  window.addEventListener('mousemove', e=>{
+    if (!down) return;
+    el.scrollLeft = startScroll - (e.pageX - startX);
+  });
+}
 
 function renderHub(){
   document.title = '문영두 — 풀스택 PD';
@@ -1050,7 +1096,7 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P3</span>
     <h2>경제 콘텐츠</h2>
-    <p class="pdesc">주식부터 강의까지, 경제를 콘텐츠로 <span class="ep-count">17 EPISODES</span></p>
+    <p class="pdesc">주식부터 강의까지, 경제를 콘텐츠로</p>
   </div>
   ${p3MarqueeHTML(onepickB, false)}
   ${p3MarqueeHTML(moneyclassB, true)}
@@ -1059,15 +1105,15 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P4</span>
     <h2>예능 콘텐츠</h2>
-    <p class="pdesc">증권사 마스코트로 만든 오리지널 예능 <span class="ep-count">4 EPISODES</span></p>
+    <p class="pdesc">증권사 마스코트로 만든 오리지널 예능</p>
   </div>
-  <div class="grid-2">${A.variety.map(v=>vcardHTML(v.id, v.t, {badge:v.badge})).join('')}</div>
+  <div class="p4-grid">${A.variety.map(v=>vcardHTML(v.id, v.t, {badge:v.badge})).join('')}</div>
   </div>
 
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P5</span>
     <h2>이벤트 콘텐츠</h2>
-    <p class="pdesc">야구장부터 SNS까지, 이벤트도 콘텐츠로 <span class="ep-count">${A.eventInsta.length} POSTS</span></p>
+    <p class="pdesc">야구장부터 SNS까지, 이벤트도 콘텐츠로</p>
   </div>
   <div class="ig-strip">${A.eventInsta.map(e=>igCardHTML(e.id,{type:e.type})).join('')}</div>
   </div>
@@ -1075,7 +1121,7 @@ function ch01Body(){
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P6</span>
     <h2>라이브 콘텐츠 · 차트시그널</h2>
-    <p class="pdesc">매주 생방송으로 시장을 읽었습니다 <span class="ep-count">8 EPISODES</span></p>
+    <p class="pdesc">매주 생방송으로 시장을 읽었습니다</p>
   </div>
   <div class="live-panel">
     <div class="live-now">${vcardHTML(liveNow.id, liveNow.t, {cls:'fill-h', badgeHTML:'<span class="badge cbadge onair"><span class="rec-dot"></span>NOW PLAYING</span>'})}</div>
@@ -1184,7 +1230,7 @@ function ch02Body(){
     <h2>유튜브 콘텐츠</h2>
     <p class="pdesc">투자 전략을 직접 세우고, 그 전략을 영상으로 기획·촬영·편집해 채널의 메인 콘텐츠로 운영했습니다.</p>
   </div>
-  <div class="vgrid">${B.content.map(v=>vcardHTML(v.id, v.t)).join('')}</div>
+  <div class="vgrid ns-ytgrid">${B.content.map(v=>vcardHTML(v.id, v.t)).join('')}</div>
   ${flowHTML(['투자 전략 제작 · 영상 기획', '촬영', '편집 · 피드백', '썸네일 제작', '최종 검수 · 업로드'])}
   </div>
 
@@ -1261,9 +1307,9 @@ function renderDetail(id){
       <div class="award-list">${DATA.awards.map(a=>`
         <div class="award">
           <span class="yr">${a.y}</span>
-          <span><span class="nm">${esc(a.n)}</span><span class="prize">${a.prize}</span></span>
-          ${a.vid?`<button class="lk" data-play="${a.vid}" data-title="${esc(a.n)} 수상작">${a.lk}</button>`
-           : a.url?`<a class="lk" href="${a.url}" target="_blank" rel="noopener">${a.lk}</a>`:'<span></span>'}
+          <span class="nm">${esc(a.n)}</span>
+          <span class="prize">${esc(a.prize)}</span>
+          ${a.img?`<button class="lk" data-img="${esc(a.img)}" data-title="${esc(a.n)} 상장">상장 보기 ↗</button>`:'<span></span>'}
         </div>`).join('')}</div></div>
       <div class="program reveal"><div class="program-head">
         <span class="eyebrow">Program ${String(c.programs.length+2).padStart(2,'0')}</span>
@@ -1289,6 +1335,7 @@ function renderDetail(id){
   window.scrollTo({top:0, behavior:'instant'});
   primeMarquees();
   observeReveals();
+  document.querySelectorAll('.ig-strip').forEach(enableHScroll);
   if (document.querySelector('.live-panel')) requestAnimationFrame(syncLiveHeights);
 }
 
@@ -1299,6 +1346,8 @@ function bindHub(){
 document.addEventListener('click', e=>{
   const p = e.target.closest('[data-play]');
   if (p){ openLB(p.dataset.play, p.dataset.title||'', p.dataset.list||'', !!p.dataset.vert); return; }
+  const im = e.target.closest('[data-img]');
+  if (im){ openImgLB(im.dataset.img, im.dataset.title||''); return; }
   const a = e.target.closest('[data-anchor]');
   if (a){ e.preventDefault();
     const go = ()=>{ const t = document.getElementById(a.dataset.anchor); if(t) t.scrollIntoView({behavior:'smooth'}); };
@@ -1318,8 +1367,16 @@ function openLB(id, title, list, vert){
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+function openImgLB(src, title){
+  lbInner.classList.remove('vert');
+  lbInner.classList.add('imgmode');
+  lbFrame.innerHTML = `<img src="${esc(src)}" alt="${esc(title)}">`;
+  lbTitle.textContent = title;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 function closeLB(){
-  lb.classList.remove('open'); lbFrame.innerHTML = ''; document.body.style.overflow = '';
+  lb.classList.remove('open'); lbFrame.innerHTML = ''; lbInner.classList.remove('imgmode'); document.body.style.overflow = '';
 }
 document.getElementById('lbClose').addEventListener('click', closeLB);
 lb.addEventListener('click', e=>{ if(e.target===lb) closeLB(); });
