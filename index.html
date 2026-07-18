@@ -206,16 +206,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .center-page .pdesc{margin-left:auto;margin-right:auto}
 .center-page .flow{justify-content:center}
 .center-page .photo-strip{justify-content:center}
-.ns-motion-cap{margin-top:26px}
+.ns-motion-cap{display:block;width:100%;margin-top:26px}
+.ns-motion-cap .ch-thumbs{display:block;width:100%;max-width:none;justify-self:auto;overflow:hidden}
 .ns-motion-cap .th{width:150px;aspect-ratio:16/9}
 .ns-motion-cap .th img{object-fit:contain;background:var(--panel2)}
-.sinquant-hero{display:grid;grid-template-columns:240px 1fr;gap:24px;margin-top:22px;align-items:start}
-.sinquant-plate{background:#fdfaf3;border:1px solid rgba(196,163,106,.55);border-radius:var(--rad);padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:16px}
-.sinquant-plate img{width:84px;height:84px;object-fit:contain}
-.sinquant-caps{display:flex;flex-direction:column;gap:8px;width:100%}
-.sinquant-cap{background:rgba(6,6,7,.04);border:1px solid rgba(196,163,106,.3);border-radius:99px;padding:8px 14px;font-size:11.5px;font-weight:700;color:#3a3226;text-align:center;line-height:1.35}
-.ns-course-guide{margin:0}
-@media(max-width:760px){.sinquant-hero{grid-template-columns:1fr}}
+.sinquant-hero{display:flex;flex-direction:column;gap:28px;margin-top:22px}
+.sinquant-top{display:flex;flex-direction:column;align-items:center;gap:18px}
+.sinquant-logo{width:112px;height:112px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(255,255,255,.85)) drop-shadow(0 0 2px #fff)}
+.sinquant-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.sinquant-cap{display:inline-flex;align-items:center;line-height:1.3;font-size:11.5px;font-weight:700;color:var(--amber2);border:1px solid rgba(196,163,106,.4);background:var(--amber-dim);border-radius:99px;padding:8px 16px}
+.ns-course-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);overflow:hidden}
+.ns-course-cols{display:grid;grid-template-columns:1fr 1fr}
+.ns-course-col{display:flex;flex-direction:column;min-width:0}
+.ns-course-col:first-child{border-right:1px solid var(--line2)}
+@media(max-width:640px){.ns-course-cols{grid-template-columns:1fr}.ns-course-col:first-child{border-right:none;border-bottom:1px solid var(--line2)}}
 .ns-course-row{align-items:flex-start}
 .ns-course-idx{font-family:var(--mono);font-size:11px;color:var(--dim);flex:none;padding-top:1px}
 .ns-course-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
@@ -1149,16 +1153,21 @@ function ch02Body(){
     <p class="pdesc">회사 매출에 직접 기여한 유료 강의 상품을 직접 설계·제작했습니다 <span class="ep-count">${B.curriculum.length} LESSONS</span></p>
   </div>
   <div class="sinquant-hero">
-    <div class="sinquant-plate">
-      <img src="assets/gallery/ns-sinquant-logo.png" alt="신퀀 로고" loading="lazy">
-      <div class="sinquant-caps">${['회사 매출 직접 기여', '로고 디자인부터 영상 제작까지', '직접 설계한 투자 전략 강의', '고객들이 극찬하는 강의'].map(x=>`<div class="sinquant-cap">${esc(x)}</div>`).join('')}</div>
+    <div class="sinquant-top">
+      <img class="sinquant-logo" src="assets/gallery/ns-sinquant-logo.png" alt="신퀀 로고" loading="lazy">
+      <div class="sinquant-caps">${['회사 매출 직접 기여', '로고 디자인부터 영상 제작까지', '직접 설계한 투자 전략 강의', '고객들이 극찬하는 강의'].map(x=>`<span class="sinquant-cap">${esc(x)}</span>`).join('')}</div>
     </div>
-    <div class="live-guide ns-course-guide">
+    <div class="ns-course-panel">
       <div class="live-guide-head">CURRICULUM · ${B.curriculum.length} LESSONS</div>
-      ${B.curriculum.map((c,i)=>`<div class="live-row ns-course-row">
-        <div class="ns-course-idx">${String(i+1).padStart(2,'0')}</div>
-        <div class="ns-course-info"><b>${esc(c.t)}</b><i>${esc(c.date)} · ${esc(c.dur)}</i></div>
-      </div>`).join('')}
+      <div class="ns-course-cols">${[0,1].map(half=>{
+        const mid = Math.ceil(B.curriculum.length/2);
+        const slice = half===0 ? B.curriculum.slice(0,mid) : B.curriculum.slice(mid);
+        const offset = half===0 ? 0 : mid;
+        return `<div class="ns-course-col">${slice.map((c,i)=>`<div class="live-row ns-course-row">
+          <div class="ns-course-idx">${String(offset+i+1).padStart(2,'0')}</div>
+          <div class="ns-course-info"><b>${esc(c.t)}</b><i>${esc(c.date)} · ${esc(c.dur)}</i></div>
+        </div>`).join('')}</div>`;
+      }).join('')}</div>
     </div>
   </div>
   <div class="ticker" aria-label="수강생 후기"><div class="lane">${[...B.ticker,...B.ticker].map(t=>`<span>${esc(t)}</span>`).join('')}</div></div>
