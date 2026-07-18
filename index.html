@@ -262,14 +262,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .photo-grid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid rgba(196,163,106,.4)}
 .poster-lead{display:flex;justify-content:center;margin-top:22px}
 .poster-lead img{max-height:320px;width:auto;max-width:100%;border-radius:10px;border:1px solid rgba(196,163,106,.4)}
-.works-lead{display:flex;align-items:stretch;gap:20px;margin-top:22px}
-.works-lead .works-poster{flex:0 0 34%}
-.works-lead .works-poster img{width:100%;height:auto;border-radius:10px;border:1px solid rgba(196,163,106,.4)}
-.works-lead .works-video{flex:1 1 auto;display:flex}
-.works-lead .works-video .vgrid{margin-top:0;grid-template-columns:1fr;justify-content:stretch;width:100%}
-@media(max-width:720px){.photo-grid.cols-4,.photo-grid.cols-3{grid-template-columns:repeat(2,1fr)}.works-lead{flex-direction:column}.works-lead .works-poster,.works-lead .works-video{flex:none;width:100%;max-width:320px;margin:0 auto}}
+.works-lead{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:22px;flex-wrap:wrap}
+.works-lead .works-poster{flex:none;height:300px;display:flex;align-items:center}
+.works-lead .works-poster img{height:100%;width:auto;max-width:100%;border-radius:10px;border:1px solid rgba(196,163,106,.4)}
+.works-lead .works-video{flex:none;height:300px;display:flex;align-items:center;justify-content:center}
+.works-lead .works-video .vgrid{margin-top:0;grid-template-columns:1fr;width:auto;height:100%;justify-items:center;align-items:center}
+.works-lead .works-video .vcard{width:auto;height:100%}
+@media(max-width:720px){.photo-grid.cols-4,.photo-grid.cols-3{grid-template-columns:repeat(2,1fr)}.works-lead{flex-direction:column}.works-lead .works-poster,.works-lead .works-video{flex:none;width:100%;max-width:320px;height:auto;margin:0 auto}.works-lead .works-poster img{height:auto;width:100%}.works-lead .works-video .vcard{height:auto;width:100%}.drama-lead{grid-template-columns:1fr}}
 .ext-unit{display:flex;flex-direction:column;gap:14px}
 .ext-unit .photo-grid{margin-top:0}
+.ext-unit .unit-desc{color:var(--mut);font-size:13.5px;text-align:center;text-wrap:balance}
+.drama-lead{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.drama-card img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid rgba(196,163,106,.4)}
+.drama-card .drama-title{margin-top:8px;text-align:center;font-weight:700;font-size:14px;color:var(--ink)}
 @media(max-width:640px){.ext-grid{grid-template-columns:1fr}}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,240px));gap:14px;margin-top:22px;justify-content:center}
 .vgrid.shorts{grid-template-columns:repeat(3,1fr)}
@@ -391,7 +396,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .ep p{font-size:13.5px;color:var(--mut);margin-top:9px;text-wrap:balance}
 
 .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:22px}
-.hl-grid .hl{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;text-align:center;text-wrap:balance}
+.hl-grid .hl{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;text-align:center;text-wrap:balance;display:flex;align-items:center;justify-content:center}
 
 .info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
 .icard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:20px 22px}
@@ -555,8 +560,11 @@ const DATA = {
           d: '직접 쓴 시나리오와 연기 지도까지, 사내 웹드라마를 처음부터 끝까지 만들었습니다.',
           flow: ['기획안 · 시나리오 작성', '대본 리딩', '스토리보드 · 촬영계획표', '리허설 · 촬영', '파일 정리 · 편집', '최종 검수 · 업로드'],
           highlights: ['작가 · 연출 · 촬영 · 편집 감독 — 모두 혼자 수행', '직접 작성한 시나리오 기반 제작', '일반인 대상 연기 지도 후 촬영', '크로마키 · 조명 직접 세팅한 자연스러운 CG'],
-          photoGrid: ['assets/gallery/miracom-drama-1.jpg', 'assets/gallery/miracom-drama-2.jpg', 'assets/gallery/miracom-drama-3.jpg', 'assets/gallery/miracom-drama-4.jpg', 'assets/gallery/miracom-drama-5.jpg', 'assets/gallery/miracom-drama-6.jpg', 'assets/gallery/miracom-drama-7.jpg', 'assets/gallery/miracom-drama-8.jpg'],
-          photoGridCols: 4,
+          dramaLead: [
+            { img: 'assets/gallery/miracom-drama-1.jpg', title: '미라콤 사람들' },
+            { img: 'assets/gallery/miracom-drama-2.jpg', title: '슬기로운 회사생활' },
+          ],
+          dramaBTS: ['assets/gallery/miracom-drama-3.jpg', 'assets/gallery/miracom-drama-4.jpg', 'assets/gallery/miracom-drama-5.jpg', 'assets/gallery/miracom-drama-6.jpg', 'assets/gallery/miracom-drama-7.jpg', 'assets/gallery/miracom-drama-8.jpg'],
         },
         {
           t: '경영매거진',
@@ -633,8 +641,10 @@ const DATA = {
         },
         {
           t: '주요 업무',
-          d: '다수의 방송 프로그램과 유튜브 콘텐츠 촬영에 참여하며, 하이엔드 카메라와 각종 특수 장비를 설치 · 운용했습니다.',
-          photos: ['assets/gallery/kbs-gear-1.jpg', 'assets/gallery/kbs-gear-2.jpg', 'assets/gallery/kbs-gear-3.jpg'],
+          workUnits: [
+            { d: '다수의 방송 프로그램과 유튜브 콘텐츠 촬영에 참여했습니다.', photos: ['assets/gallery/kbs-work-1.jpg', 'assets/gallery/kbs-work-2.jpg', 'assets/gallery/kbs-work-3.jpg', 'assets/gallery/kbs-work-4.jpg'] },
+            { d: '하이엔드 카메라와 각종 특수 장비를 설치 · 운용했습니다.', photos: ['assets/gallery/kbs-gear-1.jpg', 'assets/gallery/kbs-gear-2.jpg', 'assets/gallery/kbs-gear-3.jpg', 'assets/gallery/kbs-gear-4.jpg'] },
+          ],
           chips2: [
             { label: 'PROGRAMS', items: ['역사저널 그날', '시사직격', '이슈픽 쌤과함께', '이웃집 찰스', '불후의 명곡', '저널리즘 토크쇼 J', 'TV유치원', '노래가 좋아', '온드림스쿨', '연중 라이브', '영지전능쇼', '정치합시다', '펫비타민', '동해의 제국 (경북항만 100년특집)'] },
             { label: 'CAMERAS & GEAR', hl: true, items: ['F800', 'GEMINAI', 'RED RAVEN', 'RED EPIC', 'F55', 'C300', 'C300mk2', 'X70', 'Z90', 'XF405', 'PJ-760', 'Astro AB4815', 'Lumix DC-S1H', 'GoPro', 'Insta360', 'Mavic 2', 'Polcam', 'Ronin', 'Genie Slider', 'Shark Slider', 'Flexible Light'] },
@@ -681,7 +691,7 @@ const DATA = {
           flow: ['기획 · 시나리오 회의', '연출 · 촬영 회의', '촬영', '편집 · 피드백', '최종 렌더링 · 공개'],
           videos: [{ id: 'QogM6HG31PY', label: '1화부터 정주행 ▶', playlist: 'PLBG-Za43J0FOGobd_20gRR1Ugmzxg1YGt' }],
           poster: 'assets/gallery/works-otd-poster.jpg',
-          photoGrid: ['assets/gallery/works-otd-1.jpg', 'assets/gallery/works-otd-2.jpg', 'assets/gallery/works-otd-3.jpg', 'assets/gallery/works-otd-4.jpg'],
+          photos: ['assets/gallery/works-otd-1.jpg', 'assets/gallery/works-otd-2.jpg', 'assets/gallery/works-otd-3.jpg', 'assets/gallery/works-otd-4.jpg'],
         },
         {
           t: '웹드라마 「네모난 메뉴판」',
@@ -690,7 +700,7 @@ const DATA = {
           flow: ['기획 · 시나리오 회의', '연출 · 촬영 회의', '촬영', '편집 · 피드백', '최종 렌더링 · 공개'],
           videos: [{ id: '6OYh6BqMEdA', label: '1화부터 정주행 ▶', playlist: 'PLBG-Za43J0FNHYG0u41FrhRcdfSfkqgQa' }],
           poster: 'assets/gallery/works-nmn-poster.jpg',
-          photoGrid: ['assets/gallery/works-nmn-1.jpg', 'assets/gallery/works-nmn-2.jpg', 'assets/gallery/works-nmn-3.jpg', 'assets/gallery/works-nmn-4.jpg'],
+          photos: ['assets/gallery/works-nmn-1.jpg', 'assets/gallery/works-nmn-2.jpg', 'assets/gallery/works-nmn-3.jpg', 'assets/gallery/works-nmn-4.jpg'],
         },
       ],
     },
@@ -963,6 +973,8 @@ function programHTML(p, idx){
     h += `<div class="poster-lead"><img src="${p.poster}" alt="" loading="lazy"></div>`;
   }
   if (p.photoGrid) h += `<div class="photo-grid cols-${p.photoGridCols||4}">${p.photoGrid.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>`;
+  if (p.dramaLead) h += `<div class="drama-lead">${p.dramaLead.map(d=>`<div class="drama-card"><img src="${d.img}" alt="" loading="lazy"><div class="drama-title">${esc(d.title)}</div></div>`).join('')}</div>`;
+  if (p.dramaBTS) h += `<div class="mag-marquee">${decoImgMarqueeHTML(p.dramaBTS)}</div>`;
   if (p.videos && !p.poster) h += videosHTML(p);
   if (p.marquee) h += `<div class="mag-marquee">${decoImgMarqueeHTML(p.marquee)}</div>`;
   if (p.photos) h += `<div class="photo-strip">${p.photos.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>`;
@@ -973,6 +985,11 @@ function programHTML(p, idx){
         <span class="k">${esc(e.k)}</span><h4>${esc(e.h)}</h4>
         <span class="q">${esc(e.q)}</span><p>${esc(e.p)}</p>
         <span class="go">${esc(e.go)}</span></a>
+    </div>`).join('')}</div>`;
+  if (p.workUnits) h += `<div class="ext-grid">${p.workUnits.map(u=>`
+    <div class="ext-unit">
+      <div class="photo-grid cols-2">${u.photos.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>
+      <p class="unit-desc">${esc(u.d)}</p>
     </div>`).join('')}</div>`;
   if (p.highlights) h += `<div class="hl-grid">${p.highlights.map(x=>`<div class="hl">${esc(x)}</div>`).join('')}</div>`;
   if (p.cards) h += `<div class="info-cards">${p.cards.map(c=>`<div class="icard"><h4>${esc(c.h)}</h4><p>${esc(c.p)}</p></div>`).join('')}</div>`;
