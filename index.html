@@ -25,7 +25,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:keep-all;line-break:strict}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(900px 500px at 88% -12%,rgba(196,163,106,.05),transparent 62%),radial-gradient(800px 600px at -8% 25%,rgba(196,163,106,.028),transparent 60%)}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -168,11 +168,6 @@ section{padding:clamp(48px,8vw,84px) 0}
 }
 
 /* ───────── activities ───────── */
-.act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-.act{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:18px 20px}
-.act .t{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.16em;margin-bottom:8px}
-.act .n{font-size:15px;font-weight:700}
-.act .d{font-size:13px;color:var(--mut);margin-top:4px}
 
 /* ───────── contact / footer ───────── */
 .biz-card{display:flex;align-items:stretch;gap:0;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;padding:clamp(28px,5vw,46px) clamp(26px,5vw,50px);margin:16px auto 0;max-width:880px}
@@ -210,7 +205,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .center-page > .detail-head > p{max-width:42em;margin:14px auto 0}
 .center-page .detail-links{justify-content:center}
 .center-page .click-hint{justify-content:center}
-.center-page .program-head .eyebrow{justify-content:center}
+.center-page .eyebrow{justify-content:center}
+.center-page .chips{justify-content:center}
 .center-page .pdesc{margin-left:auto;margin-right:auto}
 .center-page .flow{justify-content:center}
 .center-page .photo-strip{justify-content:center}
@@ -256,6 +252,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 
 .photo-strip{display:flex;gap:10px;overflow-x:auto;margin-top:22px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
 .photo-strip img{flex:none;height:150px;width:auto;border-radius:10px;border:1px solid rgba(196,163,106,.4);object-fit:cover;scroll-snap-align:start}
+.photo-grid{display:grid;gap:10px;margin-top:22px}
+.photo-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.photo-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.photo-grid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid rgba(196,163,106,.4)}
+@media(max-width:640px){.photo-grid.cols-4,.photo-grid.cols-3{grid-template-columns:repeat(2,1fr)}}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,240px));gap:14px;margin-top:22px;justify-content:center}
 .vgrid.shorts{grid-template-columns:repeat(3,1fr)}
 @media(max-width:480px){.vgrid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}}
@@ -376,8 +377,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .ep p{font-size:13.5px;color:var(--mut);margin-top:9px;text-wrap:balance}
 
 .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:22px}
-.hl-grid .hl{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;display:flex;gap:10px;align-items:flex-start;text-wrap:balance}
-.hl-grid .hl::before{content:'●';color:var(--amber);font-size:9px;margin-top:7px}
+.hl-grid .hl{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;text-align:center;text-wrap:balance}
 
 .info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
 .icard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:20px 22px}
@@ -580,7 +580,7 @@ const DATA = {
       programs: [
         {
           t: '주요 참여 다큐멘터리',
-          photos: ['assets/gallery/kbs-doc-1.jpg', 'assets/gallery/kbs-doc-2.jpg', 'assets/gallery/kbs-doc-3.jpg'],
+          photoGrid: ['assets/gallery/kbs-doc-1.jpg', 'assets/gallery/kbs-doc-2.jpg', 'assets/gallery/kbs-doc-3.jpg', 'assets/gallery/kbs-doc-4.jpg', 'assets/gallery/kbs-doc-5.jpg', 'assets/gallery/kbs-doc-6.jpg', 'assets/gallery/kbs-doc-7.jpg', 'assets/gallery/kbs-doc-8.jpg'],
           exts: [
             {
               k: 'KBS 1TV · 2021 신년특별기획', h: '코로노믹스', q: '“대기업부터 극빈층까지”',
@@ -598,7 +598,7 @@ const DATA = {
         },
         {
           t: '주요 참여 프로그램',
-          photos: ['assets/gallery/kbs-program-1.jpg', 'assets/gallery/kbs-program-2.jpg', 'assets/gallery/kbs-program-3.jpg'],
+          photoGrid: ['assets/gallery/kbs-program-1.jpg', 'assets/gallery/kbs-program-2.jpg', 'assets/gallery/kbs-program-3.jpg', 'assets/gallery/kbs-program-4.jpg', 'assets/gallery/kbs-program-5.jpg', 'assets/gallery/kbs-program-6.jpg', 'assets/gallery/kbs-program-7.jpg', 'assets/gallery/kbs-program-8.jpg'],
           exts: [
             {
               k: 'KBS 경제 시사 유튜브', h: '사탐티비 머니올라', q: '“30만 구독자 채널의 초석을 다지다”',
@@ -634,15 +634,17 @@ const DATA = {
           d: '클라이언트 미팅과 예산 편성부터 촬영, 편집, 최종 납품까지 광고 제작의 전 과정을 단독으로 책임졌습니다.',
           flow: ['클라이언트 미팅', '예산 편성 · 장비 대여', '촬영', '편집 · 피드백', '최종 영상 제출'],
           highlights: ['기획부터 최종 납품까지', '완벽한 맞춤 영상', '양질의 콘텐츠', '빠른 피드백 대응'],
-          photos: ['assets/gallery/freelance-hanatour-1.jpg', 'assets/gallery/freelance-hanatour-2.jpg', 'assets/gallery/freelance-hanatour-3.jpg'],
+          photoGrid: ['assets/gallery/freelance-hanatour-1.jpg', 'assets/gallery/freelance-hanatour-2.jpg', 'assets/gallery/freelance-hanatour-3.jpg', 'assets/gallery/freelance-hanatour-4.jpg', 'assets/gallery/freelance-hanatour-5.jpg', 'assets/gallery/freelance-hanatour-6.jpg', 'assets/gallery/freelance-hanatour-7.jpg', 'assets/gallery/freelance-hanatour-8.jpg'],
           links: [{ label: '작업 기록 보기 (블로그) ↗', url: 'https://blog.naver.com/duden89/222349540303' }],
         },
         {
           t: '브랜드 라이브 · 행사 촬영',
           d: '허벌라이프, BACON, 문예회관, 더마독 등 다양한 브랜드의 행사 · 라이브 현장에서 촬영감독으로 활동했습니다.',
           flow: ['장비 대여', '카메라 · 조명 세팅', '촬영', '인서트 컷 촬영', '정리'],
-          photos: ['assets/gallery/freelance-brand-1.jpg', 'assets/gallery/freelance-brand-2.jpg', 'assets/gallery/freelance-brand-3.jpg'],
+          photoGrid: ['assets/gallery/freelance-brand-1.jpg', 'assets/gallery/freelance-brand-2.jpg', 'assets/gallery/freelance-brand-3.jpg', 'assets/gallery/freelance-brand-4.jpg', 'assets/gallery/freelance-brand-5.jpg', 'assets/gallery/freelance-brand-6.jpg'],
+          photoGridCols: 3,
           chips: { label: 'CLIENTS', items: ['허벌라이프', 'BACON', '문예회관', '더마독'] },
+          chipsBeforeMedia: true,
         },
       ],
     },
@@ -731,12 +733,6 @@ const DATA = {
     { y: '2017.12', n: '비행단 사고예방 창작 공모전', prize: '최우수상', img: 'assets/gallery/award-flight-2017.jpg' },
     { y: '2015.08', n: '북팔 99thinks 프롤로그 영상 공모전', prize: '장려상', img: 'assets/gallery/award-99thinks-2015.jpg' },
     { y: '2014.11', n: '연세 홍보콘텐츠 공모전', prize: '최우수상', img: 'assets/gallery/award-yonsei-promo-2014.jpg' },
-  ],
-  activities: [
-    { t: 'YOUTUBE', n: '유튜브 채널 3개 운영', d: "24K(2020) → 전개미(2021) → 현재 '슾덕' 운영 중" },
-    { t: 'CREW', n: '청춘공방', d: '촬영편집감독(2015) → 영상 편집 강사 · 제작부 총괄(2019)' },
-    { t: 'LECTURE', n: '애니모비 인터넷강의', d: '촬영 · 편집 총괄 (2016)' },
-    { t: 'SUPPORTERS', n: 'LINK사업단 서포터즈', d: '홍보 콘텐츠 제작 (2014)' },
   ],
 };
 </script>
@@ -938,14 +934,17 @@ function programHTML(p, idx){
       <span class="k">${esc(e.k)}</span><h4>${esc(e.h)}</h4>
       <span class="q">${esc(e.q)}</span><p>${esc(e.p)}</p>
       <span class="go">${esc(e.go)}</span></a>`).join('')}</div>`;
+  const chipBlockHTML = () => p.chips ? `<div class="chip-block"><div class="cl">${esc(p.chips.label)}</div><div class="chips">${p.chips.items.map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div></div>` : '';
+  if (p.chips && p.chipsBeforeMedia) h += chipBlockHTML();
   if (p.videos) h += videosHTML(p);
   if (p.marquee) h += `<div class="mag-marquee">${decoImgMarqueeHTML(p.marquee)}</div>`;
   if (p.photos) h += `<div class="photo-strip">${p.photos.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>`;
+  if (p.photoGrid) h += `<div class="photo-grid cols-${p.photoGridCols||4}">${p.photoGrid.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>`;
   if (p.highlights) h += `<div class="hl-grid">${p.highlights.map(x=>`<div class="hl">${esc(x)}</div>`).join('')}</div>`;
   if (p.cards) h += `<div class="info-cards">${p.cards.map(c=>`<div class="icard"><h4>${esc(c.h)}</h4><p>${esc(c.p)}</p></div>`).join('')}</div>`;
   if (p.episodes) h += `<div class="ep-grid">${p.episodes.map(e=>`<div class="ep"><h4>${esc(e.q)}</h4><p>${esc(e.p)}</p></div>`).join('')}</div>`;
   if (p.ticker) h += `<div class="ticker" aria-label="수강생 후기"><div class="lane">${[...p.ticker,...p.ticker].map(t=>`<span>${esc(t)}</span>`).join('')}</div></div>`;
-  if (p.chips) h += `<div class="chip-block"><div class="cl">${esc(p.chips.label)}</div><div class="chips">${p.chips.items.map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div></div>`;
+  if (p.chips && !p.chipsBeforeMedia) h += chipBlockHTML();
   if (p.chips2) h += p.chips2.map(cb=>`<div class="chip-block"><div class="cl">${esc(cb.label)}</div><div class="chips">${cb.items.map(c=>`<span class="chip ${cb.hl?'hl':''}">${esc(c)}</span>`).join('')}</div></div>`).join('');
   if (p.flow) h += flowHTML(p.flow);
   if (p.links) h += `<div class="detail-links">${p.links.map(l=>`<a class="btn btn-ghost" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}</div>`;
@@ -1319,12 +1318,7 @@ function renderDetail(id){
           <span class="nm">${esc(a.n)}</span>
           <span class="prize">${esc(a.prize)}</span>
           ${a.img?`<button class="lk" data-img="${esc(a.img)}" data-title="${esc(a.n)} 상장">상장 보기 ↗</button>`:'<span></span>'}
-        </div>`).join('')}</div></div>
-      <div class="program reveal"><div class="program-head">
-        <span class="eyebrow">Program ${String(c.programs.length+2).padStart(2,'0')}</span>
-        <h2>그 밖의 활동</h2>
-      </div>
-      <div class="act-grid">${DATA.activities.map(a=>`<div class="act"><div class="t">${a.t}</div><div class="n">${esc(a.n)}</div><div class="d">${esc(a.d)}</div></div>`).join('')}</div></div>`;
+        </div>`).join('')}</div></div>`;
     }
   }
   app.innerHTML = `
