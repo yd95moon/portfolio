@@ -218,11 +218,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .ns-motion-cap .ch-thumbs{display:block;width:100%;max-width:none;justify-self:auto;overflow:hidden}
 .ns-motion-cap .th{width:150px;aspect-ratio:16/9}
 .ns-motion-cap .th img{object-fit:contain;background:var(--panel2)}
+.mag-marquee{display:block;width:100%;margin-top:22px}
+.mag-marquee .ch-thumbs{display:block;width:100%;max-width:none;justify-self:auto;overflow:hidden}
+.mag-marquee .th{width:230px;aspect-ratio:16/9}
+.mag-marquee .th img{object-fit:cover}
 .sinquant-hero{display:flex;flex-direction:column;gap:28px;margin-top:22px}
 .sinquant-titlelockup{display:flex;justify-content:center;margin-top:14px;padding:10px 0}
 .sinquant-titlelockup + .pdesc{margin-top:10px}
 .sinquant-logo{width:auto;height:134px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(255,255,255,.85)) drop-shadow(0 0 2px #fff)}
-.ns-ytgrid{grid-template-columns:repeat(3,1fr)}
+.vgrid.ns-ytgrid{grid-template-columns:repeat(3,1fr)}
 .sinquant-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .sinquant-cap{display:inline-flex;align-items:center;line-height:1.3;font-size:11.5px;font-weight:700;color:var(--amber2);border:1px solid rgba(196,163,106,.4);background:var(--amber-dim);border-radius:99px;padding:8px 16px}
 .ns-course-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);overflow:hidden}
@@ -241,7 +245,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .program-head{margin-bottom:24px}
 .program-head h2{font-family:var(--serif);font-size:clamp(20px,4vw,27px);font-weight:800;letter-spacing:-.01em;margin-top:10px}
 .program-head .tagline{color:var(--amber2);font-size:15px;font-weight:600;margin-top:8px}
-.program-head .pdesc{color:var(--mut);font-size:14.5px;margin-top:8px;max-width:46em}
+.program-head .pdesc{color:var(--mut);font-size:14.5px;margin-top:8px;max-width:56em}
 .program-head .pdesc b{color:var(--amber2);font-weight:700}
 
 .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0 4px}
@@ -313,9 +317,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 @media(max-width:720px){.mosaic{grid-template-columns:1fr;grid-template-rows:none;min-height:0}.mosaic .m-lead{grid-row:auto}.mosaic .vcard.fill-h{aspect-ratio:16/9;height:auto}}
 
 /* P4 예능 — smaller cards, dashed dividers, generous spacing */
-.p4-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:22px;max-width:600px;margin-left:auto;margin-right:auto}
+.p4-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}
 .p4-grid .vcard{border:1px dashed rgba(196,163,106,.5)}
-@media(max-width:560px){.p4-grid{grid-template-columns:1fr}}
+@media(max-width:820px){.p4-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.p4-grid{grid-template-columns:1fr}}
 
 /* gold custom scrollbar (P5 event strip + P6 episode guide) */
 .ig-strip,.live-guide{scrollbar-width:thin;scrollbar-color:var(--amber) rgba(196,163,106,.1)}
@@ -514,6 +519,7 @@ const DATA = {
           t: '유튜브 콘텐츠',
           d: '기획안 작성부터 촬영·편집, 대표님 보고와 최종 업로드까지 사내 유튜브 콘텐츠의 전 과정을 담당했습니다.',
           flow: ['기획안 작성', '촬영', '편집 · 피드백', '대표님 보고', '최종 검수 · 업로드'],
+          grid: 'grid-3',
           videos: [
             { id: 'QItmO4AVjSc' }, { id: '86GWtTWGBtI' }, { id: 'g4qB2LDB2Ag' },
             { id: 'ftbj3BH5DdQ' }, { id: 'NzlHDfmNd_I' }, { id: 'EnIgcI1v0wI' },
@@ -523,6 +529,7 @@ const DATA = {
           t: '행사 스케치',
           d: '콘셉트 회의와 제작 계획 수립부터 현장 촬영, 편집, 보고까지 — 전국 어디든 회사의 순간을 기록했습니다.',
           flow: ['영상 콘셉트 회의', '제작 계획 수립', '촬영', '편집 · 피드백', '대표님 보고', '최종 검수 · 업로드'],
+          grid: 'grid-2',
           videos: [{ id: 'LnGiVzoQ03A' }, { id: 'On_O4IM-RBI' }],
           episodes: [
             { q: '“촬영 장비와 함께 홀로 380km 출장”', p: '회사 최초의 행사 촬영으로 창원 기계박람회에 파견. 카메라와 삼각대, 짐벌을 홀로 짊어지고 서울—창원 약 380km를 왕복한 뒤 편집까지 완벽하게 마쳤습니다.' },
@@ -531,7 +538,7 @@ const DATA = {
         },
         {
           t: '사내 드라마 콘텐츠',
-          d: '직접 쓴 시나리오로, 일반인 임직원을 배우로 캐스팅해 연기 지도까지 — 사내 웹드라마를 처음부터 끝까지 만들었습니다.',
+          d: '직접 쓴 시나리오와 연기 지도까지, 사내 웹드라마를 처음부터 끝까지 만들었습니다.',
           flow: ['기획안 · 시나리오 작성', '대본 리딩', '스토리보드 · 촬영계획표', '리허설 · 촬영', '파일 정리 · 편집', '최종 검수 · 업로드'],
           highlights: ['작가 · 연출 · 촬영 · 편집 감독 — 모두 혼자 수행', '직접 작성한 시나리오 기반 제작', '일반인 대상 연기 지도 후 촬영', '크로마키 · 조명 직접 세팅한 자연스러운 CG'],
           photos: ['assets/gallery/miracom-drama-1.jpg', 'assets/gallery/miracom-drama-2.jpg', 'assets/gallery/miracom-drama-3.jpg'],
@@ -545,7 +552,7 @@ const DATA = {
             { h: '경영지원팀과 협업', p: '회사 경영 현황이라는 중요한 내용인 만큼, 핵심 메시지는 경영지원팀과 협업해 결정합니다.' },
             { h: '매번 다른 컨셉', p: '정해진 틀 없이 계절 · 유행 · 트렌드에 맞춰 분기마다 다른 스타일로 다채로움을 추구합니다.' },
           ],
-          photos: ['assets/gallery/miracom-magazine-1.jpg', 'assets/gallery/miracom-magazine-2.jpg', 'assets/gallery/miracom-magazine-3.jpg'],
+          marquee: ['assets/gallery/miracom-magazine-1.jpg', 'assets/gallery/miracom-magazine-2.jpg', 'assets/gallery/miracom-magazine-3.jpg', 'assets/gallery/miracom-magazine-4.jpg', 'assets/gallery/miracom-magazine-5.jpg', 'assets/gallery/miracom-magazine-6.jpg'],
         },
         {
           t: '라이브 방송',
@@ -908,7 +915,7 @@ function flowHTML(steps){
     `<span class="step"><b>${String(i+1).padStart(2,'0')}</b>${esc(s)}</span>${i<steps.length-1?'<span class="arr">→</span>':''}`).join('')}</div>`;
 }
 function videosHTML(p){
-  return `<div class="vgrid ${p.shorts?'shorts':''}">${p.videos.map(v=>{
+  return `<div class="${p.grid||'vgrid'} ${p.shorts?'shorts':''}">${p.videos.map(v=>{
     const playable = !!v.id && !v.unavailable;
     return `<button class="vcard ${playable?'':'noplay'}" ${playable?`data-play="${v.id}"`:''} ${v.playlist?`data-list="${v.playlist}"`:''} ${p.shorts?'data-vert="1"':''} data-title="${esc(v.label||p.t)}" data-t="${esc(v.unavailable?'비공개 처리된 영상입니다':(v.label||p.t))}">
       ${v.id?`<img src="${v.thumb||YT(v.id)}" alt="${esc(v.label||p.t)} 썸네일" loading="lazy" onerror="this.closest('.vcard').classList.add('noimg')">`:''}
@@ -925,15 +932,17 @@ function programHTML(p, idx){
     ${p.tag?`<div class="tagline">${esc(p.tag)}</div>`:''}
     ${p.d?`<p class="pdesc">${esc(p.d)}</p>`:''}
   </div>`;
-  if (p.highlights) h += `<div class="hl-grid">${p.highlights.map(x=>`<div class="hl">${esc(x)}</div>`).join('')}</div>`;
-  if (p.cards) h += `<div class="info-cards">${p.cards.map(c=>`<div class="icard"><h4>${esc(c.h)}</h4><p>${esc(c.p)}</p></div>`).join('')}</div>`;
+  // 33-A: quote-card lead-in (KBS feature) → media (videos/marquee/photos) → text blocks → WORKFLOW last
   if (p.exts) h += `<div class="ext-grid">${p.exts.map(e=>`
     <a class="ext" href="${e.url}" target="_blank" rel="noopener">
       <span class="k">${esc(e.k)}</span><h4>${esc(e.h)}</h4>
       <span class="q">${esc(e.q)}</span><p>${esc(e.p)}</p>
       <span class="go">${esc(e.go)}</span></a>`).join('')}</div>`;
   if (p.videos) h += videosHTML(p);
+  if (p.marquee) h += `<div class="mag-marquee">${decoImgMarqueeHTML(p.marquee)}</div>`;
   if (p.photos) h += `<div class="photo-strip">${p.photos.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('')}</div>`;
+  if (p.highlights) h += `<div class="hl-grid">${p.highlights.map(x=>`<div class="hl">${esc(x)}</div>`).join('')}</div>`;
+  if (p.cards) h += `<div class="info-cards">${p.cards.map(c=>`<div class="icard"><h4>${esc(c.h)}</h4><p>${esc(c.p)}</p></div>`).join('')}</div>`;
   if (p.episodes) h += `<div class="ep-grid">${p.episodes.map(e=>`<div class="ep"><h4>${esc(e.q)}</h4><p>${esc(e.p)}</p></div>`).join('')}</div>`;
   if (p.ticker) h += `<div class="ticker" aria-label="수강생 후기"><div class="lane">${[...p.ticker,...p.ticker].map(t=>`<span>${esc(t)}</span>`).join('')}</div></div>`;
   if (p.chips) h += `<div class="chip-block"><div class="cl">${esc(p.chips.label)}</div><div class="chips">${p.chips.items.map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div></div>`;
@@ -1107,7 +1116,7 @@ function ch01Body(){
     <h2>예능 콘텐츠</h2>
     <p class="pdesc">증권사 마스코트로 만든 오리지널 예능</p>
   </div>
-  <div class="p4-grid">${A.variety.map(v=>vcardHTML(v.id, v.t, {badge:v.badge})).join('')}</div>
+  <div class="p4-grid">${A.variety.map(v=>vcardHTML(v.id, v.t)).join('')}</div>
   </div>
 
   <div class="program reveal"><div class="program-head">
@@ -1249,7 +1258,7 @@ function ch02Body(){
     <span class="eyebrow">Program 04</span>
     <h2>모션 그래픽 홍보 영상</h2>
     <div class="tagline">“외주? 필요 없어요!”</div>
-    <p class="pdesc">“이런 영상 필요한데, 외주 쓸까요?” — 쓰지 않았습니다. 텍스트 기획과 스토리보드를 직접 작성하고 디자인팀과 협업해 앱·웹 홍보 영상을 인하우스로 완성했습니다.</p>
+    <p class="pdesc">“외주 쓸까요?” — 쓰지 않았습니다. 기획·스토리보드를 직접 쓰고 디자인팀과 협업해 앱·웹 홍보 영상을 인하우스로 완성했습니다.</p>
   </div>
   <div class="grid-2">${vcardHTML('NA7YKbddP9E','App 홍보 영상')}${vcardHTML('sCUBq_kvAn4','Web 홍보 영상')}</div>
   <div class="ns-motion-cap">${decoImgMarqueeHTML(B.motionCaps, true)}</div>
