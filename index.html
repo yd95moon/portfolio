@@ -212,8 +212,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .ns-motion-cap .th{width:150px;aspect-ratio:16/9}
 .ns-motion-cap .th img{object-fit:contain;background:var(--panel2)}
 .sinquant-hero{display:flex;flex-direction:column;gap:28px;margin-top:22px}
-.sinquant-titlelockup{display:flex;justify-content:center;margin-top:10px}
-.sinquant-logo{width:auto;height:160px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(255,255,255,.85)) drop-shadow(0 0 2px #fff)}
+.sinquant-titlelockup{display:flex;justify-content:center;margin-top:2px}
+.sinquant-titlelockup + .pdesc{margin-top:2px}
+.sinquant-logo{width:auto;height:192px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(255,255,255,.85)) drop-shadow(0 0 2px #fff)}
 .sinquant-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .sinquant-cap{display:inline-flex;align-items:center;line-height:1.3;font-size:11.5px;font-weight:700;color:var(--amber2);border:1px solid rgba(196,163,106,.4);background:var(--amber-dim);border-radius:99px;padding:8px 16px}
 .ns-course-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);overflow:hidden}
@@ -724,8 +725,8 @@ function thumbHTML(c){
     <div class="th txt"><b>SOON</b><span>Coming</span></div>
     <div class="th txt"><b>2025</b><span>NEW</span></div></div>`;
   const cells = [
-    ...allVideoIds(c).map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="lazy" onerror="this.style.opacity='0'"></div>`),
-    ...(c.imgThumbs||[]).map(src=>`<div class="th"><img src="${esc(src)}" alt="" loading="lazy"></div>`),
+    ...allVideoIds(c).map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="eager" onerror="this.style.opacity='0'"></div>`),
+    ...(c.imgThumbs||[]).map(src=>`<div class="th"><img src="${esc(src)}" alt="" loading="eager"></div>`),
   ];
   if (cells.length){
     const grp = `<div class="mgrp">${cells.join('')}</div>`;
@@ -905,7 +906,7 @@ function vcardHTML(id, title, opts={}){
   const label = cleanTitle(title);
   const badge = opts.badgeHTML ? opts.badgeHTML : (opts.badge ? `<span class="badge cbadge">${esc(opts.badge)}</span>` : '');
   return `<button class="vcard${vert?' vert':''}${opts.cls?(' '+opts.cls):''}" data-play="${id}" ${vert?'data-vert="1"':''} data-title="${esc(label)}" data-t="${esc(label)}">
-    <img src="${YT(id)}" alt="${esc(label)} 썸네일" loading="lazy" onerror="this.closest('.vcard').classList.add('noimg')">
+    <img src="${YT(id)}" alt="${esc(label)} 썸네일" loading="${opts.eager?'eager':'lazy'}" onerror="this.closest('.vcard').classList.add('noimg')">
     <span class="play" aria-hidden="true"><i>▶</i></span>
     ${badge}
     <span class="vlabel">${esc(label)}</span>
@@ -913,22 +914,22 @@ function vcardHTML(id, title, opts={}){
 }
 const DECO_FALLBACK_IMG = 'assets/thumbs/manual-service.jpg';
 function decoMarqueeHTML(ids){
-  const cells = ids.map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${DECO_FALLBACK_IMG}'"></div>`).join('');
+  const cells = ids.map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="eager" onerror="this.onerror=null;this.src='${DECO_FALLBACK_IMG}'"></div>`).join('');
   const grp = `<div class="mgrp">${cells}</div>`;
   return `<div class="ch-thumbs deco" aria-hidden="true"><div class="track">${grp}${grp}</div></div>`;
 }
 function decoImgMarqueeHTML(srcs, fast){
-  const cells = srcs.map(src=>`<div class="th"><img src="${esc(src)}" alt="" loading="lazy"></div>`).join('');
+  const cells = srcs.map(src=>`<div class="th"><img src="${esc(src)}" alt="" loading="eager"></div>`).join('');
   const grp = `<div class="mgrp">${cells}</div>`;
   return `<div class="ch-thumbs deco${fast?' fast':''}" aria-hidden="true"><div class="track">${grp}${grp}</div></div>`;
 }
 function p2MarqueeHTML(items, reverse){
-  const cardsHTML = items.map(v=>vcardHTML(v.id, v.t, {vert:true})).join('');
+  const cardsHTML = items.map(v=>vcardHTML(v.id, v.t, {vert:true, eager:true})).join('');
   const grp = `<div class="mgrp">${cardsHTML}</div>`;
   return `<div class="p2-marquee"><div class="p2-track${reverse?' rev':''}">${grp}${grp}</div></div>`;
 }
 function p3MarqueeHTML(items, reverse){
-  const cardsHTML = items.map(v=>vcardHTML(v.id, v.t, {badge:v.badge})).join('');
+  const cardsHTML = items.map(v=>vcardHTML(v.id, v.t, {badge:v.badge, eager:true})).join('');
   const grp = `<div class="mgrp">${cardsHTML}</div>`;
   return `<div class="p3-marquee"><div class="p3-track${reverse?' rev':''}">${grp}${grp}</div></div>`;
 }
