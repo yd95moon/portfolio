@@ -91,6 +91,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .hero-skills .env-line{margin:10px 0 0;padding-top:0;border-top:0;line-height:1.7}
 .hero-skills .hero-cta{justify-content:center;margin-top:22px}
 @media(max-width:768px){.hero-skills{margin-top:14px;padding-top:10px}}
+.hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,4vw,48px) 0;opacity:.13;-webkit-mask-image:radial-gradient(ellipse 62% 68% at 50% 50%,transparent 34%,rgba(0,0,0,.55) 66%,#000 100%);mask-image:radial-gradient(ellipse 62% 68% at 50% 50%,transparent 34%,rgba(0,0,0,.55) 66%,#000 100%)}
+.hero-bg-row{display:flex;width:max-content;gap:14px;flex:none;animation:herobg 90s linear infinite}
+.hero-bg-row.rev{animation-direction:reverse;animation-duration:110s}
+.hero-bg-row img{height:clamp(88px,11vw,128px);width:auto;border-radius:9px;filter:grayscale(.35) contrast(1.02);border:1px solid rgba(196,163,106,.25)}
+@keyframes herobg{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.finder>.finder-head,.finder>.hero-grid,.finder>.hero-skills{position:relative;z-index:1}
+@media(max-width:768px){.hero-bg{display:none}}
+@media(prefers-reduced-motion:reduce){.hero-bg-row{animation:none}}
 
 /* ───────── sections ───────── */
 section{padding:clamp(48px,8vw,84px) 0}
@@ -535,6 +543,7 @@ const DATA = {
       company: '미라콤아이앤씨', role: '사내방송국 PD',
       desc: '2,000명 임직원을 위한 사내 방송국 시스템 구축.',
       thumbs: ['QItmO4AVjSc', 'LnGiVzoQ03A', '86GWtTWGBtI'],
+      imgThumbs: ['assets/gallery/miracom-drama-1.jpg', 'assets/gallery/miracom-magazine-1.jpg', 'assets/gallery/miracom-live-1.jpg', 'assets/gallery/miracom-solution-1.jpg', 'assets/gallery/miracom-drama-4.jpg'],
       channel: { label: '미라콤아이앤씨 유튜브 채널', url: 'https://www.youtube.com/@miracominc' },
       programs: [
         {
@@ -603,7 +612,7 @@ const DATA = {
       id: 'kbs', ch: '04', period: '2020 —',
       company: 'KBS', role: '촬영보조',
       desc: '다큐멘터리, 예능, 시사, 유튜브 등 현장에서 갈고닦은 콘텐츠의 기준.',
-      imgThumbs: ['assets/thumbs/kbs-1.jpg', 'assets/thumbs/kbs-2.jpg', 'assets/thumbs/kbs-3.jpg', 'assets/thumbs/kbs-4.jpg', 'assets/thumbs/kbs-5.jpg'],
+      imgThumbs: ['assets/gallery/kbs-work-1.jpg', 'assets/gallery/kbs-work-3.jpg', 'assets/gallery/kbs-gear-1.jpg', 'assets/gallery/kbs-gear-4.jpg', 'assets/gallery/kbs-doc-1.jpg', 'assets/gallery/kbs-doc-5.jpg', 'assets/gallery/kbs-program-1.jpg', 'assets/gallery/kbs-program-5.jpg'],
       commonFlow: ['업무 배정', '장비 대여 · 점검', '장비 설치 · 촬영', '장비 철수 · 점검', '장비 반납 · 백업'],
       programs: [
         {
@@ -657,7 +666,7 @@ const DATA = {
       id: 'freelance', ch: '05', period: '2019',
       company: '프리랜서', role: '촬영 · 편집 감독',
       desc: '광고, 라이브, 브랜딩까지 — 클라이언트의 요구를 결과물로 증명한 시간.',
-      imgThumbs: ['assets/thumbs/freelance-1.jpg', 'assets/thumbs/freelance-2.jpg', 'assets/thumbs/freelance-3.jpg', 'assets/thumbs/freelance-4.jpg', 'assets/thumbs/freelance-5.jpg'],
+      imgThumbs: ['assets/gallery/freelance-hanatour-1.jpg', 'assets/gallery/freelance-hanatour-3.jpg', 'assets/gallery/freelance-hanatour-5.jpg', 'assets/gallery/freelance-hanatour-7.jpg', 'assets/gallery/freelance-brand-1.jpg', 'assets/gallery/freelance-brand-3.jpg', 'assets/gallery/freelance-brand-5.jpg'],
       programs: [
         {
           t: '하나투어 — 여행 광고 영상 5편',
@@ -683,6 +692,7 @@ const DATA = {
       company: '작품 활동', role: '청춘공방 — 연출 · 촬영 · 편집',
       desc: '웹 드라마, 공모전, 유튜브 채널 등 맨 땅에 헤딩하며 성장한 시간들.',
       thumbs: ['QogM6HG31PY', '6OYh6BqMEdA'],
+      imgThumbs: ['assets/gallery/works-otd-poster.jpg', 'assets/gallery/works-otd-1.jpg', 'assets/gallery/works-otd-3.jpg', 'assets/gallery/works-nmn-poster.jpg', 'assets/gallery/works-nmn-1.jpg', 'assets/gallery/works-nmn-3.jpg'],
       programs: [
         {
           t: '웹드라마 「오늘부터 그대를」',
@@ -753,7 +763,7 @@ const DATA = {
     ],
   },
   skills: {
-    oneLiner: '제가 만들지 못하는 콘텐츠는 없습니다.',
+    oneLiner: '만들지 못하는 콘텐츠는 없습니다.',
     tools: [
       'Premiere Pro', 'Photoshop', 'After Effects', 'Figma', 'Illustrator',
       'ENG · 시네마 카메라', '드론', '짐벌 · 슬라이더', 'OBS Studio', 'vMix', '라이브 스위칭',
@@ -849,10 +859,17 @@ function enableHScroll(el){
 
 function renderHub(){
   document.title = '문영두 — 풀스택 PD';
+  const HERO_BG = [
+    ['assets/gallery/kbs-work-1.jpg','assets/gallery/works-nmn-poster.jpg','assets/gallery/miracom-magazine-1.jpg','assets/gallery/freelance-hanatour-1.jpg','assets/gallery/kbs-gear-1.jpg','assets/gallery/works-otd-poster.jpg','assets/gallery/miracom-drama-1.jpg','assets/gallery/freelance-brand-1.jpg'],
+    ['assets/gallery/kbs-doc-1.jpg','assets/gallery/miracom-live-1.jpg','assets/gallery/works-nmn-1.jpg','assets/gallery/freelance-hanatour-5.jpg','assets/gallery/kbs-program-1.jpg','assets/gallery/miracom-solution-1.jpg','assets/gallery/works-otd-1.jpg','assets/gallery/kbs-gear-4.jpg'],
+    ['assets/gallery/freelance-brand-3.jpg','assets/gallery/kbs-work-3.jpg','assets/gallery/miracom-drama-4.jpg','assets/gallery/works-nmn-3.jpg','assets/gallery/kbs-doc-5.jpg','assets/gallery/freelance-hanatour-3.jpg','assets/gallery/miracom-magazine-4.jpg','assets/gallery/works-otd-3.jpg'],
+  ];
+  const bgRow = (imgs,rev)=>`<div class="hero-bg-row${rev?' rev':''}">${imgs.concat(imgs).map(s=>`<img src="${s}" alt="" loading="eager">`).join('')}</div>`;
   app.innerHTML = `
   <div class="hero">
     <div class="finder">
       <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+      <div class="hero-bg" aria-hidden="true">${bgRow(HERO_BG[0],false)}${bgRow(HERO_BG[1],true)}${bgRow(HERO_BG[2],false)}</div>
       <div class="finder-head"><span class="rec"><span class="rec-dot"></span>REC</span><span>PORTFOLIO · 2026</span></div>
       <div class="hero-grid">
         <div>
@@ -1127,7 +1144,7 @@ function ch01Body(){
     <span class="eyebrow">Program P1</span>
     <h2>AI 아나운서</h2>
     <div class="tagline">[AI로 수억원을 절약할 수 있던 이유]</div>
-    <p class="pdesc">기존 AI 아나운서는 외주에 의존하며 매년 수천만원의 비용을 지불했지만,<br><br>이를 내재화하여 콘텐츠 제작 패러다임 자체를 변화시켜 비용 혁신을 이루어냈습니다.</p>
+    <p class="pdesc">기존 AI 아나운서는 외주에 의존하며 매년 수천만원의 비용을 지불했지만,<br>이를 내재화하여 콘텐츠 제작 패러다임 자체를 변화시켜 비용 혁신을 이루어냈습니다.</p>
   </div>
   <div class="ai-cols">
     <div><div class="ai-col-head"><span class="badge">현소리</span></div><div class="vgrid shorts">${A.hyunsori.map(v=>vcardHTML(v.id, v.t, {vert:true})).join('')}</div></div>
@@ -1143,7 +1160,7 @@ function ch01Body(){
     <span class="eyebrow">Program P2</span>
     <h2>AI 숏폼 대량생산</h2>
     <div class="tagline">[퀄리티와 양, 성과까지 다잡은 비결]</div>
-    <p class="pdesc">제작 전 공정을 AI로 자동화해, 퀄리티는 지키면서 콘텐츠 발행량은 4배로 늘렸습니다.<br><br>추가 인력 충원 없이 생산성과 KPI를 동시에 끌어올린 결과입니다.</p>
+    <p class="pdesc">제작 전 공정을 AI로 자동화해, 퀄리티는 지키면서 콘텐츠 발행량은 4배로 늘렸습니다.<br>추가 인력 충원 없이 생산성과 KPI를 동시에 끌어올린 결과입니다.</p>
   </div>
   ${p2MarqueeHTML(A.shortsV1, false)}
   ${p2MarqueeHTML(A.shortsV2, true)}
