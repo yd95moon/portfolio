@@ -94,13 +94,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .skills-statement{position:relative;padding:clamp(22px,3.2vw,34px) 0;overflow:hidden}
 .skills-statement>.hero-skills-head,.skills-statement>.env-line{position:relative;z-index:2}
 .skills-statement::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 66% 140% at 50% 50%,rgba(6,6,7,.8),rgba(6,6,7,.22) 68%,transparent)}
-.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:flex;flex-direction:column;justify-content:center;gap:10px;-webkit-mask-image:linear-gradient(to right,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(to right,transparent,#000 15%,#000 85%,transparent)}
-.hero-bg-row{display:flex;width:max-content;gap:12px;flex:none;animation:herobg 80s linear infinite}
-.hero-bg-row.rev{animation-direction:reverse;animation-duration:95s}
-.hero-bg-row img{height:clamp(52px,6.5vw,70px);width:auto;border-radius:7px;opacity:.34;filter:grayscale(.28) contrast(1.02);border:1px solid rgba(196,163,106,.3)}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:flex;align-items:center;-webkit-mask-image:linear-gradient(to right,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(to right,transparent,#000 15%,#000 85%,transparent)}
+.hero-bg-track{display:flex;width:max-content;animation:herobg linear infinite;animation-direction:reverse}
+.hero-bg-track img{width:clamp(112px,13vw,140px);height:clamp(60px,7.2vw,76px);object-fit:cover;border-radius:7px;margin-right:12px;opacity:.34;filter:grayscale(.28) contrast(1.02);border:1px solid rgba(196,163,106,.3)}
 @keyframes herobg{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:768px){.hero-bg{display:none}.skills-statement::after{display:none}}
-@media(prefers-reduced-motion:reduce){.hero-bg-row{animation:none}}
+@media(prefers-reduced-motion:reduce){.hero-bg-track{animation:none}}
 
 /* ───────── sections ───────── */
 section{padding:clamp(48px,8vw,84px) 0}
@@ -182,24 +181,36 @@ section{padding:clamp(48px,8vw,84px) 0}
 /* ───────── activities ───────── */
 
 /* ───────── contact / footer ───────── */
-.biz-card{display:flex;align-items:stretch;justify-content:center;gap:0;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;padding:clamp(28px,5vw,46px) clamp(26px,5vw,50px);margin:16px auto 0;width:fit-content;max-width:980px}
-.biz-left{flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;padding-right:clamp(24px,4vw,40px)}
+.biz-card{position:relative;overflow:hidden;display:flex;align-items:stretch;justify-content:center;gap:0;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:20px;padding:clamp(30px,5vw,48px) clamp(30px,5vw,54px);margin:16px auto 0;width:fit-content;max-width:980px}
+.biz-card::before{content:'';position:absolute;top:-130px;right:-90px;width:340px;height:340px;background:radial-gradient(circle,rgba(196,163,106,.13),transparent 70%);pointer-events:none;z-index:0}
+.biz-card>*{position:relative;z-index:1}
+.bz-corner{position:absolute;width:15px;height:15px;border:1.5px solid rgba(196,163,106,.5);z-index:2}
+.bz-corner.bc1{top:13px;left:13px;border-right:none;border-bottom:none}
+.bz-corner.bc2{top:13px;right:13px;border-left:none;border-bottom:none}
+.bz-corner.bc3{bottom:13px;left:13px;border-right:none;border-top:none}
+.bz-corner.bc4{bottom:13px;right:13px;border-left:none;border-top:none}
+.biz-status{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--amber2);border:1px solid rgba(196,163,106,.35);background:rgba(196,163,106,.06);padding:5px 11px;border-radius:99px;margin-bottom:16px}
+.biz-status .st-dot{width:6px;height:6px;border-radius:50%;background:#5fd08a;box-shadow:0 0 8px rgba(95,208,138,.85);animation:stpulse 2.2s ease-in-out infinite}
+@keyframes stpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.82)}}
+.biz-left{flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;padding-right:clamp(26px,4vw,44px)}
 .biz-div{width:1px;background:var(--line2);align-self:stretch;flex:none}
 .biz-name{font-family:var(--serif);font-size:clamp(22px,4vw,28px);font-weight:800;letter-spacing:-.01em}
 .biz-name-en{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--dim);margin-top:4px}
 .biz-role{font-size:14.5px;color:var(--amber2);font-weight:700;margin-top:10px}
 .biz-role-en{font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:2px}
-.biz-right{flex:0 0 auto;display:grid;grid-template-columns:auto auto;gap:16px 0;justify-content:start;align-content:center;padding-left:clamp(24px,4vw,40px)}
-.biz-right .biz-item:nth-child(even){border-left:1px solid var(--line2);padding-left:clamp(20px,3vw,36px);margin-left:clamp(20px,3vw,36px)}
-.biz-item{display:inline-flex;align-items:center;gap:9px;justify-content:flex-start;font-family:var(--mono);font-size:15px;white-space:nowrap;color:var(--mut);transition:color .2s}
-.biz-item i{font-style:normal;font-size:15px;color:var(--amber)}
-.biz-item:hover{color:var(--ink)}
+.biz-right{flex:0 0 auto;display:grid;grid-template-columns:auto auto;gap:22px 0;justify-content:start;align-content:center;padding-left:clamp(26px,4vw,44px)}
+.biz-right .biz-item:nth-child(even){border-left:1px solid var(--line2);padding-left:clamp(22px,3vw,38px);margin-left:clamp(22px,3vw,38px)}
+.biz-item{display:flex;flex-direction:column;gap:5px;white-space:nowrap;transition:color .2s}
+.biz-item .bz-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim)}
+.biz-item .bz-val{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14.5px;color:var(--mut);transition:color .2s}
+.biz-item i{font-style:normal;font-size:14px;color:var(--amber)}
+.biz-item:hover .bz-val{color:var(--ink)}
+.biz-item:hover .bz-lbl{color:var(--amber2)}
 .biz-qr{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding-left:clamp(20px,3vw,32px)}
 .biz-qr svg,.biz-qr img{width:80px;height:80px;display:block}
 .biz-qr .qr-cap{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--dim);text-align:center}
 .biz-seal .seal-mark{font-family:var(--serif);font-size:26px;font-weight:800;letter-spacing:.06em;color:var(--gold);border:1px solid var(--line2);border-radius:12px;padding:14px 18px;line-height:1}
-.biz-note{text-align:center;color:var(--mut);font-size:13.5px;margin-top:20px}
-@media(max-width:640px){.biz-card{flex-direction:column;text-align:center;gap:20px;width:auto;max-width:none}.biz-left{padding-right:0}.biz-div{display:none}.biz-right{grid-template-columns:1fr;justify-content:center;justify-items:center;gap:12px;padding-left:0}.biz-right .biz-item:nth-child(even){border-left:none;padding-left:0;margin-left:0}.biz-item{justify-content:center}.biz-qr{padding-left:0}}
+@media(max-width:640px){.biz-card{flex-direction:column;text-align:center;gap:20px;width:auto;max-width:none}.biz-left{padding-right:0;align-items:center}.biz-status{align-self:center}.biz-div{display:none}.biz-right{grid-template-columns:1fr;justify-content:center;justify-items:center;gap:16px;padding-left:0}.biz-right .biz-item:nth-child(even){border-left:none;padding-left:0;margin-left:0}.biz-item{align-items:center}.biz-qr{padding-left:0}}
 footer{padding:34px 0 46px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);margin-top:60px}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);letter-spacing:.06em}
 
@@ -812,7 +823,7 @@ function thumbHTML(c){
 /* measures each marquee's single group width at render time and sets the loop
    duration from it — avoids drift when a card/thumb size is overridden per-context */
 function primeMarquees(root){
-  (root||document).querySelectorAll('.tool-track, .ch-thumbs .track, .p2-track, .p3-track').forEach(track=>{
+  (root||document).querySelectorAll('.tool-track, .ch-thumbs .track, .p2-track, .p3-track, .hero-bg-track').forEach(track=>{
     let grp = track.querySelector('.mgrp');
     if (!grp) return;
     // if one sequence is narrower than the screen, repeat the sequence until it
@@ -867,7 +878,8 @@ function renderHub(){
     ['assets/gallery/kbs-doc-1.jpg','assets/gallery/miracom-live-1.jpg','assets/gallery/works-nmn-1.jpg','assets/gallery/freelance-hanatour-5.jpg','assets/gallery/kbs-program-1.jpg','assets/gallery/miracom-solution-1.jpg','assets/gallery/works-otd-1.jpg','assets/gallery/kbs-gear-4.jpg'],
     ['assets/gallery/freelance-brand-3.jpg','assets/gallery/kbs-work-3.jpg','assets/gallery/miracom-drama-4.jpg','assets/gallery/works-nmn-3.jpg','assets/gallery/kbs-doc-5.jpg','assets/gallery/freelance-hanatour-3.jpg','assets/gallery/miracom-magazine-4.jpg','assets/gallery/works-otd-3.jpg'],
   ];
-  const bgRow = (imgs,rev)=>`<div class="hero-bg-row${rev?' rev':''}">${imgs.concat(imgs).map(s=>`<img src="${s}" alt="" loading="eager">`).join('')}</div>`;
+  const heroBgImgs = HERO_BG.flat();
+  const heroBgGrp = `<div class="mgrp">${heroBgImgs.map(s=>`<img src="${s}" alt="" loading="eager">`).join('')}</div>`;
   app.innerHTML = `
   <div class="hero">
     <div class="finder">
@@ -895,7 +907,7 @@ function renderHub(){
           [0,1].map(()=>`<div class="mgrp">${DATA.skills.tools.map(t=>`<span class="tool-pill">${esc(t)}</span>`).join('')}</div>`).join('')
         }</div></div>
         <div class="skills-statement">
-          <div class="hero-bg" aria-hidden="true">${bgRow(HERO_BG[0],false)}${bgRow(HERO_BG[1],true)}</div>
+          <div class="hero-bg" aria-hidden="true"><div class="hero-bg-track">${heroBgGrp}${heroBgGrp}</div></div>
           <p class="hero-skills-head">${esc(DATA.skills.oneLiner)}</p>
           <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서<br>이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
         </div>
@@ -934,7 +946,9 @@ function renderHub(){
     <div class="reveal">
       <span class="eyebrow" style="justify-content:center">Contact</span>
       <div class="biz-card">
+        <span class="bz-corner bc1"></span><span class="bz-corner bc2"></span><span class="bz-corner bc3"></span><span class="bz-corner bc4"></span>
         <div class="biz-left">
+          <div class="biz-status"><span class="st-dot"></span>OPEN TO WORK · 2026</div>
           <div class="biz-name">문영두</div>
           <div class="biz-name-en">MOON YOUNG DOO</div>
           <div class="biz-role">풀스택 PD</div>
@@ -942,13 +956,12 @@ function renderHub(){
         </div>
         <div class="biz-div"></div>
         <div class="biz-right">
-          <a class="biz-item" href="mailto:yd95moon@gmail.com"><i>✉</i>yd95moon@gmail.com</a>
-          <a class="biz-item" href="https://github.com/yd95moon" target="_blank" rel="noopener"><i>⌘</i>github.com/yd95moon</a>
-          <a class="biz-item" href="tel:01074980182"><i>☎</i>010-7498-0182</a>
-          <a class="biz-item" href="https://www.youtube.com/@SFDuck1969" target="_blank" rel="noopener"><i>▶</i>@SFDuck1969</a>
+          <a class="biz-item" href="mailto:yd95moon@gmail.com"><span class="bz-lbl">EMAIL</span><span class="bz-val"><i>✉</i>yd95moon@gmail.com</span></a>
+          <a class="biz-item" href="https://github.com/yd95moon" target="_blank" rel="noopener"><span class="bz-lbl">GITHUB</span><span class="bz-val"><i>⌘</i>github.com/yd95moon</span></a>
+          <a class="biz-item" href="tel:01074980182"><span class="bz-lbl">PHONE</span><span class="bz-val"><i>☎</i>010-7498-0182</span></a>
+          <a class="biz-item" href="https://www.youtube.com/@SFDuck1969" target="_blank" rel="noopener"><span class="bz-lbl">YOUTUBE</span><span class="bz-val"><i>▶</i>@SFDuck1969</span></a>
         </div>
       </div>
-      <p class="biz-note">채용·협업·제안 모두 환영합니다.</p>
     </div>
   </section>`;
   primeMarquees();
