@@ -874,12 +874,18 @@ function enableHScroll(el){
 function renderHub(){
   document.title = '문영두 — 풀스택 PD';
   const heroBgImgs = [
-    YTm('G0wlWqTijA4'), YTm('JUReVSWu22s'), YTm('zfJzfvr6afU'), YTm('anG9SW5C2sw'),
-    YTm('KxhK3Vm-lW0'), YTm('RYb_ZAgLF8A'), YTm('sCUBq_kvAn4'),
-    'assets/gallery/miracom-drama-1.jpg','assets/gallery/miracom-magazine-1.jpg','assets/gallery/miracom-live-1.jpg','assets/gallery/miracom-drama-4.jpg',
-    'assets/gallery/kbs-work-1.jpg','assets/gallery/kbs-gear-1.jpg','assets/gallery/kbs-doc-1.jpg','assets/gallery/kbs-program-1.jpg','assets/gallery/kbs-work-3.jpg',
-    'assets/gallery/freelance-hanatour-1.jpg','assets/gallery/freelance-brand-1.jpg','assets/gallery/freelance-hanatour-5.jpg',
-    'assets/gallery/works-nmn-2.jpg','assets/gallery/works-otd-2.jpg','assets/gallery/works-nmn-1.jpg',
+    // CH01 현대차증권 (최근) — 숏폼 제외, 가로형 영상만
+    YTm('JUReVSWu22s'), YTm('8255dFDarC8'), YTm('anG9SW5C2sw'), YTm('ywg6yv33bzs'), YTm('cLIJbDRpWv0'), YTm('fRx1HoSTDmE'),
+    // CH02 뉴지스탁 — 숏폼 제외
+    YTm('KxhK3Vm-lW0'), YTm('RYb_ZAgLF8A'), YTm('kjuEZMxJxcs'), YTm('NA7YKbddP9E'),
+    // CH03 미라콤
+    'assets/gallery/miracom-drama-1.jpg','assets/gallery/miracom-magazine-1.jpg','assets/gallery/miracom-live-1.jpg','assets/gallery/miracom-drama-4.jpg','assets/gallery/miracom-solution-1.jpg','assets/gallery/miracom-magazine-4.jpg',
+    // CH04 KBS
+    'assets/gallery/kbs-work-1.jpg','assets/gallery/kbs-gear-1.jpg','assets/gallery/kbs-doc-1.jpg','assets/gallery/kbs-program-1.jpg','assets/gallery/kbs-work-3.jpg','assets/gallery/kbs-gear-4.jpg','assets/gallery/kbs-doc-5.jpg','assets/gallery/kbs-program-5.jpg',
+    // CH05 프리랜서
+    'assets/gallery/freelance-hanatour-1.jpg','assets/gallery/freelance-brand-1.jpg','assets/gallery/freelance-hanatour-5.jpg','assets/gallery/freelance-brand-3.jpg','assets/gallery/freelance-hanatour-3.jpg',
+    // CH06 작품활동
+    'assets/gallery/works-nmn-2.jpg','assets/gallery/works-otd-2.jpg','assets/gallery/works-nmn-1.jpg','assets/gallery/works-otd-1.jpg','assets/gallery/works-nmn-3.jpg','assets/gallery/works-otd-3.jpg',
   ];
   const heroBgGrp = `<div class="mgrp">${heroBgImgs.map(s=>`<img src="${s}" alt="" loading="eager">`).join('')}</div>`;
   const bandLabel = str => [...str].map(c => c===' ' ? '<i class="sp"></i>' : `<i>${esc(c)}</i>`).join('');
@@ -892,7 +898,7 @@ function renderHub(){
         <div>
           <div class="role-en">PRODUCER × BUILDER — MOON YOUNG DOO</div>
           <h1>콘텐츠를 넘어 개발까지,<br>AI로 수억원을 아끼는 풀스택 PD<span class="amber">.</span></h1>
-          <p class="hero-sub">기획, 촬영, 편집, 디자인 그리고 개발까지. 콘텐츠에 필요한 모든 업무를 100% 직접 수행 가능하며, AI 자동화로 제작 비용과 리소스를 최소화합니다.</p>
+          <p class="hero-sub">기획, 촬영, 편집, 디자인 그리고 개발까지. 콘텐츠에 필요한 모든 업무를 100% 직접 수행 가능하며,<br>AI 자동화로 제작 비용과 리소스를 최소화합니다.</p>
           <div class="chips" style="margin-top:20px">
             <span class="chip hl tag-sm">#풀스택PD</span><span class="chip hl tag-sm">#유튜버</span><span class="chip hl tag-sm">#AI아나운서</span><span class="chip hl tag-sm">#AI콘텐츠</span>
             <span class="chip hl tag-sm">#숏폼자동화</span><span class="chip hl tag-sm">#n8n</span><span class="chip hl tag-sm">#바이브코딩</span><span class="chip hl tag-sm">#경제콘텐츠</span>
