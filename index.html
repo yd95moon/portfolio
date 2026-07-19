@@ -839,7 +839,7 @@ function primeMarquees(root){
       grp = track.querySelector('.mgrp');
     }
     const w = grp.scrollWidth;
-    const pxPerSec = track.classList.contains('hero-bg-track') ? THUMB_PX_PER_SEC*2.85 : track.closest('.ch-thumbs.fast') ? THUMB_PX_PER_SEC*2.8 : THUMB_PX_PER_SEC;
+    const pxPerSec = track.classList.contains('hero-bg-track') ? THUMB_PX_PER_SEC*4 : track.closest('.ch-thumbs.fast') ? THUMB_PX_PER_SEC*2.8 : THUMB_PX_PER_SEC;
     track.style.animationDuration = Math.max(6, w / pxPerSec).toFixed(1) + 's';
   });
 }
