@@ -432,7 +432,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 
 .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:22px}
 .hl-grid .hl{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;text-align:center;text-wrap:balance;display:flex;align-items:center;justify-content:center}
-@media(max-width:640px){.hl-grid{grid-template-columns:repeat(2,1fr);gap:10px}.hl-grid .hl{padding:13px 11px;font-size:12.5px}}
+@media(max-width:640px){.hl-grid{grid-template-columns:repeat(2,1fr);gap:10px}.hl-grid .hl{padding:13px 11px;font-size:12.5px}.hl-grid .hl:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 5px)}}
 
 .info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
 .icard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:20px 22px}
@@ -851,7 +851,7 @@ function primeMarquees(root){
       grp = track.querySelector('.mgrp');
     }
     const w = grp.scrollWidth;
-    const basePxPerSec = track.classList.contains('hero-bg-track') ? THUMB_PX_PER_SEC*4 : track.closest('.ch-thumbs.fast') ? THUMB_PX_PER_SEC*2.8 : track.closest('.ch-thumbs:not(.deco)') ? 25 : THUMB_PX_PER_SEC;
+    const basePxPerSec = track.classList.contains('hero-bg-track') ? THUMB_PX_PER_SEC*4 : track.closest('.ns-motion-cap') ? THUMB_PX_PER_SEC*1.68 : track.closest('.ch-thumbs.fast') ? THUMB_PX_PER_SEC*2.8 : track.closest('.ch-thumbs:not(.deco)') ? 25 : THUMB_PX_PER_SEC;
     // 현대차증권(CH01) 탭 마퀴는 전체 30% 감속 (.ch01-slow 스코프)
     const pxPerSec = basePxPerSec * (track.closest('.ch01-slow') ? 0.7 : 1);
     track.style.animationDuration = Math.max(6, w / pxPerSec).toFixed(1) + 's';
