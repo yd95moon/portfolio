@@ -276,6 +276,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .flow .step{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mut);background:var(--panel);border:1px solid var(--line);padding:8px 13px;border-radius:99px;flex-shrink:0;text-wrap:balance}
 .flow .step b{font-family:var(--mono);font-size:10px;color:var(--amber);font-weight:600}
 .flow .arr{color:var(--dim);font-size:12px}
+@media(max-width:640px){.flow{flex-direction:column;align-items:stretch}.flow .step{justify-content:center}.flow .arr{transform:rotate(90deg);align-self:center}}
 .flow-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--dim);margin-top:18px;text-wrap:balance}
 
 .photo-strip{display:flex;gap:10px;overflow-x:auto;margin-top:22px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
@@ -293,7 +294,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .works-lead .works-video{flex:1 1 0;min-width:0;height:300px}
 .works-lead .works-video .vgrid{margin-top:0;grid-template-columns:1fr;width:100%;height:100%}
 .works-lead .works-video .vcard{width:100%;height:100%;aspect-ratio:auto}
-@media(max-width:720px){.photo-grid.cols-4,.photo-grid.cols-3{grid-template-columns:repeat(2,1fr)}.works-lead{flex-direction:column}.works-lead .works-poster,.works-lead .works-video{flex:none;width:100%;max-width:320px;height:auto;margin:0 auto}.works-lead .works-poster img{height:auto;width:100%}.works-lead .works-video .vcard{height:auto;width:100%}.drama-lead{grid-template-columns:1fr}}
+@media(max-width:720px){.photo-grid.cols-4,.photo-grid.cols-3{grid-template-columns:repeat(3,1fr)}.works-lead{flex-direction:column}.works-lead .works-poster,.works-lead .works-video{flex:none;width:100%;max-width:320px;height:auto;margin:0 auto}.works-lead .works-poster img{height:auto;width:100%}.works-lead .works-video .vcard{height:auto;width:100%}.drama-lead{grid-template-columns:1fr}}
 .ext-unit{display:flex;flex-direction:column;gap:14px}
 .ext-unit .photo-grid{margin-top:0}
 .ext-unit .mag-marquee{margin-top:0}
@@ -336,9 +337,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 @keyframes ailore{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ai-lore::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,8,.5),rgba(7,7,8,.68))}
 .ai-lore p.ai-lore-cap{position:relative;z-index:1;text-align:center;font-weight:800;font-size:clamp(15.5px,2.3vw,19px);color:var(--ink);line-height:1.65;max-width:52em;padding:30px 24px;margin:0}
-@media(max-width:640px){.ai-lore{min-height:150px}.ai-lore p.ai-lore-cap{font-size:14px;padding:22px 16px}}
+@media(max-width:640px){.ai-lore{min-height:150px}.ai-lore p.ai-lore-cap{font-size:12.5px;line-height:1.6;padding:20px 14px}}
 .ai-cols .vcard .play{align-items:flex-end;justify-content:flex-end;padding:9px;background:linear-gradient(to top,rgba(6,6,7,.5),transparent 45%)}
 .ai-cols .vgrid.shorts .vcard .play i{width:26px;height:26px;font-size:9px}
+@media(max-width:640px){.vcard .vlabel{display:none}.vcard .play i{width:30px;height:30px;font-size:11px}.vgrid.shorts .vcard .play i{width:26px;height:26px;font-size:9px}}
 
 .p2-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
 .p2-marquee+.p2-marquee{margin-top:12px}
@@ -430,6 +432,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 
 .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:22px}
 .hl-grid .hl{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:var(--rad-s);padding:16px 18px;font-size:14px;font-weight:700;text-align:center;text-wrap:balance;display:flex;align-items:center;justify-content:center}
+@media(max-width:640px){.hl-grid{grid-template-columns:repeat(2,1fr);gap:10px}.hl-grid .hl{padding:13px 11px;font-size:12.5px}}
 
 .info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
 .icard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad-s);padding:20px 22px}
@@ -1094,7 +1097,7 @@ function p3MarqueeHTML(items, reverse){
   return `<div class="p3-marquee"><div class="p3-track${reverse?' rev':''}">${grp}${grp}</div></div>`;
 }
 const CH01 = {
-  lead: `AI 아나운서는 서비스 매뉴얼과 고객 안내부터 소비자보호·자금세탁방지·컴플라이언스 등 사내 필수교육까지 폭넓게 활용되며, 사내 콘텐츠 제작 비용 절감의 핵심 동력이 되고 있습니다.`,
+  lead: `AI 아나운서는 서비스 매뉴얼과 소비자보호·자금세탁방지·컴플라이언스 등 사내 필수교육까지 폭넓게 활용되며, 사내 콘텐츠 제작 비용 절감의 핵심 동력이 되고 있습니다.`,
   hyunsori: [
     {id:'G0wlWqTijA4', t:`[1월 2일] 모닝 1분 브리핑 | 특별한 재료 부재한 가운데 위험 자산 선호 위축`},
     {id:'8HThJ-FPwmw', t:`[1월 5일] 모닝 1분 브리핑 | 업종별 수익률 차별화, AI 관련주 강세`},
@@ -1191,7 +1194,7 @@ function ch01Body(){
     <span class="eyebrow">Program P1</span>
     <h2>AI 아나운서</h2>
     <div class="tagline">[AI로 수억원을 절약할 수 있던 이유]</div>
-    <p class="pdesc">기존 AI 아나운서는 외주에 의존하며 매년 수천만원의 비용을 지불했지만,<br>이를 내재화하여 콘텐츠 제작 패러다임 자체를 변화시켜 비용 혁신을 이루어냈습니다.</p>
+    <p class="pdesc">기존 AI 아나운서는 외주에 의존하며 매년 수천만원의 비용을 지불했지만, <br>이를 내재화하여 콘텐츠 제작 패러다임 자체를 변화시켜 비용 혁신을 이루어냈습니다.</p>
   </div>
   <div class="ai-cols">
     <div><div class="ai-col-head"><span class="badge">현소리</span></div><div class="vgrid shorts">${A.hyunsori.map(v=>vcardHTML(v.id, v.t, {vert:true})).join('')}</div></div>
@@ -1207,7 +1210,7 @@ function ch01Body(){
     <span class="eyebrow">Program P2</span>
     <h2>AI 숏폼 대량생산</h2>
     <div class="tagline">[퀄리티와 양, 성과까지 다잡은 비결]</div>
-    <p class="pdesc">제작 전 공정을 AI로 자동화해, 퀄리티는 지키면서 콘텐츠 발행량은 4배로 늘렸습니다.<br>추가 인력 충원 없이 생산성과 KPI를 동시에 끌어올린 결과입니다.</p>
+    <p class="pdesc">제작 전 공정을 AI로 자동화해, 퀄리티는 지키면서 콘텐츠 발행량은 4배로 늘렸습니다. <br>추가 인력 충원 없이 생산성과 KPI를 동시에 끌어올린 결과입니다.</p>
   </div>
   ${p2MarqueeHTML(A.shortsV1, false)}
   ${p2MarqueeHTML(A.shortsV2, true)}
