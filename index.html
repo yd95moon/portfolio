@@ -379,6 +379,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 .ig-strip.dragging{cursor:grabbing;scroll-snap-type:none}
 .ig-strip .ig-card{flex:none;width:min(198px,62vw);scroll-snap-align:start}
 @media(max-width:480px){.ig-strip{gap:10px}.ig-strip .ig-card{width:74vw}}
+.ig-marquee{overflow:hidden;margin-top:22px;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+.ig-track{display:flex;width:max-content;animation:p2scroll linear infinite}
+.ig-track .ig-card{width:198px;flex:none;margin-right:14px}
+.ig-marquee:hover .ig-track{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.ig-track{animation:none;flex-wrap:wrap;width:auto}}
+@media(max-width:480px){.ig-track .ig-card{width:150px}}
 
 /* P6 live panel (TV guide) */
 .live-panel{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;align-items:start}
@@ -824,7 +830,7 @@ function thumbHTML(c){
 /* measures each marquee's single group width at render time and sets the loop
    duration from it — avoids drift when a card/thumb size is overridden per-context */
 function primeMarquees(root){
-  (root||document).querySelectorAll('.tool-track, .ch-thumbs .track, .p2-track, .p3-track, .hero-bg-track, .ai-lore-track').forEach(track=>{
+  (root||document).querySelectorAll('.tool-track, .ch-thumbs .track, .p2-track, .p3-track, .hero-bg-track, .ai-lore-track, .ig-track').forEach(track=>{
     let grp = track.querySelector('.mgrp');
     if (!grp) return;
     // if one sequence is narrower than the screen, repeat the sequence until it
@@ -840,7 +846,9 @@ function primeMarquees(root){
       grp = track.querySelector('.mgrp');
     }
     const w = grp.scrollWidth;
-    const pxPerSec = track.classList.contains('hero-bg-track') ? THUMB_PX_PER_SEC*4 : track.closest('.ch-thumbs.fast') ? THUMB_PX_PER_SEC*2.8 : track.closest('.ch-thumbs:not(.deco)') ? 25 : THUMB_PX_PER_SEC;
+    const basePxPerSec = track.classList.contains('hero-bg-track') ? THUMB_PX_PER_SEC*4 : track.closest('.ch-thumbs.fast') ? THUMB_PX_PER_SEC*2.8 : track.closest('.ch-thumbs:not(.deco)') ? 25 : THUMB_PX_PER_SEC;
+    // 현대차증권(CH01) 탭 마퀴는 전체 30% 감속 (.ch01-slow 스코프)
+    const pxPerSec = basePxPerSec * (track.closest('.ch01-slow') ? 0.7 : 1);
     track.style.animationDuration = Math.max(6, w / pxPerSec).toFixed(1) + 's';
   });
 }
@@ -1174,7 +1182,9 @@ function ch01Body(){
   const onepickB = A.onepick.map(v=>({...v, badge:'원픽리포트'}));
   const moneyclassB = A.moneyclass.map(v=>({...v, badge:'머니클래스'}));
   const [liveNow, ...liveRest] = A.chartsignal;
+  const eventGrp = `<div class="mgrp">${A.eventInsta.map(e=>igCardHTML(e.id,{type:e.type})).join('')}</div>`;
   return `
+  <div class="ch01-slow">
   <div class="program reveal"><div class="program-head">
     <span class="eyebrow">Program P1</span>
     <h2>AI 아나운서</h2>
@@ -1226,7 +1236,7 @@ function ch01Body(){
     <div class="tagline">[데이터 분석 위에 감각을 더하다]</div>
     <p class="pdesc">고객 데이터로 무엇이 통하는지 읽고, 그 위에 콘텐츠 감각을 얹었습니다. 기아타이거즈, 현대건설 배구단 등 스포츠 마케팅 콘텐츠 제작에 참여했습니다.</p>
   </div>
-  <div class="ig-strip">${A.eventInsta.map(e=>igCardHTML(e.id,{type:e.type})).join('')}</div>
+  <div class="ig-marquee" aria-hidden="false"><div class="ig-track">${eventGrp}${eventGrp}</div></div>
   </div>
 
   <div class="program reveal"><div class="program-head">
@@ -1244,6 +1254,7 @@ function ch01Body(){
         <span>${esc(cleanTitle(v.t))}</span>
       </button>`).join('')}
     </div>
+  </div>
   </div>
   </div>`;
 }
