@@ -1168,9 +1168,9 @@ function igCardHTML(id, opts={}){
 }
 function ch01Body(){
   const A = CH01;
-  // AI 아나운서 배경 무한루프 마퀴 (히어로 배경밴드와 동일한 이음새 없는 패턴)
-  const aiLoreIds = [...A.usage, 'JUReVSWu22s','8255dFDarC8','anG9SW5C2sw','ywg6yv33bzs','cLIJbDRpWv0','fRx1HoSTDmE'];
-  const aiLoreGrp = `<div class="mgrp">${aiLoreIds.map(id=>`<img src="${YTm(id)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${DECO_FALLBACK_IMG}'">`).join('')}</div>`;
+  // AI 아나운서 배경 무한루프 마퀴 — 기존 usage 썸네일 4개만 사용
+  // (한 그룹이 좁으면 primeMarquees가 화면폭 넘을 때까지 반복해 이음새 없이 순환)
+  const aiLoreGrp = `<div class="mgrp">${A.usage.map(id=>`<img src="${YTm(id)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${DECO_FALLBACK_IMG}'">`).join('')}</div>`;
   const onepickB = A.onepick.map(v=>({...v, badge:'원픽리포트'}));
   const moneyclassB = A.moneyclass.map(v=>({...v, badge:'머니클래스'}));
   const [liveNow, ...liveRest] = A.chartsignal;
