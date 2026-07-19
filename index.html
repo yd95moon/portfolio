@@ -91,13 +91,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .hero-skills .env-line{margin:10px 0 0;padding-top:0;border-top:0;line-height:1.7}
 .hero-skills .hero-cta{justify-content:center;margin-top:22px}
 @media(max-width:768px){.hero-skills{margin-top:14px;padding-top:10px}}
-.hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,4vw,48px) 0;opacity:.13;-webkit-mask-image:radial-gradient(ellipse 62% 68% at 50% 50%,transparent 34%,rgba(0,0,0,.55) 66%,#000 100%);mask-image:radial-gradient(ellipse 62% 68% at 50% 50%,transparent 34%,rgba(0,0,0,.55) 66%,#000 100%)}
-.hero-bg-row{display:flex;width:max-content;gap:14px;flex:none;animation:herobg 90s linear infinite}
-.hero-bg-row.rev{animation-direction:reverse;animation-duration:110s}
-.hero-bg-row img{height:clamp(88px,11vw,128px);width:auto;border-radius:9px;filter:grayscale(.35) contrast(1.02);border:1px solid rgba(196,163,106,.25)}
+.skills-statement{position:relative;padding:clamp(22px,3.2vw,34px) 0;overflow:hidden}
+.skills-statement>.hero-skills-head,.skills-statement>.env-line{position:relative;z-index:2}
+.skills-statement::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 66% 140% at 50% 50%,rgba(6,6,7,.8),rgba(6,6,7,.22) 68%,transparent)}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:flex;flex-direction:column;justify-content:center;gap:10px;-webkit-mask-image:linear-gradient(to right,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(to right,transparent,#000 15%,#000 85%,transparent)}
+.hero-bg-row{display:flex;width:max-content;gap:12px;flex:none;animation:herobg 80s linear infinite}
+.hero-bg-row.rev{animation-direction:reverse;animation-duration:95s}
+.hero-bg-row img{height:clamp(52px,6.5vw,70px);width:auto;border-radius:7px;opacity:.34;filter:grayscale(.28) contrast(1.02);border:1px solid rgba(196,163,106,.3)}
 @keyframes herobg{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.finder>.finder-head,.finder>.hero-grid,.finder>.hero-skills{position:relative;z-index:1}
-@media(max-width:768px){.hero-bg{display:none}}
+@media(max-width:768px){.hero-bg{display:none}.skills-statement::after{display:none}}
 @media(prefers-reduced-motion:reduce){.hero-bg-row{animation:none}}
 
 /* ───────── sections ───────── */
@@ -128,8 +130,8 @@ section{padding:clamp(48px,8vw,84px) 0}
 .ch-thumbs.deco{overflow:hidden;pointer-events:none}
 .ch-thumbs.deco .track{animation:chmarquee 26s linear infinite}
 @keyframes chmarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ch-thumbs .th{width:88px;aspect-ratio:16/10;border-radius:9px;overflow:hidden;border:1px solid rgba(196,163,106,.5);background:var(--panel2);position:relative;flex:none;margin-right:8px}
-.ch-thumbs .th img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.ch-thumbs .th{width:92px;aspect-ratio:16/9;border-radius:9px;overflow:hidden;border:1px solid rgba(196,163,106,.5);background:var(--panel2);position:relative;flex:none;margin-right:8px}
+.ch-thumbs .th img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .ch-thumbs .th::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,6,7,.55),transparent 60%);pointer-events:none}
 .ch-card:hover .ch-thumbs .th img{transform:scale(1.05)}
 .ch-thumbs .th.txt{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px}
@@ -509,6 +511,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
 <script>
 /* ═══════════ DATA ═══════════ */
 const YT = id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const YTm = id => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 
 const DATA = {
   profile: {
@@ -692,7 +695,7 @@ const DATA = {
       company: '작품 활동', role: '청춘공방 — 연출 · 촬영 · 편집',
       desc: '웹 드라마, 공모전, 유튜브 채널 등 맨 땅에 헤딩하며 성장한 시간들.',
       thumbs: ['QogM6HG31PY', '6OYh6BqMEdA'],
-      imgThumbs: ['assets/gallery/works-otd-poster.jpg', 'assets/gallery/works-otd-1.jpg', 'assets/gallery/works-otd-3.jpg', 'assets/gallery/works-nmn-poster.jpg', 'assets/gallery/works-nmn-1.jpg', 'assets/gallery/works-nmn-3.jpg'],
+      imgThumbs: ['assets/gallery/works-otd-1.jpg', 'assets/gallery/works-otd-2.jpg', 'assets/gallery/works-otd-3.jpg', 'assets/gallery/works-nmn-1.jpg', 'assets/gallery/works-nmn-2.jpg', 'assets/gallery/works-nmn-3.jpg'],
       programs: [
         {
           t: '웹드라마 「오늘부터 그대를」',
@@ -797,7 +800,7 @@ function thumbHTML(c){
     <div class="th txt"><b>SOON</b><span>Coming</span></div>
     <div class="th txt"><b>2025</b><span>NEW</span></div></div>`;
   const cells = [
-    ...allVideoIds(c).map(id=>`<div class="th"><img src="${YT(id)}" alt="" loading="eager" onerror="this.style.opacity='0'"></div>`),
+    ...allVideoIds(c).map(id=>`<div class="th"><img src="${YTm(id)}" alt="" loading="eager" onerror="this.style.opacity='0'"></div>`),
     ...(c.imgThumbs||[]).map(src=>`<div class="th"><img src="${esc(src)}" alt="" loading="eager"></div>`),
   ];
   if (cells.length){
@@ -860,7 +863,7 @@ function enableHScroll(el){
 function renderHub(){
   document.title = '문영두 — 풀스택 PD';
   const HERO_BG = [
-    ['assets/gallery/kbs-work-1.jpg','assets/gallery/works-nmn-poster.jpg','assets/gallery/miracom-magazine-1.jpg','assets/gallery/freelance-hanatour-1.jpg','assets/gallery/kbs-gear-1.jpg','assets/gallery/works-otd-poster.jpg','assets/gallery/miracom-drama-1.jpg','assets/gallery/freelance-brand-1.jpg'],
+    ['assets/gallery/kbs-work-1.jpg','assets/gallery/works-nmn-2.jpg','assets/gallery/miracom-magazine-1.jpg','assets/gallery/freelance-hanatour-1.jpg','assets/gallery/kbs-gear-1.jpg','assets/gallery/works-otd-2.jpg','assets/gallery/miracom-drama-1.jpg','assets/gallery/freelance-brand-1.jpg'],
     ['assets/gallery/kbs-doc-1.jpg','assets/gallery/miracom-live-1.jpg','assets/gallery/works-nmn-1.jpg','assets/gallery/freelance-hanatour-5.jpg','assets/gallery/kbs-program-1.jpg','assets/gallery/miracom-solution-1.jpg','assets/gallery/works-otd-1.jpg','assets/gallery/kbs-gear-4.jpg'],
     ['assets/gallery/freelance-brand-3.jpg','assets/gallery/kbs-work-3.jpg','assets/gallery/miracom-drama-4.jpg','assets/gallery/works-nmn-3.jpg','assets/gallery/kbs-doc-5.jpg','assets/gallery/freelance-hanatour-3.jpg','assets/gallery/miracom-magazine-4.jpg','assets/gallery/works-otd-3.jpg'],
   ];
@@ -869,7 +872,6 @@ function renderHub(){
   <div class="hero">
     <div class="finder">
       <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-      <div class="hero-bg" aria-hidden="true">${bgRow(HERO_BG[0],false)}${bgRow(HERO_BG[1],true)}${bgRow(HERO_BG[2],false)}</div>
       <div class="finder-head"><span class="rec"><span class="rec-dot"></span>REC</span><span>PORTFOLIO · 2026</span></div>
       <div class="hero-grid">
         <div>
@@ -892,8 +894,11 @@ function renderHub(){
         <div class="tool-scroll" aria-hidden="true"><div class="tool-track" id="heroToolTrack">${
           [0,1].map(()=>`<div class="mgrp">${DATA.skills.tools.map(t=>`<span class="tool-pill">${esc(t)}</span>`).join('')}</div>`).join('')
         }</div></div>
-        <p class="hero-skills-head">${esc(DATA.skills.oneLiner)}</p>
-        <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서<br>이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
+        <div class="skills-statement">
+          <div class="hero-bg" aria-hidden="true">${bgRow(HERO_BG[0],false)}${bgRow(HERO_BG[1],true)}</div>
+          <p class="hero-skills-head">${esc(DATA.skills.oneLiner)}</p>
+          <p class="env-line">증권사, 핀테크, 대기업, 방송국, 프리랜서<br>이 모든 현장이 저를 풀스택으로 만들었습니다.</p>
+        </div>
         <div class="hero-cta hero-cta-center">
           <a class="btn btn-amber" href="#/" data-anchor="career">경력 바로가기 <span aria-hidden="true">↓</span></a>
           <a class="btn btn-ghost" href="https://www.youtube.com/@SFDuck1969" target="_blank" rel="noopener">개인 유튜브 채널 ↗</a>
