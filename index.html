@@ -561,8 +561,9 @@ const DATA = {
       id: 'newsystock', ch: '02', period: '— 2025.08',
       company: '뉴지스탁', role: '콘텐츠마케팅 매니저 · 금융 콘텐츠 PD',
       desc: 'AI 숏폼 자동화, 퀀트 투자 강의, 모션 그래픽까지. 일당백 금융 콘텐츠 PD.',
-      thumbs: ['KxhK3Vm-lW0', 'RYb_ZAgLF8A', 'kjuEZMxJxcs', 'NA7YKbddP9E', 'sCUBq_kvAn4'],
-      imgThumbs: ['assets/gallery/ns-motion-03.png','assets/gallery/ns-motion-07.png','assets/gallery/ns-motion-09.png','assets/gallery/ns-motion-12.png','assets/gallery/ns-motion-16.png','assets/gallery/ns-motion-20.png'],
+      thumbs: ['KxhK3Vm-lW0', 'RYb_ZAgLF8A', 'kjuEZMxJxcs'],
+      // 경력 카드 썸네일 — 탭 순서대로: 유튜브2 · AI숏폼2 · 모션그래픽2 · 행사스케치2
+      cardThumbs: ['KxhK3Vm-lW0','jaOMvwSL0Mg','6FcvywhYnmI','yGkNNvlPgkI','assets/gallery/ns-motion-06.png','assets/gallery/ns-motion-10.png','RYb_ZAgLF8A','kjuEZMxJxcs'],
       channel: { label: '뉴지스탁 유튜브 채널', url: 'https://www.youtube.com/@genport_newsystock' },
     },
     {
@@ -823,7 +824,12 @@ function thumbHTML(c){
     <div class="th txt"><b>CH ${c.ch}</b><span>준비 중</span></div>
     <div class="th txt"><b>SOON</b><span>Coming</span></div>
     <div class="th txt"><b>2025</b><span>NEW</span></div></div>`;
-  const cells = [
+  // cardThumbs: 영상ID와 이미지경로를 섞어 '탭 순서 그대로' 배치 (경로에 '/' 포함 → 이미지, 아니면 유튜브 ID)
+  const cells = c.cardThumbs
+    ? c.cardThumbs.map(s => s.includes('/')
+        ? `<div class="th"><img src="${esc(s)}" alt="" loading="eager"></div>`
+        : `<div class="th"><img src="${YTm(s)}" alt="" loading="eager" onerror="this.style.opacity='0'"></div>`)
+    : [
     ...allVideoIds(c).map(id=>`<div class="th"><img src="${YTm(id)}" alt="" loading="eager" onerror="this.style.opacity='0'"></div>`),
     ...(c.imgThumbs||[]).map(src=>`<div class="th"><img src="${esc(src)}" alt="" loading="eager"></div>`),
   ];
